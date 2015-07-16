@@ -1,0 +1,290 @@
+#################################### LIST BEGIN LEN = 290 LINES
+C     K E Y W O R D    L I S T
+C
+C     KEYWORD. NORMAL    COMMENT.
+C              VALUE.
+C
+C
+C     KH      =4         MAX H FOR CUBIC BASE LINE.
+C     KK      =4         MAX K FOR CUBIC BASE LINE.
+C     KL      =4         MAX L FOR CUBIC BASE LINE.
+C
+C                        OBS. THE PROGRAM WILL ONLY GENERATE H GREATER THAN OR
+C                             EQ. TO K GREATER THAN OR EQ. TO L FOR THIS LINE.
+C
+C     KS      =6         MAX H+K+L FOR THIS LINE.
+C
+C                        OBS. IF KS=0 CUBIC TEST OMITTED.
+C
+C                        OBS. THE CUBIC BASE LINES ARE (1) AND (2).
+C
+C                        * * * * * * * * * * * * * * * * * * * * * * * * * * *
+C
+C     THH     =4         MAX H FOR TETRAGONAL AND HEXAGONAL BASE LINES.
+C     THK     =4         MAX K FOR TETRAGONAL AND HEXAGONAL BASE LINES.
+C     THL     =4         MAX L FOR TETRAGONAL AND HEXAGONAL BASE LINES.
+C
+C                        OBS. THE PROGRAM WILL ONLY GENERATE H GREATER THAN OR
+C                             EQ. TO K FOR THESE LINES.
+C
+C     THS     =4         MAX H+K+L FOR THESE LINES.
+C
+C                        OBS. IF THS=0 TETRAGONAL AND HEXAGONAL TESTS OMITTED.
+C
+C                        OBS. THE TETRAGONAL AND HEXAGONAL BASE LINES
+C                             ARE (1,2),(1,3) AND (2,3)
+C
+C                        * * * * * * * * * * * * * * * * * * * * * * * * * * *
+C
+C     OH1     =2         MAX H FOR THE FIRST ORTHORHOMBIC BASE LINE.
+C     OK1     =2         MAX K FOR THE FIRST ORTHORHOMBIC BASE LINE.
+C     OL1     =2         MAX L FOR THE FIRST ORTHORHOMBIC BASE LINE.
+C
+C                        OBS. THE PROGRAM WILL ONLY GENERATE H GREATER THAN OR
+C                             EQ. TO K GREATER THAN OR EQ. TO L FOR THIS LINE.
+C                             THIS IS ALSO VALID IF THE 'SELECT' PARAMETER
+C                             IS USED. (SEE BELOW)
+C
+C     OS1     =3         MAX H+K+L FOR THIS LINE.
+C
+C                        OBS. IF OS1=0 ORTHORHOMBIC TEST OMITTED.
+C
+C     OH2     =2         MAX H FOR THE SECOND ORTHORHOMBIC BASE LINE.
+C     OK2     =2         MAX K FOR THE SECOND ORTHORHOMBIC BASE LINE.
+C     OL2     =2         MAX L FOR THE SECOND ORTHORHOMBIC BASE LINE.
+C     OS2     =4         MAX H+K+L FOR THIS LINE.
+C
+C     OH3     =2         MAX H FOR THE THIRD ORTHORHOMBIC BASE LINE.
+C     OK3     =2         MAX K FOR THE THIRD ORTHORHOMBIC BASE LINE.
+C     OL3     =2         MAX L FOR THE THIRD ORTHORHOMBIC BASE LINE.
+C     OS3     =4         MAX H+K+L FOR THIS LINE.
+C
+C                        OBS. THE ORTHOROMBIC BASE LINES ARE
+C                        (1,2,3) (1,2,4) (1,2,5) (1,3,4) (2,3,4) AND (1,2,6)
+C
+C                        IF THE PARAMETER    SELECT=0
+C                        PARAMETER 'SELECT' SEE BELOW.
+C
+C                        * * * * * * * * * * * * * * * * * * * * * * * * * * *
+C
+C     MH1     =2         MAX ABS(H) FOR THE FIRST MONOCLINIC BASE LINE.
+C     MK1     =2         MAX K FOR THE FIRST MONOCLINIC BASE LINE.
+C     ML1     =2         MAX L FOR THE FIRST MONOCLINIC BASE LINE.
+C
+C                        OBS. THE PROGRAM WILL ONLY GENERATE H GREATER THAN OR
+C                             EQ. TO L FOR THIS LINE.
+C                             THIS IS ALSO VALID IF THE 'SELECT' PARAMETER
+C                             IS USED. (SEE BELOW)
+C
+C     MS1     =2         MAX ABS(H)+K+L FOR THIS LINE.
+C                        THE NORMAL (AND FAST) WAY TO TEST ONE EXPECTED CELL
+C                        EDGE PARAMETER IS TO PUT IT IN AS Q NUMBER ONE (CARD
+C                        SET TWO) AND SET MH1=1,MK1=1,ML1=0,MS1=1.
+C
+C     MH2     =2         MAX ABS(H) FOR THE SECOND MONOCLINIC BASE LINE.
+C     MK2     =2         MAX K FOR THE SECOND MONOCLINIC BASE LINE.
+C     ML2     =2         MAX L FOR THE SECOND MONOCLINIC BASE LINE.
+C     MS2     =3         MAX ABS(H)+K+L FOR THIS LINE.
+C
+C     MH3     =2         MAX ABS(H) FOR THE THIRD MONOCLINIC BASE LINE.
+C     MK3     =2         MAX K FOR THE THIRD MONOCLINIC BASE LINE.
+C     ML3     =2         MAX L FOR THE THIRD MONOCLINIC BASE LINE.
+C     MS3     =3         MAX ABS(H)+K+L FOR THIS LINE.
+C
+C     MH4     =2         MAX ABS(H) FOR THE FOURTH MONOCLINIC BASE LINE.
+C     MK4     =2         MAX K FOR THE FOURTH MONOCLINIC BASE LINE.
+C     ML4     =2         MAX L FOR THE FOURTH MONOCLINIC BASE LINE.
+C     MS4     =4         MAX ABS(H)+K+L FOR THIS LINE.
+C
+C                        OBS. THE MONOCLINIC BASE LINES ARE
+C                        (1,2,3,4) (1,2,3,5) AND (1,2,4,5)
+C                        IF THE PARAMETER 'SELECT' IS LESS THAN 6
+C
+C                        PARAMETER 'SELECT' SEE BELOW.
+C
+C
+C     MONOSET =0         THIS PARAMETER MAKES IT POSSIBLE TO USE MORE THAN 3
+C                        SETS OF BASE LINES IN THE MONOCLINIC TRIALS.
+C                        IF MONOSET IS:
+C                        GREATER THAN 3 THE BASE LINE SET (1,3,4,5) WILL BE USED
+C                        GREATER THAN 4 THE BASE LINE SET (1,2,3,6) WILL BE USED
+C                        GREATER THAN 5 THE BASE LINE SET (2,3,4,5) WILL BE USED
+C                        GREATER THAN 6 THE BASE LINE SET (1,2,3,7) WILL BE USED
+C                        THUS MAX 7 BASE LINE SETS CAN BE USED.
+C
+C     MONOGAM=1          THE BEST 5 TRIAL PARAMETER SETS STORED
+C                        (SEE PARAMETER 'IQ') FOR EACH BASE LINE SET WILL BE
+C                        REFINED BEFORE NEXT BASE LINE SET IS TRIED.
+C
+C                        IF MONOGAM=0 ALL BASE LINE SETS ARE TRIED BEFORE
+C                        ANY REFINEMENT IS PERFORMED.
+C
+C                        THE PARAMETER IS ONLY USED IN THE MONOCLINIC TESTS.
+C
+C                        IT IS RECOMMENDED TO USE MONOGAM=1 BECAUSE A REFINED
+C                        CELL PARAMETER SET IS ALWAYS TESTED FOR THE STOP
+C                        LIMITS 'MERIT' AND 'NIX'. THUS COMPUTER TIME CAN BE
+C                        SAVED.
+C
+C     MONO    =0         MAX BETA ANGLE ALLOWED IN A MONOCLINIC CELL.
+C                        OBS. NO MONOCLINIC TEST IF MONO=0
+C                        (SEE ALSO KEYWORD SHORT)
+C
+C     SHORT   =1         SHORT AXIS TEST.
+C                        THE PARAMETER IS ONLY VALID FOR MONOCLINIC TESTS.
+C                        THE FIRST SIX LINES ARE TESTED FOR THE OCCURRENCE
+C                        OF A COMMON ZERO INDEX IN THE SIX FIRST LINES.
+C                        IF SHORT=0 NO SHORT AXIS TEST.
+C                        IF YOU WANT TO MAKE THIS TEST WITHOUT REPEATING
+C                        OTHER MONOCLINIC TESTS YOU MAY GIVE THE PARAMETER
+C                        MONO A NEGATIVE SIGN.
+C
+C
+C
+C                        * * * * * * * * * * * * * * * * * * * * * * * * * * *
+C
+C     USE     =19       -OR EQ. TO THE NUMBER OF INPUT LINES IF THERE ARE LESS
+C                        THAN 19 LINES,
+C                       -OR EQ. TO THE NUMBER OF LINES WITH SINE SQUARE(THETAS)
+C                        LESS THAN 0.327
+C                       -'USE' IS THE NUMBER OF LINES USED IN THE TRIAL-INDEXING
+C                        PART OF THE CALCULATIONS.
+C
+C                        OBS. MAX USE=20
+C
+C                        OBS. IF YOU WANT TO CHANGE THIS PARAMETER YOU SHOULD
+C                             ALSO CHANGE THE PARAMETER IQ.
+C
+C     IQ      =USE-3     THE NUMBER OF INDEXABLE LINES REQUIRED IN THE TRIAL-
+C                        INDEXING PROCEDURE IF THE CELL SHOULD BE STORED FOR
+C                        EV. LEAST-SQUARES REFINEMENT.
+C                        THESE RECIPROCAL CELL PARAMETERS ARE PRINTED IF THE
+C                        PARAMETER   LIST=1
+C
+C     LIST    =0         SEE. ABOVE.
+C
+C     SELECT  =0         IF 'SELECT' IS NON ZERO THE ORTHORHOMBIC BASE LINES ARE
+C                        (SELECT,1,2) (SELECT,1,3) AND (SELECT,2,3)
+C
+C                        IF 'SELECT' IS GREATER THAN 5 THE MONOCLINIC BASE LINES
+C                        ARE (SELECT,1,2,3) (SELECT,1,2,4) AND (SELECT,1,3,4)
+C
+C     MERIT   =10        FIGURE OF MERIT REQUIRED AS STOP LIMIT.
+C                        THE FIGURE OF MERIT IS FOR AN ORTHORHOMBIC CELL DEFINED
+C                        BY DE WOLFF,P.M., J.APPL.CRYST. 1(1968)108-113.
+C                        ( FOR THE CUBIC ,TETRAGONAL AND HEXAGONAL SYMMETRIES
+C                        ARE THE DIFFERENT QUADRATIC FORMS AS GIVEN IN
+C                        INT. TABL. X-RAY CRYST.(1968) VOL.2 P.109-145 USED IN
+C                        THE CALCULATION OF THE NUMBER OF THEORETICAL LINES.)
+C
+C                        OBS. THE FIGURE OF MERIT CALCULATIONS ARE NOT STRICTLY
+C                        VALID UNLESS ALL TWENTY FIRST LINES ARE INDEXED.
+C
+C
+C     NIX     =1         IF A CELL AFTER LEAST SQUARES REFINEMENT HAS A FIGURE
+C                        OF MERIT EQ. TO OR GREATER THAN THE PARAMETER  'MERIT'
+C                        AND THE NUMBER OF NOT INDEXABLE LINES AMONG THE 'USE'
+C                        FIRST LINES ARE LESS THAN OR EQ. TO 'NIX' THE
+C                        CALCULATIONS ARE STOPPED.
+C
+C                        OBS. OTHERWISE THE CALCULATIONS WILL END WITH A
+C                             DIFFERENCE ANALYSIS (PROGRAM I1.  WERNER, P.-E.
+C                             Z.KRISTALLOGR. 120(1964)375-378)
+C
+C     IDIV    =1         THE 7 FIRST LINES ARE ADJUSTED BY (EVENTUALLY
+C                        OCCURRING) HIGHER ORDER LINES.
+C                        IF IDIV=0  NO CORRECTIONS.
+C                        USUALLY THE DEFAULT VALUE 1 IS O.K. THERE ARE
+C                        EXEPTIONS, HOWEVER. IF INDEXING IS NOT
+C                        SUCCESSFUL IT IS RECOMMENDED TO TRY IDIV=0.
+C
+C
+C     WAVE    =1.5405981 WAVE LENGTH. (IN ANGSTROEM)
+C                        AS A RULE ONE SHOULD NEVER CHANGE WAVE FROM 1.5405981.
+C                        IF D-VALUES ARE USED IN THE INPUT DATA FILE (SEE.
+C                        CHOICE=4) ONE CAN ALWAYS PRETEND THAT WAVE WAS
+C                        1.5405981 A. WAVE IS THEN A FORMAL PARAMETER ONLY
+C                        RELATED TO D1, SSQTL AND D2 (SEE BELOW).
+C
+C     VOL     =2000      MAX CELL VOLUME (IN ANGSTROEM**3)
+C                        A new option available in TREOR90 is to give a
+C                        negative value of VOL, ex. VOL=-2000.
+C                        See comments on the top of this list.
+C
+C
+C
+C     CEM     =25        MAX CELL EDGE (IN ANGSTROEM)
+C                        THE COMPUTING TIME IS STRONGLY DEPENDENT ON THE
+C                        VOL AND CEM PARAMETERS. THEREFORE,IF POSSIBLE
+C                        PUT IN SMALLER VALUES (AT LEAST IN MONOCLINIC TRIALS)
+C
+C     D1      =0.0002    DEFINED AS FOR PROGRAM PIRUM.
+C                        (WERNER P.E. ARKIV KEMI 31(1969)513-516)
+C
+C     SSQTL   =0.05      DEFINED AS FOR PROGRAM PIRUM.
+C
+C     D2      =0.0004    DEFINED AS FOR PROGRAM PIRUM.
+C                        A LINE IS CONSIDERED AS INDEXED IF..
+C                        SINE SQUARE THETA IS LESS THAN 0.05 AND
+C                        ABS(SINE SQUARE THETA OBSERVED MINUS SINE SQUARE
+C                        THETA CALCULATED) IS LESS THAN D1 OR....
+C                        IF SINE SQUARE THETA IS GREATER THAN 0.05 AND
+C                        THE CORRESPONDING DIFFERENCE IS LESS THAN D2.
+C                        OBS. THE PARAMETERS D1,SSQTL AND D2 ARE USED IN THE
+C                             TRIAL INDEXING PART AS WELL AS THE LEAST-SQUARES
+C                             REFINEMENTS.
+C                        OBS. 'D1,SSQTL AND D2' ARE DEPENDENT ON 'WAVE'
+C                        OBS. THE PARAMETER D2 IS ALSO USED IN THE DIFFERENCE
+C                             ANALYSIS.
+C
+C     CHOICE  =0         INDICATOR DEFINING 'SQ' ON CARD SET TWO.
+C                        CHOICE=0   SQ=SINE SQUARE THETA
+C                              =1   SQ=1/(D*D)    ('D'-SPACING IN ANGSTROEM)
+C                              =2   SQ=THETA      ('THETA'=BRAGG ANGLE IN DEG.)
+C                              =3   SQ=2*THETA
+C                              =4   SQ=D
+C                        OBS. IF 'CHOICE' IS NON ZERO IT IS ALWAYS POSSIBLE TO
+C                             USE WAVE=1.54051 (THE NORMAL VALUE)
+C
+C     DENS    =0         DENSITY NOT USED.
+C                        IF ONLY AN INTEGRAL NUMBER OF MOLECULES IN THE UNIT
+C                        CELL IS ACCEPTED THE PARAMETERS DENS,EDENS AND MOLW
+C                        MAY BE USED.      (ON YOUR OWN RESPONSIBILITY)
+C                        DENS EQ. DENSITY IN GRAM PER CM**3
+C
+C     EDENS   =0         NOT USED UNLESS DENS EQ. NON ZERO.
+C                        EDENS EQ. MAX. DEVIATION IN THE PARAMETER DENS.
+C                        OBS. DENS AND EDENS ARE USED IN TRIAL CALCULATIONS
+C                        I.E. THEY ARE USED IN TESTS ON NON REFINED UNIT CELLS.
+C                        IT IS THEREFORE RECOMMENDED TO USE AN EDENS WHICH IS
+C                        THE EXPECTED MAX. DEVIATION IN DENS PLUS 5-10 PER CENT
+C                        OF DENS. OBS. THE CHOICE OF EDENS SHOULD BE DEPENDENT
+C                        ON THE QUALITY OF YOUR DIFFRACTION DATA.
+C
+C     MOLW    =0         NOT USED UNLESS DENS ( AND EDENS ) EQ. NON ZERO
+C                        MOL. WEIGHT IN A.U. (OBS CRYSTAL WATER INCLUDED)
+C
+C                        THE PARAMETERS DENS,EDENS AND MOLW (IF KNOWN) MAY BE
+C                        USED IN MONOCLINIC AND TRICLINIC  TESTS IN ORDER TO
+C                        REDUCE THE COMPUTER TIME NEEDED. IT IS NOT RECOMMENDED
+C                        TO USE THESE PARAMETERS FOR ORTHORHOMBIC AND HIGHER
+C                        SYMMETRIES.
+C
+C     TRIC     =0        NO TRICLINIC TEST.
+C                        IF TRIC=1 ALL HIGHER SYMMETRY TESTS ARE OMITTED AND
+C                        A (TIMECONSUMING) TRICLINIC TEST IS MADE.
+C                        IT IS PRESUPPOSED THAT ALL HIGHER SYMMETRIES HAVE
+C                        BEEN TRIED IN EARLIER RUNS. ALTHOUGH IT IS IN
+C                        PRINCIPLE POSSIBLE TO INDEX ANY PATTERN AS TRICLINIC,
+C                        THE INDEXING ALGORITHM USED HERE IS MORE
+C                        EFFECTIVE FOR TRUE TRICLINIC THAN FOR PSEUDO-
+C                        TRICLINIC PATTERNS. FOR EXAMPLE A MONOCLINIC PATTERN
+C                        MAY BE CORRECTLY INDEXED BY A TRICLINIC CELL (USING
+C                        TRIC=1) BUT THIS IS NOT THE RECOMMENDED PROCEDURE.
+C                        FURTHERMORE, THE TRICLINIC TEST IS TIMECONSUMING
+C                        (TYPICAL 10-20 MINUTES CPU-TIME ON A VAX 11/750).
+C                        OBS. FOR A TRUE TRICLINIC CELL THE PARAMETER VOL
+C                        MAY BE GIVEN THE ESTIMATED VALUE (C.F. THE WARNINGS
+C                        GIVEN ABOVE -SEE  S T R A T E G Y....) PLUS
+C                        200 A**3.
+########################################### LIST END

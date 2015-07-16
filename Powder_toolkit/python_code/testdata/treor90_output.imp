@@ -1,0 +1,221 @@
+  VERSION JANUARY 1990 
+  cimetidine                                                                    
+        9.310000       
+        9.950000       
+       12.820000       
+       13.400000       
+       14.200000       
+       14.580000       
+       16.350000       
+       16.549999       
+       16.680000       
+       17.629999       
+       18.250000       
+       18.639999       
+       18.690001       
+       18.910000       
+       19.430000       
+       19.480000       
+       19.700001       
+       20.330000       
+       20.690001       
+       21.120001       
+       22.900000       
+       23.080000       
+       23.309999       
+       23.600000       
+       25.110001       
+       25.559999       
+       25.809999       
+       26.090000       
+       26.340000       
+       26.610001       
+ STOP LIMITS
+ FIGURE OF MERIT REQUIRED=   10
+ MAX NUMBER OF UNINDEXED LINES IN FIGURE OF MERIT TEST=    1
+ THE 7 FIRST LINES ADJUSTED BY THEIR HIGHER ORDERS
+ CUBIC,TETRAGONAL,HEXAGONAL AND ORTHOROMBIC SYMMETRY
+ MAX CELL EDGE= 25.0 MAX CELL VOLUME=    2000.0
+ D1=   .000200 SSQTL=   .050000 D2=   .000400 WAVE=  1.540598
+ NUMBER OF TEST LINES=   19 IQ REQUIRED=   16
+ ** CUBIC TEST ********************* MAX. VOLUME= 2000.
+ SELECTED BASE LINES (1) (2)
+ BASE LINE ONE.(HKL)-MAX=    4    4    4 MAX H+K+L=    6
+ ** TETRAGONAL TEST **************** MAX. VOLUME= 2000.
+ SELECTED BASE LINES (1,2) (1,3) (2,3)
+ BASE LINE ONE.(HKL)-MAX=    4    4    4 MAX H+K+L=    4
+ BASE LINE TWO.(HKL)-MAX=    4    4    4 MAX H+K+L=    4
+ ** HEXAGONAL TEST ***************** MAX. VOLUME= 2000.
+ SELECTED BASE LINES (1,2) (1,3) (2,3)
+ BASE LINE ONE.(HKL)-MAX=    4    4    4 MAX H+K+L=    4
+ BASE LINE TWO.(HKL)-MAX=    4    4    4 MAX H+K+L=    4
+ ** ORTHORHOMBIC TEST ************** MAX. VOLUME= 2000.
+ SELECTED BASE LINES (1,2,3) (1,2,4) (1,2,5) (1,3,4) (2,3,4) (1,2,6) 
+ BASE LINE ONE.(HKL)-MAX=    2    2    2 MAX H+K+L=    3
+ BASE LINE TWO.(HKL)-MAX=    2    2    2 MAX H+K+L=    4
+ BASE LINE THREE.(HKL)-MAX=    2    2    2 MAX H+K+L=    4
+ ** MONOCLINIC TEST **************** MAX. VOLUME= 2000.
+ MAX BETA ALLOWED=  130 DEG.
+ (020)-SEARCH
+   NUMBER OF SINGLE INDEXED LINES =   22
+   TOTAL NUMBER OF LINES =   30
+   A = 10.479499   .001495 A   ALFA = 90.000000   .000000 DEG
+   B = 18.973003   .002641 A   BETA =106.454803   .009824 DEG
+   C =  6.879375   .000804 A  GAMMA = 90.000000   .000000 DEG
+   UNIT CELL VOLUME =   1311.79 A**3
+    H   K   L SST-OBS  SST-CALC   DELTA   2TH-OBS 2TH-CALC D-OBS   FREE PARAM.
+    0   2   0  .006557  .006593  -.000037   9.289   9.315  9.5129            
+    1   1   0  .007521  .007523  -.000002   9.950   9.951  8.8825            
+    1   2   0  .012470  .012468   .000002  12.823  12.822  6.8981            
+    0   0   1  .013612  .013632  -.000019  13.400  13.410  6.6023            
+    0   1   1  .015277  .015280  -.000003  14.200  14.201  6.2321            
+   -1   1   1  .016101  .016085   .000017  14.580  14.572  6.0705            
+    0   2   1  .020220  .020225  -.000005  16.350  16.352  5.4171            
+    1   3   0  .020714  .020709   .000005  16.550  16.548  5.3521            
+   -1   2   1  .021039  .021030   .000009  16.680  16.676  5.3107            
+    2   0   0  .023484  .023497  -.000014  17.630  17.635  5.0266            
+    2   1   0  .025150  .025146   .000005  18.250  18.248  4.8572            
+    1   1   1  .026227  .026224   .000004  18.640  18.639  4.7565            
+    0   4   0  .026367  .026373  -.000007  18.690  18.692  4.7438            
+   -2   0   1  .026986  .026990  -.000004  18.910  18.912  4.6891            
+    0   3   1  .028476  .028467   .000009  19.430  19.427  4.5648            
+   -2   1   1  .028621  .028638  -.000017  19.480  19.486  4.5532            
+   -1   3   1  .029265  .029271  -.000007  19.700  19.702  4.5028            
+    1   2   1  .031146  .031169  -.000022  20.330  20.337  4.3647            
+    1   4   0  .032247  .032248  -.000001  20.690  20.690  4.2896            
+   -2   2   1  .033586  .033583   .000003  21.120  21.119  4.2032            
+    1   3   1  .039407  .039410  -.000003  22.900  22.901  3.8804            
+    0   4   1  .040021  .040005   .000016  23.080  23.075  3.8505            
+   -1   4   1  .040811  .040810   .000002  23.310  23.310  3.8130            
+   -2   3   1  .041819  .041825  -.000006  23.600  23.602  3.7668            
+    1   5   0           .047083                    25.064
+    2   0   1  .047253  .047268  -.000015  25.110  25.114  3.5436            
+    2   1   1  .048933  .048916   .000017  25.560  25.556  3.4822            
+    2   4   0  .049879  .049871   .000008  25.810  25.808  3.4491            
+   -1   0   2           .050261                    25.911
+    1   4   1  .050948  .050949  -.000001  26.090  26.090  3.4127            
+   -3   0   1           .051292                    26.180
+   -1   1   2  .051912  .051910   .000002  26.340  26.340  3.3809            
+    3   0   0           .052869                    26.586
+   -3   1   1  .052962  .052941   .000021  26.610  26.605  3.3472            
+ NUMBER OF OBS. LINES =   30
+ NUMBER OF CALC. LINES =   34
+ M( 20)=  68  AV.EPS.=  .0000095
+ F 20 = 179.( .004301,   26)
+ M( 30)=  68  AV.EPS.=  .0000093
+ F 30 = 194.( .003688,   42)
+ M( 30)=  68  AV.EPS.=  .0000093
+ F 30 = 194.( .003688,   42)
+     0  LINES ARE UNINDEXED 
+ M-TEST=   68 UNINDEXED IN THE TEST=    0
+
+
+ THIS MAY BE THE SOLUTION !!! 
+ THE REFINEMENT OF THE CELL WILL NOW BE REPEATED 
+ THREE CYCLES MORE. --- GOOD LUCK !
+
+
+ CYCLE RESULTS
+
+
+   .005874   .001648   .013632   .005069   .000000   .000000
+   .005874   .001648   .013632   .005069   .000000   .000000
+   .005874   .001648   .013632   .005069   .000000   .000000
+   NUMBER OF SINGLE INDEXED LINES =   22
+   TOTAL NUMBER OF LINES =   30
+   A = 10.479499   .001495 A   ALFA = 90.000000   .000000 DEG
+   B = 18.973003   .002641 A   BETA =106.454803   .009824 DEG
+   C =  6.879375   .000804 A  GAMMA = 90.000000   .000000 DEG
+   UNIT CELL VOLUME =   1311.79 A**3
+    H   K   L SST-OBS  SST-CALC   DELTA   2TH-OBS 2TH-CALC D-OBS   FREE PARAM.
+    0   2   0  .006557  .006593  -.000037   9.289   9.315  9.5129            
+    1   1   0  .007521  .007523  -.000002   9.950   9.951  8.8825            
+    1   2   0  .012470  .012468   .000002  12.823  12.822  6.8981            
+    0   0   1  .013612  .013632  -.000019  13.400  13.410  6.6023            
+    0   1   1  .015277  .015280  -.000003  14.200  14.201  6.2321            
+   -1   1   1  .016101  .016085   .000017  14.580  14.572  6.0705            
+    0   2   1  .020220  .020225  -.000005  16.350  16.352  5.4171            
+    1   3   0  .020714  .020709   .000005  16.550  16.548  5.3521            
+   -1   2   1  .021039  .021030   .000009  16.680  16.676  5.3107            
+    2   0   0  .023484  .023497  -.000014  17.630  17.635  5.0266            
+    2   1   0  .025150  .025146   .000005  18.250  18.248  4.8572            
+    1   1   1  .026227  .026224   .000004  18.640  18.639  4.7565            
+    0   4   0  .026367  .026373  -.000007  18.690  18.692  4.7438            
+   -2   0   1  .026986  .026990  -.000004  18.910  18.912  4.6891            
+    0   3   1  .028476  .028467   .000009  19.430  19.427  4.5648            
+   -2   1   1  .028621  .028638  -.000017  19.480  19.486  4.5532            
+   -1   3   1  .029265  .029271  -.000007  19.700  19.702  4.5028            
+    1   2   1  .031146  .031169  -.000022  20.330  20.337  4.3647            
+    1   4   0  .032247  .032248  -.000001  20.690  20.690  4.2896            
+   -2   2   1  .033586  .033583   .000003  21.120  21.119  4.2032            
+    1   3   1  .039407  .039410  -.000003  22.900  22.901  3.8804            
+    0   4   1  .040021  .040005   .000016  23.080  23.075  3.8505            
+   -1   4   1  .040811  .040810   .000002  23.310  23.310  3.8130            
+   -2   3   1  .041819  .041825  -.000006  23.600  23.602  3.7668            
+    1   5   0           .047083                    25.064
+    2   0   1  .047253  .047268  -.000015  25.110  25.114  3.5436            
+    2   1   1  .048933  .048916   .000017  25.560  25.556  3.4822            
+    2   4   0  .049879  .049871   .000008  25.810  25.808  3.4491            
+   -1   0   2           .050261                    25.911
+    1   4   1  .050948  .050949  -.000001  26.090  26.090  3.4127            
+   -3   0   1           .051292                    26.180
+   -1   1   2  .051912  .051910   .000002  26.340  26.340  3.3809            
+    3   0   0           .052869                    26.586
+   -3   1   1  .052962  .052941   .000021  26.610  26.605  3.3472            
+ NUMBER OF OBS. LINES =   30
+ NUMBER OF CALC. LINES =   34
+ M( 20)=  68  AV.EPS.=  .0000095
+ F 20 = 179.( .004301,   26)
+ M( 30)=  68  AV.EPS.=  .0000093
+ F 30 = 194.( .003688,   42)
+ M( 30)=  68  AV.EPS.=  .0000093
+ F 30 = 194.( .003688,   42)
+  M   CF. J.APPL.CRYST. 1(1968)108 
+  F  CF. J.APPL.CRYST. 12(1979)60 
+     0  LINES ARE UNINDEXED 
+ M-TEST=   68 UNINDEXED IN THE TEST=    0
+
+
+
+ ANY COMMON FACTOR IN THE QUADRATIC FORMS ? ?
+ CHECK CONVERGENCE IN THE REFINEMENT
+ (EV. USE PROGRAM PIRUM OR PURUM)
+ END OF INDEXING CALCULATIONS
+
+
+ The following unit cell reduction is ONLY valid if,
+ and ONLY IF the unit cell found is PRIMITIVE.
+ If the unit cell found is not primitive, you have to
+ convert the cell to a primitive one and run a cell 
+ reduction program separately. 
+
+       *** INPUT CELL *** 
+      A= 10.47950 B= 18.97300 C=  6.87938
+      ALFA= 90.000 BETA=106.455 GAMMA= 90.000
+      TOLERANCE= .0500
+
+      VOLUME OF INPUT CELL=   1311.79 A3
+
+       *** REDUCED-CELL *** 
+      A=  6.87938 B= 10.47950 C= 18.97300
+      ALFA= 90.0000 BETA= 90.0000 GAMMA=106.4549
+
+      VOLUME OF THE REDUCED CELL=   1311.79 A3
+
+      REDUCED FORM NUMBER = 34 INT.TAB.1,SECT. 5.1
+
+       *** CONVENTIONAL CELL  (METRIC SYMMETRY) *** 
+      MONOCLINIC P
+      A= 10.47950 B= 18.97300 C=  6.87938
+      ALFA= 90.0000 BETA=106.4549 GAMMA= 90.0000
+
+      VOLUME OF THE CONVENTIONAL CELL=   1311.79 A3
+
+ IF YOU WANT TO LOOK FOR A BETTER SOLUTION YOU 
+ MAY TRY TO INCREASE THE PARAMETER MERIT ABOVE    68
+....OR PERHAPS THIS WAS THE BEST SOLUTION...
+ NUMBER OF CELLS WITH  16 OR MORE INDEXABLE LINES 
+ IN MONOCLINIC (020)-TESTS     8 SOLUTIONS 
+ IN MONOCLINIC DOMINANT ZONE TESTS     0 SOLUTIONS 
+ IN MONOCLINIC GENERAL TESTS     0 SOLUTIONS 
+ IN TRICLINIC TESTS     0 SOLUTIONS 

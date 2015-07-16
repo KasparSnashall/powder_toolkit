@@ -1,0 +1,3625 @@
+
+------------------------------------------------------------
+   N-TREOR trial #    1  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+
+
+ The first (up to 25) d-values will  be  used by  N-TREOR  in order  to
+ find  a possible cell.
+
+test1                                                                           
+       10.756900
+        9.726810
+        7.226810
+        7.202560
+        6.629820
+        6.628920
+        6.480720
+        6.472790
+        5.378450
+        4.998180
+        4.997030
+        4.936500
+        4.925990
+        4.863410
+        4.835220
+        4.831230
+        4.713550
+        4.700080
+        4.662440
+        4.656220
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+  WARNING :     Systematic theta-zero shifts will be applied to the     
+            2-theta peak positions in order to find more accurate cells
+
+------------------------------------------------------------
+   N-TREOR trial #    2  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+------------------------------------------------------------
+   N-TREOR trial #    3  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+------------------------------------------------------------
+   N-TREOR trial #    4  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+------------------------------------------------------------
+   N-TREOR trial #    5  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+------------------------------------------------------------
+   N-TREOR trial #    6  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+------------------------------------------------------------
+   N-TREOR trial #    7  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+------------------------------------------------------------
+   N-TREOR trial #    8  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+------------------------------------------------------------
+   N-TREOR trial #    9  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+------------------------------------------------------------
+   N-TREOR trial #   10  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+------------------------------------------------------------
+   N-TREOR trial #   11  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+------------------------------------------------------------
+   N-TREOR trial #   12  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+------------------------------------------------------------
+   N-TREOR trial #   13  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+------------------------------------------------------------
+   N-TREOR trial #   14  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+------------------------------------------------------------
+   N-TREOR trial #   15  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+------------------------------------------------------------
+   N-TREOR trial #   16  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+------------------------------------------------------------
+   N-TREOR trial #   17  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+------------------------------------------------------------
+   N-TREOR trial #   18  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+------------------------------------------------------------
+   N-TREOR trial #   19  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+------------------------------------------------------------
+   N-TREOR trial #   20  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+------------------------------------------------------------
+   N-TREOR trial #   21  -  Applied 2-Theta shift = 0.0000
+------------------------------------------------------------
+  
+  10.7568998
+   9.7268105
+   7.2268100
+   7.2025599
+   6.6298199
+   6.6289196
+   6.4807196
+   6.4727893
+   5.3784494
+   4.9981794
+   4.9970293
+   4.9365001
+   4.9259896
+   4.8634095
+   4.8352194
+   4.8312302
+   4.7135496
+   4.7000794
+   4.6624393
+   4.6562200
+
+ Number of plausible solutions (with M(20) > 10) =      4
+
+ --------------------
+      Cell #  1 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35266       B  =  10.27759       C  =  11.35499
+  Alpha =  83.88913    Beta  =  71.32196    Gamma =  71.15863
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27759       B  =  11.35499       C  =   7.35266
+  Alpha = 108.67804    Beta  = 108.84137    Gamma =  83.88913
+
+  Unit cell volume =  769.316 A**3
+
+  M(20) =     28      M'(20) =     28
+
+ --------------------
+      Cell #  2 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35968       B  =  10.27141       C  =  11.36583
+  Alpha =  95.78049    Beta  = 108.83905    Gamma =  71.25975
+
+  Unit cell volume =  770.051 A**3
+
+  M(20) =    464      M'(20) =    464
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      1
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27141       B  =  11.36583       C  =   7.35968
+  Alpha = 108.83913    Beta  = 108.74025    Gamma =  83.83925
+
+  Unit cell volume =  770.049 A**3
+
+  M(20) =    464      M'(20) =    464
+
+ --------------------
+      Cell #  3 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.37200
+  Alpha =  83.84007    Beta  =  71.07008    Gamma =  71.25000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.37200       C  =   7.35900
+  Alpha = 108.92992    Beta  = 108.75000    Gamma =  83.84007
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26646      M'(20) =  26646
+
+ --------------------
+      Cell #  4 :
+ --------------------
+
+ WARNING: the cell
+
+     A  =   7.35900       B  =  10.27201       C  =  11.36572
+  Alpha =  95.78299    Beta  =  71.16261    Gamma = 108.75000
+
+  Unit cell volume =  769.980 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+  Number of observed   lines =     20
+
+  Number of calculated lines =     20
+
+  Number of unindexed  lines =      0
+
+
+         has been reduced into the following one
+
+  Crystal system: Triclinic                                                      
+
+     A  =  10.27201       B  =  11.36572       C  =   7.35900
+  Alpha = 108.83739    Beta  = 108.75008    Gamma =  83.83668
+
+  Unit cell volume =  769.978 A**3
+
+  M(20) =  26792      M'(20) =  26792
+
+
+
+ The following cell has been selected for refinement by PIRUM:
+
+ A     =  10.27201   B    =  11.36572   C     =   7.35900
+ Alpha = 108.83739   Beta = 108.75008   Gamma =  83.83668
+
+
+******************************************************************************
+
+ PIRUM version 2000   
+
+******************************************************************************
+
+ 
+ **********************************************
+ 
+  Number of eq less than number of parameters.
+  The refinement procedure has been stopped. 
+ 
+
+ **************************************************************
+            No  plausible  cell has been found             
+  Look into the long  output file for finding a plausible cell
+ **************************************************************

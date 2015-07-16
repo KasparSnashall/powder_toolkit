@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Powder_toolkit
+Bundle-SymbolicName: Powder_toolkit
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: powder_toolkit.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.python.pydev.jython;bundle-version="3.6.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
