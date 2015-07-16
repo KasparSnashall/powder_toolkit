@@ -22,6 +22,7 @@ class Ntreor:
     def __init__(self):
         """calls the class, data is an array with 20 intensity elements, keywords is a blank dict"""
         self.keywords = {}
+        self.data = None
            
     def set_keywords(self,key,value):
         """function to add keywords, 2 arguments key a string must be in self.standard_dict, and value usually an int or float"""
@@ -125,14 +126,18 @@ class Ntreor:
         
         
     def run(self):
+
         proc = Popen('python_code/ntreor',stdin=PIPE,stdout=PIPE) # calls ntreor needs full path usually
+        
         if "." in self.title:
             self.title = self.title.split(".")[0] # just gets the file name
 
         filer = self.filepath+self.title
         
-        if len(self.data) < 20:
-            return "Value error not enough values for ntreor test"
+        if self.data != None:
+            
+            if len(self.data) <20:
+                return "Value error not enough values for ntreor test"
         
         commands = "N\n"+ filer+".dat"+"\n"+filer+".imp"+"\n"+filer+".con"+"\n"+filer+".short"+"\n"+"0\nN\n" # command string
         output = proc.communicate(commands)[0]
@@ -141,8 +146,7 @@ class Ntreor:
             return "file may not have run properly"
         else:
             return output
-        
-     
+
     def _keylist_(self):
         # prints the key list for ntreor this is extensive
         with open('/scratch/workspace_git/Diamond/python_code/documentation/Ntreor_keywords.txt','r') as f:
