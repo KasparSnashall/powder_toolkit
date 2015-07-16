@@ -189,7 +189,7 @@ public class IndexTab {
 					Table mytable = table_list.get(loopIndex); // get the table
 					TableItem ischecked = indexingprogs.getItem(loopIndex); // make sure the program is selected
 					
-					if (ischecked.getChecked() == true){ // is it checked?
+					if (ischecked.getChecked()){ // is it checked?
 				try{
 					
 				for (int loopIndex1 = 0; loopIndex1 < mytable.getItems().length; loopIndex1++) {
@@ -240,7 +240,7 @@ public class IndexTab {
         });
         Save.addSelectionListener(new SelectionAdapter(){
         	public void widgetSelected(SelectionEvent event) {
-        			if (loadButton.getSelection() == true){
+        			if (loadButton.getSelection()){
         			try{
         				
                 		for(int loopIndex = 0; loopIndex < widgets_list.size(); loopIndex++){
@@ -265,7 +265,7 @@ public class IndexTab {
         // run button function
         run.addSelectionListener(new SelectionAdapter(){
         	public void widgetSelected(SelectionEvent event) {
-        		if (loadButton.getSelection() == true){
+        		if (loadButton.getSelection()){
         			
         			try{
         				
@@ -274,7 +274,7 @@ public class IndexTab {
                 		TableItem myitem = indexingprogs.getItem(loopIndex); // get checked?
                 		
                 		
-                		if (myitem.getChecked() == true){
+                		if (myitem.getChecked()){
                 		
                 		
                 		output.append(myprog.get_Name()+" Running \n"); // running...
@@ -302,7 +302,7 @@ public class IndexTab {
                 		}	
         			
         		}
-        		if(peaksButton.getSelection() == true){
+        		if(peaksButton.getSelection()){
         			if (filepath == null){
         				output.append("No input file selected");	
         			}
@@ -314,7 +314,7 @@ public class IndexTab {
         		TableItem myitem = indexingprogs.getItem(loopIndex); // get checked?
         		
         		
-        		if (myitem.getChecked() == true){
+        		if (myitem.getChecked()){
         		runflag = true;
         		
         		output.append(myprog.get_Name()+" Running \n"); // running...
@@ -334,7 +334,7 @@ public class IndexTab {
         		output.append(newoutput); // print the output 
         		}
         		}
-        		if (runflag == false){
+        		if (!runflag){
         			output.append("No program selected \n");
         			
         		}
