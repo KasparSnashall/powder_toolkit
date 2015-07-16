@@ -281,11 +281,10 @@ public class IndexTab {
                 		
                 		File myfile = new File(filepath); // check if file
                 		String mynewfilepath  = myfile.getParent().toString(); // get the parent directory
-                		String mybase = "/scratch/workspace_git/Diamond"; // current base directory
+                		String mybase = "/scratch/clean_workpsace/powder_toolkit/Powder_toolkit"; // current base directory
                 		Path base = Paths.get(mybase); // current module path will make this automatic
                 		Path myfilepath = Paths.get(mynewfilepath); 
                 		Path relativepath = base.relativize(myfilepath); // relative path of runfile (Ntreor requires this)
-                		
                 		
                 	
                 		myprog.set_title(title); // set the filename (file.end , handled in the python script )  
@@ -321,7 +320,7 @@ public class IndexTab {
         		output.append(myprog.get_Name()+" Running \n"); // running...
         		File myfile = new File(filepath); // check if file
         		String mynewfilepath  = myfile.getParent().toString(); // get the parent directory
-        		String mybase = "/scratch/workspace_git/Diamond"; // current base directory
+        		String mybase = "/scratch/clean_workpsace/powder_toolkit/Powder_toolkit"; // current base directory
         		Path base = Paths.get(mybase); // current module path will make this automatic
         		Path myfilepath = Paths.get(mynewfilepath); 
 
@@ -332,7 +331,7 @@ public class IndexTab {
         		myprog.set_title(myfile.getName()); // set the filename (file.end , handled in the python script ) 
         		
         		String newoutput = myprog.run(); // the output
-        		output.append(newoutput); // print the output
+        		output.append(newoutput); // print the output 
         		}
         		}
         		if (runflag == false){
