@@ -6,6 +6,8 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: powder_toolkit.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.python.pydev.jython;bundle-version="3.6.0"
+ org.python.pydev.jython;bundle-version="3.6.0",
+ org.eclipse.dawnsci.analysis.dataset;bundle-version="1.0.0",
+ org.eclipse.dawnsci.analysis.api;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
