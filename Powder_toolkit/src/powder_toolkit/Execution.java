@@ -1,5 +1,6 @@
 package powder_toolkit;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,8 +15,7 @@ public abstract class Execution {
 	public static String filepath = "";
 	public static Dataset data = new DoubleDataset();
 	public static final String title = "";
-	public abstract String Run();
-	public abstract void write_input();
+	//public abstract void write_input();
 	public abstract void read_output();
 
 }
