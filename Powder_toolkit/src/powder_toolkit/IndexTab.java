@@ -303,8 +303,8 @@ public class IndexTab {
         			
         		}
         		if(peaksButton.getSelection()){
-        			if (filepath == null){
-        				output.append("No input file selected");	
+        			if (filepath.length() < 3){
+        				output.append("No input file selected \n");	
         			}
         			else{
         		try{
