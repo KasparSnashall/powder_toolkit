@@ -21,8 +21,8 @@ import org.eclipse.dawnsci.analysis.dataset.impl.Random;
 
 public class Comparator {
 	
-	public static Dataset data1  = new DoubleDataset(new double[]{1,2,3,4,4,5,6,7,8,9,9,6,4,3,2,1,2});
-	public static Dataset data2 =  new DoubleDataset(new double[]{1,2,3,4,4,5,6,7,8,9,9,6,4,3,2,1,2});
+	public static Dataset data1;
+	public static Dataset data2;
 	public static boolean optimise = false; // optimise boolean
 	public static int upper = 7; // upper range limit
 	public static int lower = 0; // lower range limit
@@ -47,6 +47,7 @@ public class Comparator {
 			priv_data2 = priv_data2.getSliceView(new Slice(0,mysize));
 		}
 		if(range_flag){
+			// amend range
 			priv_data1 = slice_range(priv_data1);
 			priv_data2 = slice_range(priv_data2);
 		}
@@ -95,7 +96,7 @@ public class Comparator {
 			IDataset myrange = DatasetFactory.createRange(a, b, 1, Dataset.FLOAT64);
 			for(int j=0;j < myrange.getSize();j++){
 				int indexnum = myrange.getInt(j);
-				kilos.set(indexnum,c); // created the weighted list
+				kilos.set(indexnum,c); // created the weighted list greater then 1.0
 			}
 		} 
 
@@ -119,7 +120,7 @@ public class Comparator {
 	}
 
 	private static double fractional() throws Exception{
-		Dataset priv_data1 = data1;
+		Dataset priv_data1 = data1; // private data used
 		Dataset priv_data2 = data2;
 		
 		if (priv_data1.getSize() == 0 | priv_data2.getSize() == 0){ // check is not null
@@ -254,7 +255,7 @@ public class Comparator {
 			return both();
 		}
 	}
-
+	//////////getters and setters/////////////
 	public static Dataset getData1() {
 		return data1;
 	}
