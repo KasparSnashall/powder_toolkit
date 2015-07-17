@@ -1,22 +1,13 @@
 package powder_toolkit;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.dawnsci.analysis.api.dataset.Slice;
-import org.eclipse.dawnsci.analysis.dataset.impl.BooleanDataset;
-import org.eclipse.dawnsci.analysis.dataset.impl.Comparisons;
 import org.eclipse.dawnsci.analysis.dataset.impl.Dataset;
 import org.eclipse.dawnsci.analysis.dataset.impl.DatasetFactory;
-import org.eclipse.dawnsci.analysis.dataset.impl.DatasetUtils;
-import org.eclipse.dawnsci.analysis.dataset.impl.DoubleDataset;
-import org.eclipse.dawnsci.analysis.dataset.impl.FFT;
-import org.eclipse.dawnsci.analysis.dataset.impl.LinearAlgebra;
-import org.eclipse.dawnsci.analysis.dataset.impl.Maths;
-import org.eclipse.dawnsci.analysis.dataset.impl.Random;
 
 
 public class Comparator {
@@ -256,86 +247,46 @@ public class Comparator {
 		}
 	}
 	//////////getters and setters/////////////
-	public static Dataset getData1() {
-		return data1;
-	}
 
 	public static void setData1(Dataset data1) {
 		Comparator.data1 = data1;
-	}
-
-	public static Dataset getData2() {
-		return data2;
 	}
 
 	public static void setData2(Dataset data2) {
 		Comparator.data2 = data2;
 	}
 
-	public static boolean isOptimise() {
-		return optimise;
-	}
-
 	public static void setOptimise(boolean optimise) {
 		Comparator.optimise = optimise;
-	}
-
-	public static int getUpper() {
-		return upper;
 	}
 
 	public static void setUpper(int upper) {
 		Comparator.upper = upper;
 	}
 
-	public static int getLower() {
-		return lower;
-	}
-
 	public static void setLower(int lower) {
 		Comparator.lower = lower;
-	}
-
-	public static boolean isRange_flag() {
-		return range_flag;
 	}
 
 	public static void setRange_flag(boolean range_flag) {
 		Comparator.range_flag = range_flag;
 	}
 
-	public static double getTolerance() {
-		return tolerance;
-	}
-
 	public static void setTolerance(double tolerance) {
 		Comparator.tolerance = tolerance;
-	}
-
-	public static List<Double> getWeights() {
-		return weights;
 	}
 
 	public static void setWeights(List<Double> weights) {
 		Comparator.weights = weights;
 	}
 
-	public static List<Integer> getWeight_lower() {
-		return weight_lower;
-	}
-
 	public static void setWeight_lower(List<Integer> weight_lower) {
 		Comparator.weight_lower = weight_lower;
-	}
-
-	public static List<Integer> getWeight_upper() {
-		return weight_upper;
 	}
 
 	public static void setWeight_upper(List<Integer> weight_upper) {
 		Comparator.weight_upper = weight_upper;
 	}
-
 	
 
 }
