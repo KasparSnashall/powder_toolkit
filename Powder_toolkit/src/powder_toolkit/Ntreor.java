@@ -15,7 +15,7 @@ import java.util.Map;
 import org.eclipse.dawnsci.analysis.api.dataset.Slice;
 import org.eclipse.dawnsci.analysis.dataset.impl.Dataset;
 
-public class Ntreor extends Execution {
+public class Ntreor extends AbstractPowderIndexer {
 	
 	//keys
 	public String[] keys = {"KH","KK","KL","KS","THH","THL","THK","THS","OH1","OK1","OL1","OS1","OH2","OK2","OL2","OS2","OH3","OK3","OL3","OS3","MH1","MK1","ML1",
@@ -29,7 +29,7 @@ public class Ntreor extends Execution {
 			"19","16","0","0","10","1","1","1.5405981","2000","25","0.002","0.05","0.0004",
             "0","0","0","0","0"};
 
-	public static void write_input() {
+	public void write_input() {
 		// create a dataset
 		Dataset data1 = data.getSliceView(new Slice(0,20));
 		if(title.contains(".")){
@@ -87,37 +87,11 @@ public class Ntreor extends Execution {
 	public static void main(String[] args){
 		//List<String> run = Run();
 		//System.out.println(run);
-		write_input();
+		
 	}
 	
 	
 	////////////getters and setters ///////
-	public static Map<String, String> getStandard_dict() {
-		return standard_dict;
-	}
-	public static void setStandard_dict(Map<String, String> standard_dict) {
-		Execution.standard_dict = standard_dict;
-	}
-	public static Map<String, String> getKeywords() {
-		return keywords;
-	}
-	public static void setKeywords(Map<String, String> keywords) {
-		Execution.keywords = keywords;
-	}
-	public static String getFilepath() {
-		return filepath;
-	}
-	public static void setFilepath(String filepath) {
-		Execution.filepath = filepath;
-	}
-	public static Dataset getData() {
-		return data;
-	}
-	public static void setData(Dataset data) {
-		Execution.data = data;
-	}
-	public static String getTitle() {
-		return title;
-	}
+	
 
 }
