@@ -17,11 +17,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.dawnsci.analysis.api.dataset.Slice;
 import org.eclipse.dawnsci.analysis.dataset.impl.Dataset;
 import org.eclipse.osgi.framework.adaptor.FilePath;
 
-public class Ntreor extends AbstractPowderIndexer {
+public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
 	
 	//keys
 	public static String[] keys = {"KH","KK","KL","KS","THH","THL","THK","THS","OH1","OK1","OL1","OS1","OH2","OK2","OL2","OS2","OH3","OK3","OL3","OS3","MH1","MK1","ML1",
@@ -34,17 +35,31 @@ public class Ntreor extends AbstractPowderIndexer {
 			"2","4","2","2","2","2","2","2","2","3","2","2","2","2","2","2","2","2","0","1","0","1",
 			"19","16","0","0","10","1","1","1.5405981","2000","25","0.002","0.05","0.0004",
             "0","0","0","0","0"};
-
+	private IDataset data1;
+	
+	@Override
 	public void write_input() {
-		// create a dataset
-		Dataset data1 = data.getSliceView(new Slice(0,20));
+		// data check
+		for(int i= 0; i < data.size(); i++)
+		{IDataset mydataset = data.get(i);
+		System.out.println(mydataset.getName());
+		if (mydataset.getName().contains("D_space")){
+		data1 = mydataset.getSliceView(new Slice(0,20));}
+		}
+		if(data1 == null){
+			try {
+				throw new Exception("No data submitted");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		String mytitle = title;
 		if(mytitle != null && mytitle.contains(".")){
 			String[] mytitlelist = mytitle.split("\\.");
 			mytitle = mytitlelist[0];
 		}
 		try {
-			PrintWriter writer = new PrintWriter("/scratch/runfiles/mytest.dat", "UTF-8");
+			PrintWriter writer = new PrintWriter(filepath+title+".dat", "UTF-8");
 			writer.println(mytitle);
 			// write in the data
 			for(int i =0; i< data1.getSize(); i++){
@@ -59,6 +74,7 @@ public class Ntreor extends AbstractPowderIndexer {
 			    writer.println(key +" = "+value+",");
 			}
 			// finish file
+			writer.println(); // blank line
 			writer.println("END*");
 			writer.println("0.00");
 			writer.close();
@@ -66,11 +82,11 @@ public class Ntreor extends AbstractPowderIndexer {
 			e.printStackTrace();
 		}
 	}
-
+	@Override
 	public List<String> read_output() {
 		List<String> output = new ArrayList<String>(); // my output array
 		try{
-		BufferedReader br = new BufferedReader(new FileReader("/scratch/runfiles/treor90_output.imp"));
+		BufferedReader br = new BufferedReader(new FileReader(filepath));
 		String line; // line variable
 		while ((line = br.readLine()) != null) {
 		   // process the line.
@@ -94,7 +110,7 @@ public class Ntreor extends AbstractPowderIndexer {
 		
 	return output; // cleaned output
 	}
-
+	@Override
 	public List<String> Run(){
 		List<String> output = new ArrayList<String>();
 		try{
@@ -103,7 +119,7 @@ public class Ntreor extends AbstractPowderIndexer {
 			DataOutputStream out = new DataOutputStream(process.getOutputStream()); // exe input
 		    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));// exe writter
 		    BufferedReader input = new BufferedReader( new InputStreamReader(process.getInputStream()));// exe output
-		    
+		    System.out.println(filepath+title);
 		    String line = null; // output
 		    bw.write("N\n"); // general info?
 		    bw.write(filepath+title+".dat"+"\n"); // dat location
