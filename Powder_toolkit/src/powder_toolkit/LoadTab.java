@@ -1,5 +1,7 @@
 package powder_toolkit;
 import java.io.File;
+
+import org.eclipse.dawnsci.analysis.dataset.impl.Dataset;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -20,7 +22,7 @@ import org.python.core.PyObject;
 
 public class LoadTab{
 	Boolean myrange = false;
-	public static PyObject data;
+	public static Dataset data;
 	public static String filepath;
 	
 	
@@ -132,7 +134,7 @@ public class LoadTab{
 			public void widgetSelected(SelectionEvent e) {
 				System.out.println("called"); // check
 				try{
-					
+					/*
 					textboxtext.setText(""); // clear text
 					String myfilepath = filetext.getText(); // get filepath
 					filepath = myfilepath; // set the general filepath
@@ -146,7 +148,7 @@ public class LoadTab{
 					String datastring = data.toString(); // always returns pyobject so can be written to string
 					textboxtext.append(sampletext.getText()+"\n"); // get the name of the data print to textbox
 					textboxtext.append(datastring+"\n"); // print the data
-					
+					*/
 					// normally this will send to the peaks tab
 					new IndexTab().setMytitle(sampletext.getText());
 					new IndexTab().setMydata(data);
