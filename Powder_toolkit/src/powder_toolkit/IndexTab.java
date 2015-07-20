@@ -4,6 +4,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.eclipse.dawnsci.analysis.dataset.impl.Dataset;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
@@ -31,7 +33,7 @@ public class IndexTab {
 	
 	GridData griddata;
 	public static Text textbox; // loaded_data output
-	public static PyObject data; // data to be used
+	public static Dataset data; // data to be used
 	public static String filepath = ""; // filepath (if loaded data this will be the loaded path)
 	public static String title = "";
 	
@@ -136,9 +138,13 @@ public class IndexTab {
         // Add the ntreor tab, at time of writing this is the only one available
         CTabItem cTabItem1 = new CTabItem(indexfolder, SWT.NONE);
         cTabItem1.setText("Ntreor");
+        
+        
         // get the properties widget
-        Properties_Widget Ntreor = new Properties_Widget();
-        Table Ntreor_table = Ntreor.create(indexfolder, "python_code/ntreor.py", "Ntreor", ""); // file, class name, options
+        Properties_Widget NtreorTable = new Properties_Widget();
+        IPowderIndexer Ntreor = new Ntreor();
+        Table Ntreor_table = NtreorTable.create(indexfolder, Ntreor); // folder indexer
+        
         cTabItem1.setControl(Ntreor_table);
         indexfolder.setSelection(cTabItem1); // default selection
         // add in second tab currently a stub
@@ -146,8 +152,8 @@ public class IndexTab {
         cTabItem2.setText("McMaille");
         
         // make a list of the current properties widgets
-        final List<Properties_Widget> widgets_list = new ArrayList<Properties_Widget>();
-        widgets_list.add(Ntreor);
+        final List<IPowderIndexer> indexer_list = new ArrayList<IPowderIndexer>();
+        indexer_list.add(Ntreor);
         // make a list of the properties widgets tables
         final List<Table> table_list = new ArrayList<Table>();
         table_list.add(Ntreor_table);
@@ -183,34 +189,35 @@ public class IndexTab {
 					output.append("Prebuilt files may not have variables added \n");
 				}
 				else{
-				for (int loopIndex = 0; loopIndex < widgets_list.size(); loopIndex++){
+				for (int loopIndex = 0; loopIndex < indexer_list.size(); loopIndex++){
 					// go through the list of programs,tables and programs list (check boxes)
-					Properties_Widget myprog = widgets_list.get(loopIndex); // get the program
+					IPowderIndexer myprog = indexer_list.get(loopIndex); // get the program
 					Table mytable = table_list.get(loopIndex); // get the table
 					TableItem ischecked = indexingprogs.getItem(loopIndex); // make sure the program is selected
-					
-					if (ischecked.getChecked()){ // is it checked?
+					if (ischecked.getChecked() == true){ // is it checked?
 				try{
-					
 				for (int loopIndex1 = 0; loopIndex1 < mytable.getItems().length; loopIndex1++) {
 						  // go through table get checked values
 				  	      TableItem myitem = mytable.getItem(loopIndex1);
 				  	      if (myitem.getChecked() == true){
 				  	      String value = myitem.getText(3);
 				  	      String key = myitem.getText(1);
+				  	    
 				  	      
 				  	      if (value == ""){ // make sure value is not null
 				  	    	output.append("Value for" + key + " Not defined\n");
 				  	    	myitem.setBackground(red); // make background red if it is
 				  	    	}
 				  	      else {
+				  	    	
 				  	    	myitem.setBackground(green); // make green
-				  	    	myprog.set_keywords(key, value); // use the program to set keywords
+				  	    	myprog.addKeyword(key, value); // use the program to set keywords
 				  	    	output.append(key + " " + value+"\n"); // print the values added
 				  	    	
 				  	      }
 					  	  }}}
-				catch (Exception e) {System.out.print(e);}
+				
+				catch (Exception e) {System.out.print(e.getMessage());}
 			
 			}
 			}
@@ -222,19 +229,20 @@ public class IndexTab {
         // reset button function
         Reset.addSelectionListener(new SelectionAdapter(){
         	public void widgetSelected(SelectionEvent event) {
-        		for (int loopIndex = 0; loopIndex < widgets_list.size(); loopIndex++){
-					Properties_Widget myprog = widgets_list.get(loopIndex);
+        		for (int loopIndex = 0; loopIndex < indexer_list.size(); loopIndex++){
+					IPowderIndexer myprog = indexer_list.get(loopIndex);
 					Table mytable = table_list.get(loopIndex);
-					myprog.reset_keywords(); // reset the keywords in the program
+					 myprog.resetKeywords();
+					//myprog.reset_keywords(); // reset the keywords in the program
 					for (int loopIndex1 = 0; loopIndex1 < mytable.getItems().length; loopIndex1++) {
 				  	      TableItem myitem = mytable.getItem(loopIndex1); // go through each table and set the item text to ""
 				  	      myitem.setText(3,"");
 				  	      myitem.setChecked(false); // unckeck the boxes
 				  	      myitem.setBackground(grey); // clear the background
-				  	      output.setText(""); // reset the output
+				  	      output.setText("reset"); // reset the output
+				  	     
 				  	      
 					}
-					
 					}
         	}
         });
@@ -243,16 +251,16 @@ public class IndexTab {
         			if (loadButton.getSelection()){
         			try{
         				
-                		for(int loopIndex = 0; loopIndex < widgets_list.size(); loopIndex++){
-                		Properties_Widget myprog = widgets_list.get(loopIndex); // get the program
+                		for(int loopIndex = 0; loopIndex < indexer_list.size(); loopIndex++){
+                		IPowderIndexer myprog = indexer_list.get(loopIndex); // get the program
                 		TableItem myitem = indexingprogs.getItem(loopIndex); // get checked?
                 		if (myitem.getChecked() == true){
-                		output.append(myprog.get_Name()+" Saving \n"); // running...
+                		//output.append(myprog.get_Name()+" Saving \n"); // running...
                 		File myfile = new File(filepath); // check if file
                 		String mynewfilepath  = myfile.getParent().toString(); // get the parent directory
-                		myprog.set_title(title); // set the filename (file.end , handled in the python script )  
-                		myprog.set_filepath(mynewfilepath);
-                		myprog.write_dat(data);
+                		myprog.setTitle(title); // set the filename (file.end , handled in the python script )  
+                		myprog.setFilepath(mynewfilepath);
+                		//myprog.write_dat(data);
                 		output.append("File saved");
                 		}}}
                 		catch(Exception e){
@@ -269,15 +277,15 @@ public class IndexTab {
         			
         			try{
         				
-                		for(int loopIndex = 0; loopIndex < widgets_list.size(); loopIndex++){
-                		Properties_Widget myprog = widgets_list.get(loopIndex); // get the program
+                		for(int loopIndex = 0; loopIndex < indexer_list.size(); loopIndex++){
+                		IPowderIndexer myprog = indexer_list.get(loopIndex); // get the program
                 		TableItem myitem = indexingprogs.getItem(loopIndex); // get checked?
                 		
                 		
                 		if (myitem.getChecked()){
                 		
                 		
-                		output.append(myprog.get_Name()+" Running \n"); // running...
+                		//output.append(myprog.get_Name()+" Running \n"); // running...
                 		
                 		File myfile = new File(filepath); // check if file
                 		String mynewfilepath  = myfile.getParent().toString(); // get the parent directory
@@ -287,12 +295,13 @@ public class IndexTab {
                 		Path relativepath = base.relativize(myfilepath); // relative path of runfile (Ntreor requires this)
                 		
                 	
-                		myprog.set_title(title); // set the filename (file.end , handled in the python script )  
-                		myprog.set_filepath(relativepath.toString()+"/");
-                		myprog.write_dat(data);
+                		myprog.setTitle(title); // set the filename (file.end , handled in the python script )  
+                		myprog.setFilepath(relativepath.toString()+"/");
+                		myprog.setData(data);
+                		//myprog.write_input();
                 		
-                		String newoutput = myprog.run(); // the output
-                		output.append(newoutput); // print the output
+                		List<String> newoutput = myprog.Run(); // the output
+                		output.append(newoutput.toString()); // print the output
                 		
                 		
                 		}}}
@@ -309,15 +318,15 @@ public class IndexTab {
         			else{
         		try{
         		boolean runflag = false; 
-        		for(int loopIndex = 0; loopIndex < widgets_list.size(); loopIndex++){
-        		Properties_Widget myprog = widgets_list.get(loopIndex); // get the program
+        		for(int loopIndex = 0; loopIndex < indexer_list.size(); loopIndex++){
+        		IPowderIndexer myprog = indexer_list.get(loopIndex); // get the program
         		TableItem myitem = indexingprogs.getItem(loopIndex); // get checked?
         		
         		
         		if (myitem.getChecked()){
         		runflag = true;
         		
-        		output.append(myprog.get_Name()+" Running \n"); // running...
+        		//output.append(myprog.get_Name()+" Running \n"); // running...
         		File myfile = new File(filepath); // check if file
         		String mynewfilepath  = myfile.getParent().toString(); // get the parent directory
         		String mybase = "/scratch/clean_workpsace/powder_toolkit/Powder_toolkit"; // current base directory
@@ -327,11 +336,15 @@ public class IndexTab {
         		Path relativepath = base.relativize(myfilepath); // relative path of runfile (Ntreor requires this)
         		System.out.print(relativepath.toString()); // dev check
         		
-        		myprog.set_filepath(relativepath.toString()+"/"); // pass the relative filepath to the prog
-        		myprog.set_title(myfile.getName()); // set the filename (file.end , handled in the python script ) 
+        		myprog.setFilepath(relativepath.toString()+"/"); // pass the relative filepath to the prog
+        		myprog.setTitle(myfile.getName().split("\\.")[0]); // set the filename (file.end , handled in the python script ) 
+        		System.out.println(myfile.getName());
         		
-        		String newoutput = myprog.run(); // the output
-        		output.append(newoutput); // print the output 
+        		List<String> newoutput = myprog.Run(); // the output
+        		for(int i = 0; i < newoutput.size();i++){
+        			output.append(newoutput.get(i)+"\n"); // print output
+        		}
+    
         		}
         		}
         		if (!runflag){
@@ -382,11 +395,11 @@ public class IndexTab {
         return composite;
         }
 	
-	public PyObject getMydata(){
+	public Dataset getMydata(){
 		// return the data to other progs
 	return data;
 	}
-	public void setMydata(PyObject mydata){
+	public void setMydata(Dataset mydata){
 		// retrive loaded data
 		data = mydata;	
 	}
