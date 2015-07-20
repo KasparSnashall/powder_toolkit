@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.dawnsci.analysis.dataset.impl.Dataset;
 
 public interface IPowderIndexer {
@@ -50,17 +51,17 @@ public interface IPowderIndexer {
 	 * @return
 	 * Returns the run directory/data
 	 */
-	public Dataset getData();
+	public List<IDataset> getData();
 	/**
 	 * 
 	 * @param data
 	 * the dataset used in all programs usually just a single array with greater then 20 points
 	 */
-	public void setData(Dataset data);
+	public void setData(List<IDataset> data);
 	/**
 	 * 
 	 * @return
-	 * Returns the data used in the indeing program
+	 * Returns the data used in the indexing program
 	 */
 	public String getTitle();
 	/**

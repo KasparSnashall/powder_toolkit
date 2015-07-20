@@ -1,6 +1,9 @@
 package powder_toolkit;
 import java.io.File;
+import java.util.List;
 
+import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
+import org.eclipse.dawnsci.analysis.api.io.IDataHolder;
 import org.eclipse.dawnsci.analysis.dataset.impl.Dataset;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -22,7 +25,7 @@ import org.python.core.PyObject;
 
 public class LoadTab{
 	Boolean myrange = false;
-	public static Dataset data;
+	public static List<IDataset> data;
 	public static String filepath;
 	
 	
@@ -132,35 +135,34 @@ public class LoadTab{
         load.addSelectionListener(new SelectionListener(){
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("called"); // check
 				try{
-					/*
+					
 					textboxtext.setText(""); // clear text
 					String myfilepath = filetext.getText(); // get filepath
 					filepath = myfilepath; // set the general filepath
-					String finalfilepath = "'"+myfilepath+"'"; // add filepath string to opts
-					String myrangestring = "'"+myrange.toString()+"'"; // bool myrange to string 
-					String top = "'"+upper.getText()+"'"; // upper limit
-					String bottom = "'"+lower.getText()+"'"; // lowerlimit
-					String opts = finalfilepath+","+myrangestring+","+top+","+bottom; // collect the options
-					PyInstance Loader = ie.createClass("Loader",opts);// invoke my class as a pyobject
-					data = Loader.invoke("load"); // calls the run function
-					String datastring = data.toString(); // always returns pyobject so can be written to string
-					textboxtext.append(sampletext.getText()+"\n"); // get the name of the data print to textbox
-					textboxtext.append(datastring+"\n"); // print the data
-					*/
+					Loader loader = new Loader();
+					if (myrange){
+					loader.setLower(Integer.valueOf(lower.getText()));
+					loader.setUpper(Integer.valueOf(upper.getText()));
+					loader.setRange(true);
+					}
+					
+					data = loader.Load_data(filepath);
 					// normally this will send to the peaks tab
-					new IndexTab().setMytitle(sampletext.getText());
-					new IndexTab().setMydata(data);
-					new IndexTab().setMyfilepath(filepath);
-					System.out.println(filepath);
-					System.out.println(data);
+					IndexTab indextab = new IndexTab();
+					indextab.setMytitle(sampletext.getText());
+					indextab.setMydata(data);
+					indextab.setMyfilepath(filepath);
+					// print out the data
+					for(int i = 0; i < data.size();i++){
+						IDataset mytext = data.get(i);
+						textboxtext.append(mytext+"\n");
+					}
+					}
 					
-					
-					
-					
-					}catch(Exception z){
-						textboxtext.append("system error please retry with different values");}	
+					catch(Exception z){
+						textboxtext.append(z.toString());
+						}	
 			}
 
 			@Override

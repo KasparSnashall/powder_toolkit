@@ -5,6 +5,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
+import org.eclipse.dawnsci.analysis.api.io.IDataHolder;
 import org.eclipse.dawnsci.analysis.dataset.impl.Dataset;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -33,7 +35,7 @@ public class IndexTab {
 	
 	GridData griddata;
 	public static Text textbox; // loaded_data output
-	public static Dataset data; // data to be used
+	public static List<IDataset> data; // data to be used
 	public static String filepath = ""; // filepath (if loaded data this will be the loaded path)
 	public static String title = "";
 	
@@ -238,10 +240,7 @@ public class IndexTab {
 				  	      TableItem myitem = mytable.getItem(loopIndex1); // go through each table and set the item text to ""
 				  	      myitem.setText(3,"");
 				  	      myitem.setChecked(false); // unckeck the boxes
-				  	      myitem.setBackground(grey); // clear the background
-				  	      output.setText("reset"); // reset the output
-				  	     
-				  	      
+				  	      myitem.setBackground(grey); // clear the background   
 					}
 					}
         	}
@@ -260,7 +259,8 @@ public class IndexTab {
                 		String mynewfilepath  = myfile.getParent().toString(); // get the parent directory
                 		myprog.setTitle(title); // set the filename (file.end , handled in the python script )  
                 		myprog.setFilepath(mynewfilepath);
-                		//myprog.write_dat(data);
+                		myprog.setData(data); // make this more robust
+                		myprog.write_input();
                 		output.append("File saved");
                 		}}}
                 		catch(Exception e){
@@ -276,33 +276,31 @@ public class IndexTab {
         		if (loadButton.getSelection()){
         			
         			try{
-        				
+        				// *************************New dat file***********************
                 		for(int loopIndex = 0; loopIndex < indexer_list.size(); loopIndex++){
                 		IPowderIndexer myprog = indexer_list.get(loopIndex); // get the program
                 		TableItem myitem = indexingprogs.getItem(loopIndex); // get checked?
-                		
-                		
                 		if (myitem.getChecked()){
-                		
-                		
                 		//output.append(myprog.get_Name()+" Running \n"); // running...
-                		
                 		File myfile = new File(filepath); // check if file
                 		String mynewfilepath  = myfile.getParent().toString(); // get the parent directory
                 		String mybase = "/scratch/clean_workpsace/powder_toolkit/Powder_toolkit"; // current base directory
                 		Path base = Paths.get(mybase); // current module path will make this automatic
                 		Path myfilepath = Paths.get(mynewfilepath); 
                 		Path relativepath = base.relativize(myfilepath); // relative path of runfile (Ntreor requires this)
-                		
-                	
+                		if(title.contains(".")){
+                			title = title.split("\\.")[0];
+                			System.out.println(title);
+                		}
                 		myprog.setTitle(title); // set the filename (file.end , handled in the python script )  
                 		myprog.setFilepath(relativepath.toString()+"/");
                 		myprog.setData(data);
-                		//myprog.write_input();
+                		myprog.write_input();
                 		
                 		List<String> newoutput = myprog.Run(); // the output
-                		output.append(newoutput.toString()); // print the output
-                		
+                		for(int i = 0; i < newoutput.size();i++){
+                			output.append(newoutput.get(i)+"\n"); // print output
+                		}
                 		
                 		}}}
                 		catch(Exception e){
@@ -317,6 +315,7 @@ public class IndexTab {
         			}
         			else{
         		try{
+        		// **************************Existing dat file ********************************
         		boolean runflag = false; 
         		for(int loopIndex = 0; loopIndex < indexer_list.size(); loopIndex++){
         		IPowderIndexer myprog = indexer_list.get(loopIndex); // get the program
@@ -332,19 +331,15 @@ public class IndexTab {
         		String mybase = "/scratch/clean_workpsace/powder_toolkit/Powder_toolkit"; // current base directory
         		Path base = Paths.get(mybase); // current module path will make this automatic
         		Path myfilepath = Paths.get(mynewfilepath); 
-
         		Path relativepath = base.relativize(myfilepath); // relative path of runfile (Ntreor requires this)
         		System.out.print(relativepath.toString()); // dev check
-        		
         		myprog.setFilepath(relativepath.toString()+"/"); // pass the relative filepath to the prog
         		myprog.setTitle(myfile.getName().split("\\.")[0]); // set the filename (file.end , handled in the python script ) 
         		System.out.println(myfile.getName());
-        		
         		List<String> newoutput = myprog.Run(); // the output
         		for(int i = 0; i < newoutput.size();i++){
         			output.append(newoutput.get(i)+"\n"); // print output
         		}
-    
         		}
         		}
         		if (!runflag){
@@ -395,13 +390,13 @@ public class IndexTab {
         return composite;
         }
 	
-	public Dataset getMydata(){
+	public List<IDataset> getMydata(){
 		// return the data to other progs
 	return data;
 	}
-	public void setMydata(Dataset mydata){
+	public void setMydata(List<IDataset> data2){
 		// retrive loaded data
-		data = mydata;	
+		data = data2;	
 	}
 	public void setMyfilepath(String myfilepath){
 		filepath = myfilepath;

@@ -1,55 +1,78 @@
 package powder_toolkit;
-import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
+import org.eclipse.dawnsci.analysis.api.dataset.Slice;
 import org.eclipse.dawnsci.analysis.api.io.IDataHolder;
-import org.eclipse.dawnsci.analysis.api.io.ILoaderService;
-import org.eclipse.dawnsci.analysis.api.monitor.IMonitor;
+import org.eclipse.dawnsci.analysis.dataset.impl.Dataset;
+
+import uk.ac.diamond.scisoft.analysis.io.DatLoader;
+import uk.ac.diamond.scisoft.analysis.io.LoaderFactory;
 
 public class Loader {
 	
-	private static ILoaderService service;
-	public static String filepath;
 	
-	public void Load_data(String filepath) {
+	public static String Filepath;
+	public static int Upper;
+	public static int Lower;
+	public static boolean range;
+
+	public void setUpper(int upper) {
+		Upper = upper;
+	}
+
+	public void setLower(int lower) {
+		Lower = lower;
+	}
+
+	public void setRange(boolean range) {
+		Loader.range = range;
+	}
+	
+	public List<IDataset> Load_data(String filepath) {
+		Filepath = filepath;
 		if(filepath.contains(".hkl")){
-			Loadhkl();
+			return Loadhkl();
 		}
+		return null;
 	}
-		
-		
 	
-	public static void Loadhkl() {
-		
-		final File loc  = new File("/scratch/clean_workpsace/powder_toolkit/Powder_toolkit/python_code/testdata/test1.hkl");
-		System.out.println(loc.exists());
-		System.out.println(loc.getAbsolutePath());
-		try{
-		final IDataHolder dh = service.getData(loc.getAbsolutePath(), new IMonitor.Stub());
-		System.out.println(dh.getNames());
-		}catch(Exception e){System.out.print(e.getMessage());}
-		/*
-		try{
-			BufferedReader br = new BufferedReader(new FileReader(filepath));
-			String line; // line variable
-			while ((line = br.readLine()) != null) {
-			   // process the line.
-			   if (line.contains("TOTAL NUMBER OF LINES ="))
-			   {
-			       try {
-			    	for(int i = 0; i<3;i++){
-					line = br.readLine(); // grab the 3 lines after
-					
-					}
-			    	
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			   }
+	@SuppressWarnings("deprecation")
+	public static List<IDataset> Loadhkl() {
+		try {
+			LoaderFactory.registerLoader(".hkl", DatLoader.class);
+			IDataHolder dh = LoaderFactory.getData(Filepath);
+
+			IDataset dataset = dh.getDataset(3); // d_space
+			IDataset dataset2 = dh.getDataset(4); // f square
+			List<IDataset> dataholder = new ArrayList<IDataset>();
+			
+			if(range){
+				dataset = dh.getDataset(3).getSliceView(new Slice(Lower,Upper));
+				dataset.setName("D_space");
+				dataset2 = dh.getDataset(4).getSliceView(new Slice(Lower,Upper));
+				dataset2.setName("Intensity");
+				dataholder.add(dataset2); // add in desired datasets
+				dataholder.add(dataset);	
 			}
-			br.close();
+			else{
+				dataset.setName("D_space");
+				dataset2.setName("Intensity");
+				dataholder.add(dataset2); // add in desired datasets
+				dataholder.add(dataset);	
+				
+			}
+			return dataholder;
+			
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
-		catch(Exception e){}
-	}*/
+		return null;
 		
 	}
 	
-}
+
+	}
+	
+

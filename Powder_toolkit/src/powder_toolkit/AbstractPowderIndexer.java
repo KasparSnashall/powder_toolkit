@@ -2,8 +2,10 @@ package powder_toolkit;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.dawnsci.analysis.dataset.impl.Dataset;
 import org.eclipse.dawnsci.analysis.dataset.impl.DoubleDataset;
 
@@ -12,7 +14,7 @@ public abstract class AbstractPowderIndexer implements IPowderIndexer {
 	
 	public static Map<String,String> keywords = new HashMap<String,String>(); 
 	public static String filepath = "";
-	public static Dataset data = new DoubleDataset();
+	public static List<IDataset> data;
 	public static String title = "";
 	public static String[] keys; // set of standard keys in
 	public static String[] standard_values;
@@ -38,10 +40,10 @@ public abstract class AbstractPowderIndexer implements IPowderIndexer {
 	public void setFilepath(String filepath) {
 		AbstractPowderIndexer.filepath = filepath;
 	}
-	public Dataset getData() {
+	public List<IDataset> getData() {
 		return data;
 	}
-	public void setData(Dataset data) {
+	public void setData(List<IDataset> data) {
 		AbstractPowderIndexer.data = data;
 	}
 	public String getTitle() {
