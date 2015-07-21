@@ -1,6 +1,7 @@
 package DataAnalysis;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.dawnsci.analysis.api.dataset.Slice;
@@ -17,6 +18,7 @@ public class Loader {
 	public static int Upper;
 	public static int Lower;
 	public static boolean range;
+	
 
 	public void setUpper(int upper) {
 		Upper = upper;
