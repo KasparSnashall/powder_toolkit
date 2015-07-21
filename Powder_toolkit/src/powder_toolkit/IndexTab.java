@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -26,7 +27,10 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
+
 import DataAnalysis.IPowderIndexer;
+import DataAnalysis.LoadedDataObject;
+import DataAnalysis.MyDataHolder;
 import DataAnalysis.Ntreor;
 
 
@@ -41,8 +45,11 @@ public class IndexTab {
 	private final Color grey = Display.getCurrent().getSystemColor(SWT.COLOR_GRAY);
 	private final Color green = Display.getCurrent().getSystemColor(SWT.COLOR_GREEN);
 	private final Color red = Display.getCurrent().getSystemColor(SWT.COLOR_RED);
-	public Map <String,List<IDataset> > dataholder;
+	private MyDataHolder holder;
 	
+	IndexTab(MyDataHolder holder){
+		this.holder = holder;
+	}
 	
 	public Composite create(CTabFolder folder,final Shell shell,Display display){// composite allows me to use more then one item in my tab folder
 		// new master composite
@@ -428,22 +435,18 @@ public class IndexTab {
         }
 	
 	// ***************** getters and setters **********************//
-	public List<IDataset> getMydata(){
-		// return the data to other progs
-	return data;
+
+
+	public void setData(String name) {
+		try{
+		LoadedDataObject mydata = holder.getData(name);
+		data = mydata.data;
+		title = mydata.name;
+		filepath = mydata.filepath;
+		textbox.setText(title);
+		}catch(Exception e){System.out.println(e.getMessage());}
 	}
-	public void setMydata(List<IDataset> data2){
-		// retrive loaded data
-		data = data2;	
-	}
-	public void setMyfilepath(String myfilepath){
-		filepath = myfilepath;
-	}
+		
 	
-	public void setMytitle(String mytitle) {
-		// loaded tab sends the filepath
-		textbox.setText(mytitle);
-		title = mytitle;
-	}
 
 }

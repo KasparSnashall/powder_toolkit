@@ -1,7 +1,5 @@
 package powder_toolkit;
 import java.io.File;
-import java.util.List;
-import java.util.Map;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.swt.SWT;
@@ -16,26 +14,32 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+import DataAnalysis.LoadedDataObject;
 import DataAnalysis.Loader;
-import Jython_programs.interpreter;
+import DataAnalysis.MyDataHolder;
 
 
 public class LoadTab{
 	
 	Boolean myrange = false;
-	public static List<IDataset> data;
 	public static String filepath;
-	public Map <String,List<IDataset> > dataholder;
+	public static GridData griddata = new GridData();
+	private Text textboxtext;
+	private MyDataHolder holder;
 	
+	LoadTab(MyDataHolder holder){
+		this.holder = holder;
+	
+	}
 	
 
-
-
-	public Composite create(CTabFolder folder,final Shell shell,Display display){// composite allows me to use more then one item in my tab folder
-        Composite composite = new Composite(folder, SWT.NONE);
+	public Composite create(CTabFolder folder,final Shell shell,Display display,final List LoadedData){// composite allows me to use more then one item in my tab folder
+        
+		Composite composite = new Composite(folder, SWT.NONE);
         GridLayout layout = new GridLayout(3,false);
         layout.marginWidth = 25;
         layout.marginHeight = 25;
@@ -45,7 +49,7 @@ public class LoadTab{
         readview.setText("Read view");
         
         // fill grid data
-        GridData griddata = new GridData(GridData.CENTER);
+        griddata = new GridData(GridData.CENTER);
 		griddata.horizontalSpan = 3;
 		readview.setLayoutData(griddata);
 		// first label sample name
@@ -54,9 +58,9 @@ public class LoadTab{
 		// textbox
 		final Text sampletext = new Text(composite,SWT.BORDER);
 		sampletext.setText(" ");
-		GridData griddata2 = new GridData(150,15);
-		griddata2.horizontalSpan = 2;
-		sampletext.setLayoutData(griddata2);
+		griddata = new GridData(150,15);
+		griddata.horizontalSpan = 2;
+		sampletext.setLayoutData(griddata);
 		
 		
 		// label filepath
@@ -65,8 +69,8 @@ public class LoadTab{
 		// filepath textbox
 		final Text filetext = new Text(composite, SWT.BORDER);
 		filetext.setText(" ");
-		GridData griddata3 = new GridData(150,15);
-		filetext.setLayoutData(griddata3);
+		griddata = new GridData(150,15);
+		filetext.setLayoutData(griddata);
 		// browse buutton
 		Button browse = new Button(composite, SWT.PUSH);
 		browse.setAlignment(SWT.LEFT);
@@ -121,20 +125,17 @@ public class LoadTab{
 		// load button
         Button load = new Button(composite,SWT.PUSH);
         load.setText("Load");
-        GridData griddata4 = new GridData(300,30);
-        griddata4.horizontalSpan = 3;
-        griddata4.minimumWidth = 40;
-        load.setLayoutData(griddata4);
-        new Label(composite,SWT.NONE).setText("Output");;
+        griddata = new GridData(300,30);
+        griddata.horizontalSpan = 3;
+        griddata.minimumWidth = 40;
+        load.setLayoutData(griddata);
         // output textbox
-        final Text textboxtext = new Text(composite, SWT.MULTI | SWT.V_SCROLL | SWT.WRAP);
-        GridData griddata5 = new GridData(SWT.FILL, SWT.FILL, true, true);
-        griddata5.horizontalSpan = 3;
-        textboxtext.setLayoutData(griddata5);
+        textboxtext  = new Text(composite, SWT.MULTI | SWT.V_SCROLL | SWT.WRAP | SWT.BORDER);
+        griddata = new GridData(SWT.FILL, SWT.FILL, true, true);
+        griddata.horizontalSpan = 3;
+        textboxtext.setLayoutData(griddata);
         
-        final interpreter ie = new interpreter(); // call my interpreter
-		ie.execfile("python_code/Loader.py"); // my file
-		
+       
 		
 		
 		// load button function
@@ -153,24 +154,20 @@ public class LoadTab{
 					loader.setRange(true);
 					}
 					
-					data = loader.Load_data(filepath);
-					// normally this will send to the peaks tab
-					IndexTab indextab = new IndexTab();
-					indextab.setMytitle(sampletext.getText());
-					indextab.setMydata(data);
-					indextab.setMyfilepath(filepath);
+					java.util.List<IDataset> data = loader.Load_data(filepath);
 					
-					// print out the data
-					for(int i = 0; i < data.size();i++){
-						IDataset mytext = data.get(i);
-						textboxtext.append(mytext+"\n");
-					}
-					
-					
+					String flag = filepath.split("\\.")[1];
+					holder.addData(sampletext.getText(), flag, data,filepath);
+					LoadedData.add(sampletext.getText());
+					IndexTab indextab = new IndexTab(holder);
+					indextab.setData(sampletext.getText());
+					setData(sampletext.getText());
+
 					}
 					
 					catch(Exception z){
 						textboxtext.append(z.toString());
+						System.out.println(z.getStackTrace().toString());
 						}	
 			}
 
@@ -181,5 +178,21 @@ public class LoadTab{
         composite.pack();
         return composite;
 		}
+
+
+	public void setData(String name) {
+		// append the textbox
+		try{
+		LoadedDataObject mydata = holder.getData(name);
+		textboxtext.setText("");
+		for(int i = 0; i < mydata.data.size();i++){
+			IDataset mytext = mydata.data.get(i);
+			textboxtext.append(mytext+"\n");
+		}
+		}
+		catch(Exception e){System.out.println(e.getMessage());}
+	}
+
+
 	
 	}
