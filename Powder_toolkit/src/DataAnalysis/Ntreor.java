@@ -3,24 +3,17 @@ package DataAnalysis;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.dawnsci.analysis.api.dataset.Slice;
-import org.eclipse.dawnsci.analysis.dataset.impl.Dataset;
-import org.eclipse.osgi.framework.adaptor.FilePath;
 
 public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
 	
@@ -36,6 +29,7 @@ public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
 			"19","16","0","0","10","1","1","1.5405981","2000","25","0.002","0.05","0.0004",
             "0","0","0","0","0"};
 	private IDataset data1;
+	private List<String> celldata;
 	
 	@Override
 	public void write_input() {
@@ -92,7 +86,6 @@ public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
 		System.out.println(outputfile);
 		BufferedReader br = new BufferedReader(new FileReader(outputfile));
 		String line; // line variable
-		int cellnum  = 1;
 		while ((line = br.readLine()) != null) {
 		   // process the line.
 		   if (line.contains("The following cell has been selected for refinement by PIRUM:"))
@@ -153,7 +146,10 @@ public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
 			}
 		return output;
 	}
-
+	
+	
+	
+	
 	// overide the previous
 	public String[] getKeys(){
 		return keys;
