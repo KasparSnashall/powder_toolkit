@@ -1,7 +1,7 @@
 package powder_toolkit;
 import java.io.File;
 import java.util.List;
-
+import java.util.Map;
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.dawnsci.analysis.api.io.IDataHolder;
 import org.eclipse.dawnsci.analysis.dataset.impl.Dataset;
@@ -21,18 +21,21 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.python.core.PyInstance;
 import org.python.core.PyObject;
-
 import DataAnalysis.Loader;
 import Jython_programs.interpreter;
 
 
 public class LoadTab{
+	
 	Boolean myrange = false;
 	public static List<IDataset> data;
 	public static String filepath;
+	public Map <String,List<IDataset> > dataholder;
 	
 	
-	
+
+
+
 	public Composite create(CTabFolder folder,final Shell shell,Display display){// composite allows me to use more then one item in my tab folder
         Composite composite = new Composite(folder, SWT.NONE);
         GridLayout layout = new GridLayout(3,false);
@@ -134,6 +137,8 @@ public class LoadTab{
         final interpreter ie = new interpreter(); // call my interpreter
 		ie.execfile("python_code/Loader.py"); // my file
 		
+		
+		
 		// load button function
         load.addSelectionListener(new SelectionListener(){
 			@Override
@@ -161,6 +166,8 @@ public class LoadTab{
 						IDataset mytext = data.get(i);
 						textboxtext.append(mytext+"\n");
 					}
+					
+					
 					}
 					
 					catch(Exception z){
