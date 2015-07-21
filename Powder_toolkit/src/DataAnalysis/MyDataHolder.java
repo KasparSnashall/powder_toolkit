@@ -7,6 +7,7 @@ import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 public class MyDataHolder {
 	
 	public List<LoadedDataObject> datalist = new ArrayList<LoadedDataObject>(); // arraylist
+	public List<List<Double>> celldata = new ArrayList<List<Double>>();
 
 	public List<LoadedDataObject> getDatalist() {
 		return datalist;
@@ -32,6 +33,11 @@ public class MyDataHolder {
 			}
 		}
 		return null;
+	}
+
+	public void addCellData(List<Double> cleanout) {
+		celldata.add(cleanout);
+
 	}
 	
 	
