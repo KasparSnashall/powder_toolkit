@@ -10,7 +10,6 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
@@ -89,10 +88,13 @@ public class CSD {
 			@Override
 			public void mouseDoubleClick(MouseEvent arg0) {
 				// append data
+				try{
 				String name = LoadedData.getSelection()[0];
 				System.out.println(name);
 				loadtab.setData(name);
 				indextab.setData(name);
+				
+				}catch(Exception e){ System.out.println(e.getMessage());}
 				//TODO add in the rest of set Data functions
 			}
 			@Override
@@ -112,7 +114,7 @@ public class CSD {
         // pack and load shell
         folder.pack();
         shell.pack();
-        shell.setSize(600, 700);
+        shell.setSize(700, 800);
         shell.open();
         while (!shell.isDisposed()) {
           if (!display.readAndDispatch()) {
