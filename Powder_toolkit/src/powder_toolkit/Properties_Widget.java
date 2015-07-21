@@ -15,6 +15,8 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
+import DataAnalysis.IPowderIndexer;
+
 
 
 public class Properties_Widget {

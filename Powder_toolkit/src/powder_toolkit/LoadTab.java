@@ -22,6 +22,9 @@ import org.eclipse.swt.widgets.Text;
 import org.python.core.PyInstance;
 import org.python.core.PyObject;
 
+import DataAnalysis.Loader;
+import Jython_programs.interpreter;
+
 
 public class LoadTab{
 	Boolean myrange = false;

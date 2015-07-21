@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
-import org.eclipse.dawnsci.analysis.api.io.IDataHolder;
-import org.eclipse.dawnsci.analysis.dataset.impl.Dataset;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
@@ -28,7 +26,9 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
-import org.python.core.PyObject;
+
+import DataAnalysis.IPowderIndexer;
+import DataAnalysis.Ntreor;
 
 
 public class IndexTab {
@@ -38,12 +38,19 @@ public class IndexTab {
 	public static List<IDataset> data; // data to be used
 	public static String filepath = ""; // filepath (if loaded data this will be the loaded path)
 	public static String title = "";
+    // colours used in the properties widget
+	private final Color grey = Display.getCurrent().getSystemColor(SWT.COLOR_GRAY);
+	private final Color green = Display.getCurrent().getSystemColor(SWT.COLOR_GREEN);
+	private final Color red = Display.getCurrent().getSystemColor(SWT.COLOR_RED);
 	
 	public Composite create(CTabFolder folder,final Shell shell,Display display){// composite allows me to use more then one item in my tab folder
 		// new master composite
         Composite composite = new Composite(folder, SWT.LEFT);
-        composite.setLayout(new GridLayout(3, false)); // three columns composite
-       
+        GridLayout gridlayout = new GridLayout(3, false);
+        gridlayout.marginWidth = 10; // margins
+        gridlayout.marginHeight = 10; // margins
+        composite.setLayout(gridlayout); // three columns composite
+        
         // the index view
         Label Indexview  = new Label(composite,SWT.NONE);
         Indexview.setText("Index View");
@@ -78,37 +85,17 @@ public class IndexTab {
         browse.setText("Browse");
         filepathbox.setEnabled(false);
         browse.setEnabled(false);
-    
-
-        
-        // browse selection function
-        
-        browse.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(SelectionEvent event) {
-				String filepath = new FileDialog(shell).open();
-				if (filepath != null) {
-						// if a filepath is input
-			          File file = new File(filepath);
-			          if (file.isFile()){
-			        	  // check is actually a file and not just directory or stub
-			        	  filepathbox.setText(filepath);
-			        	  }
-			          else
-			        	  filepathbox.setText("Not a file");
-				}
-			}
-		});
-       
         
         // properties widget tabs
         final CTabFolder indexfolder = new CTabFolder(composite, SWT.TOP); // create a tab set
         griddata = new GridData(SWT.FILL,SWT.FILL,false, true, 2, 2);
         griddata.grabExcessHorizontalSpace = true;
+        griddata.minimumHeight = 300;
         indexfolder.setLayoutData(griddata);
         
         // indeing programs list
         final Table indexingprogs = new Table(composite,SWT.CHECK | SWT.SCROLL_LINE); // list of programs
-        griddata = new GridData(SWT.FILL,SWT.FILL,false, true, 1, 2);
+        griddata = new GridData(SWT.FILL,SWT.FILL,false, false, 1, 2);
         griddata.minimumHeight = 200;
         indexingprogs.setLayoutData(griddata);
         new TableColumn(indexingprogs,SWT.NULL).setText("Programs");
@@ -139,16 +126,15 @@ public class IndexTab {
         
         // Add the ntreor tab, at time of writing this is the only one available
         CTabItem cTabItem1 = new CTabItem(indexfolder, SWT.NONE);
-        cTabItem1.setText("Ntreor");
-        
-        
+        cTabItem1.setText("Ntreor");        
         // get the properties widget
         Properties_Widget NtreorTable = new Properties_Widget();
         IPowderIndexer Ntreor = new Ntreor();
         Table Ntreor_table = NtreorTable.create(indexfolder, Ntreor); // folder indexer
-        
         cTabItem1.setControl(Ntreor_table);
         indexfolder.setSelection(cTabItem1); // default selection
+        
+        
         // add in second tab currently a stub
         CTabItem cTabItem2 = new CTabItem(indexfolder, SWT.BORDER);
         cTabItem2.setText("McMaille");
@@ -160,35 +146,64 @@ public class IndexTab {
         final List<Table> table_list = new ArrayList<Table>();
         table_list.add(Ntreor_table);
         
-        
-        // colours used in the properties widget
-		final Color grey = display.getSystemColor(SWT.COLOR_GRAY);
-		final Color green = display.getSystemColor(SWT.COLOR_GREEN);
-		final Color red = display.getSystemColor(SWT.COLOR_RED);
+
 		
 		// run button
         Button run = new Button(composite, SWT.NONE);
-        
         run.setText("Save and Run");
-        
         griddata = new GridData(150,50);
         griddata.horizontalAlignment = SWT.RIGHT; // align the button right
         griddata.horizontalSpan = 3;
         run.setLayoutData(griddata);
         
-        // output textbox
-        final Text output = new Text(composite,SWT.BORDER | SWT.MULTI | SWT.WRAP |SWT.V_SCROLL);
-        griddata = new GridData(SWT.FILL,SWT.FILL,false, true, 1, 3);
+        // ******************** output tabs *************************************//
+        final CTabFolder outputfolder = new CTabFolder(composite, SWT.TOP); // create a tab set
+        griddata = new GridData(SWT.FILL,SWT.FILL,false, true, 3, 1);
+        griddata.grabExcessHorizontalSpace = true;
+        griddata.minimumHeight = 200;
+        outputfolder.setLayoutData(griddata);
+        // output tab 1
+		CTabItem rawOutTab = new CTabItem(outputfolder, SWT.NONE);
+        rawOutTab.setText("Raw data");
+        // output tab 2
+        CTabItem cleanOutTab = new CTabItem(outputfolder,SWT.NONE);
+        cleanOutTab.setText("Cleaned Data");
+        final Text rawoutput = new Text(outputfolder,SWT.BORDER | SWT.MULTI | SWT.WRAP |SWT.V_SCROLL);
+        final Text cleanoutput = new Text(outputfolder,SWT.BORDER | SWT.MULTI | SWT.WRAP |SWT.V_SCROLL);
+        griddata = new GridData(SWT.FILL,SWT.FILL,false, true, 3, 1);
         griddata.minimumHeight = 200;
         griddata.horizontalSpan = 3;
-        output.setLayoutData(griddata);
+        cleanoutput.setLayoutData(griddata);
+        rawoutput.setLayoutData(griddata);
+        rawOutTab.setControl(rawoutput);
+        cleanOutTab.setControl(cleanoutput);
+        outputfolder.setSelection(rawOutTab);
         
         
+        
+        //*************************** functions *************************************//
+        // browse selection function
+        
+        browse.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent event) {
+				String filepath = new FileDialog(shell).open();
+				if (filepath != null) {
+						// if a filepath is input
+			          File file = new File(filepath);
+			          if (file.isFile()){
+			        	  // check is actually a file and not just directory or stub
+			        	  filepathbox.setText(filepath);
+			        	  }
+			          else
+			        	  filepathbox.setText("Not a file");
+				}
+			}
+		});
         // add variable button function
         addvariable.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
 				if (indexfolder.getEnabled() == false){
-					output.append("Prebuilt files may not have variables added \n");
+					rawoutput.append("Prebuilt files may not have variables added \n");
 				}
 				else{
 				for (int loopIndex = 0; loopIndex < indexer_list.size(); loopIndex++){
@@ -207,20 +222,19 @@ public class IndexTab {
 				  	    
 				  	      
 				  	      if (value == ""){ // make sure value is not null
-				  	    	output.append("Value for" + key + " Not defined\n");
+				  	    	rawoutput.append("Value for" + key + " Not defined\n");
 				  	    	myitem.setBackground(red); // make background red if it is
 				  	    	}
 				  	      else {
 				  	    	
 				  	    	myitem.setBackground(green); // make green
 				  	    	myprog.addKeyword(key, value); // use the program to set keywords
-				  	    	output.append(key + " " + value+"\n"); // print the values added
+				  	    	rawoutput.append(key + " " + value+"\n"); // print the values added
 				  	    	
 				  	      }
 					  	  }}}
 				
 				catch (Exception e) {System.out.print(e.getMessage());}
-			
 			}
 			}
 			}
@@ -261,10 +275,10 @@ public class IndexTab {
                 		myprog.setFilepath(mynewfilepath);
                 		myprog.setData(data); // make this more robust
                 		myprog.write_input();
-                		output.append("File saved");
+                		rawoutput.append("File saved");
                 		}}}
                 		catch(Exception e){
-                			output.append(e.getMessage());
+                			rawoutput.append(e.getMessage());
                 			
                 		}	
         		}
@@ -299,19 +313,19 @@ public class IndexTab {
                 		
                 		List<String> newoutput = myprog.Run(); // the output
                 		for(int i = 0; i < newoutput.size();i++){
-                			output.append(newoutput.get(i)+"\n"); // print output
+                			rawoutput.append(newoutput.get(i)+"\n"); // print output
                 		}
                 		
                 		}}}
                 		catch(Exception e){
-                			output.append(" ");
+                			rawoutput.append(" ");
                 			
                 		}	
         			
         		}
         		if(peaksButton.getSelection()){
         			if (filepath.length() < 3){
-        				output.append("No input file selected \n");	
+        				rawoutput.append("No input file selected \n");	
         			}
         			else{
         		try{
@@ -329,6 +343,7 @@ public class IndexTab {
         		File myfile = new File(filepath); // check if file
         		String mynewfilepath  = myfile.getParent().toString(); // get the parent directory
         		String mybase = "/scratch/clean_workpsace/powder_toolkit/Powder_toolkit"; // current base directory
+        		//TODO mybase more generic
         		Path base = Paths.get(mybase); // current module path will make this automatic
         		Path myfilepath = Paths.get(mynewfilepath); 
         		Path relativepath = base.relativize(myfilepath); // relative path of runfile (Ntreor requires this)
@@ -338,17 +353,17 @@ public class IndexTab {
         		System.out.println(myfile.getName());
         		List<String> newoutput = myprog.Run(); // the output
         		for(int i = 0; i < newoutput.size();i++){
-        			output.append(newoutput.get(i)+"\n"); // print output
+        			rawoutput.append(newoutput.get(i)+"\n"); // print output
         		}
         		}
         		}
         		if (!runflag){
-        			output.append("No program selected \n");
+        			rawoutput.append("No program selected \n");
         			
         		}
         		}
         		catch(Exception e){
-        			output.append(e.getMessage());
+        			rawoutput.append(e.getMessage());
         			
         		}
         		}
@@ -390,6 +405,7 @@ public class IndexTab {
         return composite;
         }
 	
+	// ***************** getters and setters **********************//
 	public List<IDataset> getMydata(){
 		// return the data to other progs
 	return data;

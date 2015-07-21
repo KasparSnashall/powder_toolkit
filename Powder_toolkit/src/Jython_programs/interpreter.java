@@ -1,4 +1,4 @@
-package powder_toolkit;
+package Jython_programs;
 import org.python.core.PyInstance;
 import org.python.util.PythonInterpreter;
 public class interpreter
@@ -13,7 +13,7 @@ public class interpreter
       this.interpreter = new PythonInterpreter();
    }
  
-   void execfile( final String fileName )
+   public void execfile( final String fileName )
    {
       this.interpreter.execfile(fileName);
    }
