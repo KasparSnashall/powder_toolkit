@@ -2,9 +2,8 @@ package powder_toolkit;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
+
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
-import org.eclipse.dawnsci.analysis.api.io.IDataHolder;
-import org.eclipse.dawnsci.analysis.dataset.impl.Dataset;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -19,8 +18,7 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.python.core.PyInstance;
-import org.python.core.PyObject;
+
 import DataAnalysis.Loader;
 import Jython_programs.interpreter;
 
@@ -161,6 +159,7 @@ public class LoadTab{
 					indextab.setMytitle(sampletext.getText());
 					indextab.setMydata(data);
 					indextab.setMyfilepath(filepath);
+					
 					// print out the data
 					for(int i = 0; i < data.size();i++){
 						IDataset mytext = data.get(i);
