@@ -4,7 +4,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -26,7 +26,6 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
-
 import DataAnalysis.IPowderIndexer;
 import DataAnalysis.Ntreor;
 
@@ -42,6 +41,8 @@ public class IndexTab {
 	private final Color grey = Display.getCurrent().getSystemColor(SWT.COLOR_GRAY);
 	private final Color green = Display.getCurrent().getSystemColor(SWT.COLOR_GREEN);
 	private final Color red = Display.getCurrent().getSystemColor(SWT.COLOR_RED);
+	public Map <String,List<IDataset> > dataholder;
+	
 	
 	public Composite create(CTabFolder folder,final Shell shell,Display display){// composite allows me to use more then one item in my tab folder
 		// new master composite
@@ -254,7 +255,9 @@ public class IndexTab {
 				  	      TableItem myitem = mytable.getItem(loopIndex1); // go through each table and set the item text to ""
 				  	      myitem.setText(3,"");
 				  	      myitem.setChecked(false); // unckeck the boxes
-				  	      myitem.setBackground(grey); // clear the background   
+				  	      myitem.setBackground(grey); // clear the background
+				  	      rawoutput.setText("");
+				  	      cleanoutput.setText("");    
 					}
 					}
         	}
@@ -311,10 +314,22 @@ public class IndexTab {
                 		myprog.setData(data);
                 		myprog.write_input();
                 		
+                		
                 		List<String> newoutput = myprog.Run(); // the output
+                		List<String> cleanout = myprog.read_output();
+                		
+                		
                 		for(int i = 0; i < newoutput.size();i++){
-                			rawoutput.append(newoutput.get(i)+"\n"); // print output
+                			rawoutput.append(newoutput.get(i)+"\n"); // print output	
                 		}
+                		try{
+                			for(int i = 0; i < cleanout.size();i++){
+                			cleanoutput.append(cleanout.get(i)+"\n");}
+                		}catch(Exception e){
+                			
+                		}
+                		
+                		
                 		
                 		}}}
                 		catch(Exception e){
@@ -352,8 +367,15 @@ public class IndexTab {
         		myprog.setTitle(myfile.getName().split("\\.")[0]); // set the filename (file.end , handled in the python script ) 
         		System.out.println(myfile.getName());
         		List<String> newoutput = myprog.Run(); // the output
+        		List<String> cleanout = myprog.read_output();
         		for(int i = 0; i < newoutput.size();i++){
         			rawoutput.append(newoutput.get(i)+"\n"); // print output
+        		}
+        		try{
+        			for(int i = 0; i < cleanout.size();i++){
+        			cleanoutput.append(cleanout.get(i)+"\n");}
+        		}catch(Exception e){System.out.println(e.getMessage());
+        			
         		}
         		}
         		}
