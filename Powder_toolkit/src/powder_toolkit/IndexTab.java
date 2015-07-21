@@ -4,7 +4,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.swt.SWT;
@@ -95,7 +94,7 @@ public class IndexTab {
         browse.setEnabled(false);
         
         // properties widget tabs
-        final CTabFolder indexfolder = new CTabFolder(composite, SWT.TOP); // create a tab set
+        final CTabFolder indexfolder = new CTabFolder(composite, SWT.TOP | SWT.BORDER); // create a tab set
         griddata = new GridData(SWT.FILL,SWT.FILL,false, true, 2, 2);
         griddata.grabExcessHorizontalSpace = true;
         griddata.minimumHeight = 300;
@@ -165,7 +164,7 @@ public class IndexTab {
         run.setLayoutData(griddata);
         
         // ******************** output tabs *************************************//
-        final CTabFolder outputfolder = new CTabFolder(composite, SWT.TOP); // create a tab set
+        final CTabFolder outputfolder = new CTabFolder(composite, SWT.TOP |SWT.BORDER); // create a tab set
         griddata = new GridData(SWT.FILL,SWT.FILL,false, true, 3, 1);
         griddata.grabExcessHorizontalSpace = true;
         griddata.minimumHeight = 200;
@@ -324,14 +323,19 @@ public class IndexTab {
                 		
                 		List<String> newoutput = myprog.Run(); // the output
                 		List<String> cleanout = myprog.read_output();
+                		//holder.addCellData(cleanout);
                 		
                 		
                 		for(int i = 0; i < newoutput.size();i++){
                 			rawoutput.append(newoutput.get(i)+"\n"); // print output	
                 		}
+                		int cellnum = 1;
                 		try{
-                			for(int i = 0; i < cleanout.size();i++){
-                			cleanoutput.append(cleanout.get(i)+"\n");}
+                			for(int i = 0; i < cleanout.size();i++, cellnum ++){
+                			cleanoutput.append("Cell Number " + String.valueOf(cellnum)+"\n");
+                			cleanoutput.append(cleanout.get(i)+"\n");
+                			cleanoutput.append("\n");
+                			}
                 		}catch(Exception e){
                 			
                 		}
@@ -375,12 +379,19 @@ public class IndexTab {
         		System.out.println(myfile.getName());
         		List<String> newoutput = myprog.Run(); // the output
         		List<String> cleanout = myprog.read_output();
+        		
+        		//holder.addCellData(cleanout);
+        		
         		for(int i = 0; i < newoutput.size();i++){
         			rawoutput.append(newoutput.get(i)+"\n"); // print output
         		}
+        		int cellnum = 1;
         		try{
-        			for(int i = 0; i < cleanout.size();i++){
-        			cleanoutput.append(cleanout.get(i)+"\n");}
+        			for(int i = 0; i < cleanout.size();i++, cellnum ++){
+        			cleanoutput.append("Cell Number " + String.valueOf(cellnum)+"\n");
+        			cleanoutput.append(cleanout.get(i)+"\n");
+        			cleanoutput.append("\n");
+        			}
         		}catch(Exception e){System.out.println(e.getMessage());
         			
         		}
