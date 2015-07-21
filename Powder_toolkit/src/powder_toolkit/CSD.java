@@ -10,6 +10,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 
+
 public class CSD {
 	
     public static void main(String[] args) throws ScriptException, IOException{
@@ -43,7 +44,8 @@ public class CSD {
         CTabItem cTabItem5 = new CTabItem(folder, SWT.NONE);
         cTabItem5.setText("Search");
         
-        
+       
+       
         // in all cases I am making a composite controller to each tab
         // add in the load tab (this will allow reading of data)
         LoadTab myloadtab = new LoadTab();
@@ -60,6 +62,10 @@ public class CSD {
         
         SearchTab searchtab = new SearchTab();
         cTabItem5.setControl(searchtab.create(folder,shell,display));
+        
+        // create the data holder
+       
+        
         
         // pack and load shell
         folder.pack();
