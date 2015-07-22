@@ -86,19 +86,19 @@ public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
 		System.out.println(outputfile);
 		BufferedReader br = new BufferedReader(new FileReader(outputfile));
 		String line; // line variable
+		
 		while ((line = br.readLine()) != null) {
 		   // process the line.
 		   if (line.contains("The following cell has been selected for refinement by PIRUM:"))
 		   {
 		    try {
+		    String newline = "";
 		    for(int i = 0; i<3;i++){
 			line = br.readLine(); // grab the 3 lines after
-			output.add(line); // append the output
+			newline += line;
 			
 			}
-		    
-		    
-		    	
+		    output.add(newline); // append the output
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
