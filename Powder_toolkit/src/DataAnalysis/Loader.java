@@ -20,23 +20,24 @@ public class Loader {
 
 	public void setUpper(int upper) {
 		Upper = upper;
-	}
+		}
 
 	public void setLower(int lower) {
 		Lower = lower;
-	}
+		}
 
 	public void setRange(boolean range) {
 		Loader.range = range;
-	}
+		}
 	
 	public List<IDataset> Load_data(String filepath) {
-		Filepath = filepath;
-		if(filepath.contains(".hkl")){
-			return Loadhkl();
+			Filepath = filepath;
+			if(filepath.contains(".hkl")){
+				return Loadhkl();
+			}
+			else if(filepath.contains(".xy") | filepath.contains(".xye")){}
+			return LoadXY();
 		}
-		return null;
-	}
 	
 	@SuppressWarnings("deprecation")
 	public static List<IDataset> Loadhkl() {
@@ -49,9 +50,10 @@ public class Loader {
 			List<IDataset> dataholder = new ArrayList<IDataset>();
 			
 			if(range){
-				dataset = dh.getDataset(3).getSliceView(new Slice(Lower,Upper));
+				Slice mySlice = new Slice(Lower,Upper); 
+				dataset = dh.getDataset(3).getSliceView(mySlice);
 				dataset.setName("D_space");
-				dataset2 = dh.getDataset(4).getSliceView(new Slice(Lower,Upper));
+				dataset2 = dh.getDataset(4).getSliceView(mySlice);
 				dataset2.setName("Intensity");
 				dataholder.add(dataset2); // add in desired datasets
 				dataholder.add(dataset);	
@@ -72,6 +74,35 @@ public class Loader {
 		
 	}
 	
+	@SuppressWarnings("deprecation")
+	public static List<IDataset> LoadXY(){
+		try{
+			LoaderFactory.registerLoader(".xye", DatLoader.class);
+			IDataHolder dh = LoaderFactory.getData(Filepath);
+			IDataset column1 = dh.getDataset(0);
+			column1.setName("Theta");
+			IDataset column2 = dh.getDataset(1);
+			column2.setName("Intensity");
+			List<IDataset> dataholder = new ArrayList<IDataset>();
+			if(range){
+				IDataset ranged1 = column1.getSliceView(new Slice(Lower,Upper));
+				IDataset ranged2 = column2.getSliceView(new Slice(Lower,Upper));
+				dataholder.add(ranged1); // add in desired datasets
+				dataholder.add(ranged2);	
+			}
+			else{
+				dataholder.add(column1); // add in desired datasets
+				dataholder.add(column2);	
+				
+			}
+			return dataholder;
+
+			}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			}
+		return null;
+		}
 
 	}
 	
