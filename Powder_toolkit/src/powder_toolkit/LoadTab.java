@@ -148,10 +148,18 @@ public class LoadTab{
 					String myfilepath = filetext.getText(); // get filepath
 					filepath = myfilepath; // set the general filepath
 					Loader loader = new Loader();
+					
+					
 					if (myrange){
-					loader.setLower(Integer.valueOf(lower.getText()));
-					loader.setUpper(Integer.valueOf(upper.getText()));
-					loader.setRange(true);
+						// if ranged must be able to accept doubles or floats
+						loader.setRange(true);
+						String l = lower.getText();
+						String u = upper.getText();
+						loader.setUpper(Integer.valueOf(u));
+						loader.setLower(Integer.valueOf(l));
+						}
+					else{
+						loader.setRange(false);
 					}
 					
 					java.util.List<IDataset> data = loader.Load_data(filepath);
