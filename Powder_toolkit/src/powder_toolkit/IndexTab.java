@@ -101,7 +101,7 @@ public class IndexTab {
         indexfolder.setLayoutData(griddata);
         
         // indeing programs list
-        final Table indexingprogs = new Table(composite,SWT.CHECK | SWT.SCROLL_LINE); // list of programs
+        final Table indexingprogs = new Table(composite,SWT.CHECK | SWT.SCROLL_LINE |SWT.BORDER); // list of programs
         griddata = new GridData(SWT.FILL,SWT.FILL,false, false, 1, 2);
         griddata.minimumHeight = 200;
         indexingprogs.setLayoutData(griddata);
@@ -418,8 +418,7 @@ public class IndexTab {
 				filepathbox.setEnabled(false);
 		        browse.setEnabled(false);
 		        textbox.setEnabled(true);
-		        indexfolder.setEnabled(true);
-		        indexfolder.setVisible(true);
+		        
 		        
 				}
 			
@@ -439,7 +438,7 @@ public class IndexTab {
 				filepathbox.setEnabled(true);
 		        browse.setEnabled(true);
 		        textbox.setEnabled(false);
-		        indexfolder.setEnabled(false);
+		        
 				}
 			
 		});

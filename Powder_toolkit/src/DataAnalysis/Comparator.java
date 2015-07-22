@@ -12,8 +12,8 @@ import org.eclipse.dawnsci.analysis.dataset.impl.DatasetFactory;
 
 public class Comparator {
 	
-	public static Dataset data1;
-	public static Dataset data2;
+	public static IDataset data1;
+	public static IDataset data2;
 	public static boolean optimise = false; // optimise boolean
 	public static int upper = 7; // upper range limit
 	public static int lower = 0; // lower range limit
@@ -27,8 +27,8 @@ public class Comparator {
 	
 	
 	private static Double binary() throws Exception{
-		Dataset priv_data1 = data1; // private variables
-		Dataset priv_data2 = data2;
+		IDataset priv_data1 = data1; // private variables
+		IDataset priv_data2 = data2;
 		if (priv_data1.getSize() == 0 | priv_data2.getSize() == 0){ // check is not null
 			throw new Exception("Data size must not be zero");}
 		
@@ -111,8 +111,8 @@ public class Comparator {
 	}
 
 	private static double fractional() throws Exception{
-		Dataset priv_data1 = data1; // private data used
-		Dataset priv_data2 = data2;
+		IDataset priv_data1 = data1; // private data used
+		IDataset priv_data2 = data2;
 		
 		if (priv_data1.getSize() == 0 | priv_data2.getSize() == 0){ // check is not null
 			throw new Exception("Data size must not be zero");}
@@ -173,7 +173,7 @@ public class Comparator {
 		
 	}
 	
-	private static Dataset slice_range(Dataset dataset) throws Exception{
+	private static IDataset slice_range(IDataset priv_data1) throws Exception{
 		if (lower > upper){
 			 throw new Exception("Invalid range");
 		}
@@ -183,11 +183,11 @@ public class Comparator {
 		if (lower  == upper){
 			throw new Exception("Range must be at least 1 in length");
 		}
-		dataset = dataset.getSliceView(new Slice(lower,upper));
-		return dataset;}
+		priv_data1 = priv_data1.getSliceView(new Slice(lower,upper));
+		return priv_data1;}
 	
 	
-	private static Dataset optimiser(Dataset priv_data1,Dataset priv_data2){
+	private static IDataset optimiser(IDataset priv_data1,IDataset priv_data2){
 		double step1 = -0.5;
 		double step2 = 0.5;
 		int stepnum = 300;
@@ -225,6 +225,7 @@ public class Comparator {
 
 	private static Double both() throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println("here");
 		Double percent1 = binary();
 		Double percent2 = fractional();
 		Double average = (percent1+percent2)/2;
@@ -233,11 +234,11 @@ public class Comparator {
 	
 	
 	public static Double Compare(String option) throws Exception{
-		if(option == "binary"){
+		if(option == "Binary"){
 			// binary comparison
 			return binary();
 		}
-		else if(option == "fractional"){
+		else if(option == "Fractional"){
 			// fractional comparison
 			return fractional();
 		}
@@ -248,11 +249,11 @@ public class Comparator {
 	}
 	//////////getters and setters/////////////
 
-	public static void setData1(Dataset data1) {
+	public static void setData1(IDataset data1) {
 		Comparator.data1 = data1;
 	}
 
-	public static void setData2(Dataset data2) {
+	public static void setData2(IDataset data2) {
 		Comparator.data2 = data2;
 	}
 

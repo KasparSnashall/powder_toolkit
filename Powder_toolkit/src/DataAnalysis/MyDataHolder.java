@@ -39,6 +39,22 @@ public class MyDataHolder {
 		celldata.add(cleanout);
 
 	}
+	public IDataset getDataSet(String name,String columnname){
+		for(int i=0; i < datalist.size();i++){
+			LoadedDataObject loaded = datalist.get(i);
+			if(loaded.name == name){
+				List<IDataset> mydata = loaded.data;
+				for(int j = 0; j< mydata.size();j++){
+					if(mydata.get(j).getName().equals(columnname)){
+						return mydata.get(j);
+					}
+				
+				}
+			} 
+		
+	}
+		return null;
+	}
 	
 	
 }

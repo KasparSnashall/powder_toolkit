@@ -86,7 +86,7 @@ public class CSD {
         indextab = new IndexTab(holder);
         cTabItem3.setControl(indextab.create(folder,shell,display));
         
-        final CompareTab comparetab = new CompareTab();
+        final CompareTab comparetab = new CompareTab(holder);
         cTabItem4.setControl(comparetab.create(folder,shell,display));
         
         SearchTab searchtab = new SearchTab();
