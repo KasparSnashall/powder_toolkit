@@ -18,7 +18,7 @@ public class Comparator {
 	public static int upper = 7; // upper range limit
 	public static int lower = 0; // lower range limit
 	public static boolean range_flag = false; // range flag
-	public static double tolerance = 5.0; // tolerance percentage
+	public static double tolerance = 20.0; // tolerance percentage
 	public static List<Double> weights = new ArrayList<Double>(); // the list of weights
 	public static List<Integer> weight_lower = new ArrayList<Integer>(); // weight lower limit
 	public static List<Integer> weight_upper = new ArrayList<Integer>(); // weight upper limit
@@ -29,6 +29,7 @@ public class Comparator {
 	private static Double binary() throws Exception{
 		IDataset priv_data1 = data1; // private variables
 		IDataset priv_data2 = data2;
+		
 		if (priv_data1.getSize() == 0 | priv_data2.getSize() == 0){ // check is not null
 			throw new Exception("Data size must not be zero");}
 		
@@ -52,6 +53,7 @@ public class Comparator {
 			double a = priv_data1.getDouble(i); // element a
 			double b = priv_data2.getDouble(i); // element b
 			Double tol = tolerance*priv_data1.getDouble(i)/100.0; // percentage tolerance tol
+			System.out.println(tol);
 			if(a - tol <= b && b <= a+tol){ // is it in range?
 				counts.add(1.0);} // positive
 			else{
@@ -135,12 +137,12 @@ public class Comparator {
 				if(a == b){
 					percents.add(100.0);
 				}
-				else if( a > b && a != b){
-					double p = 100.0*a/b;
+				else if( a > b){
+					double p = 100.0*b/a;
 					percents.add(p);
 				}
-				else if (b > a && b!= a){
-					double p = 100.0*b/a;
+				else if (b > a ){
+					double p = 100.0*a/b;
 					percents.add(p);	
 				}
 			}
@@ -228,17 +230,18 @@ public class Comparator {
 		System.out.println("here");
 		Double percent1 = binary();
 		Double percent2 = fractional();
-		Double average = (percent1+percent2)/2;
+		Double average = 0.0;
+		average = (percent1+percent2)/2;
 		return average;
 	}
 	
 	
 	public static Double Compare(String option) throws Exception{
-		if(option == "Binary"){
+		if(option.equals("Binary")){
 			// binary comparison
 			return binary();
 		}
-		else if(option == "Fractional"){
+		else if(option.equals("Fractional")){
 			// fractional comparison
 			return fractional();
 		}

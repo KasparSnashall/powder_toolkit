@@ -21,6 +21,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
@@ -30,27 +31,26 @@ import DataAnalysis.MyDataHolder;
 
 
 
-public class CSD {
+public class PowderToolKit {
 	
 	private static LoadTab loadtab;
 	private static IndexTab indextab;
 	
 	
-    public static void main(String[] args) throws ScriptException, IOException{
-    	Display display = new Display();
-        Shell shell = new Shell(display);
-        shell.setText("My Powder Diffraction toolkit");
+    public Composite create(Composite parent){
+    	Display display = Display.getCurrent();
+        //composite.setText("My Powder Diffraction toolkit");
 
         // create a new GridLayout with two columns
         // of different size
         GridLayout layout = new GridLayout(2, false);
 
         // set the layout to the shell
-        shell.setLayout(layout);
+        parent.setLayout(layout);
         
        
         // creating initial tabs for operation selection
-        final CTabFolder folder = new CTabFolder(shell, SWT.TOP |SWT.BORDER); // create a tab set
+        final CTabFolder folder = new CTabFolder(parent, SWT.TOP |SWT.BORDER); // create a tab set
         GridData data = new GridData(SWT.FILL, SWT.FILL, true, true,1, 2);
         folder.setLayoutData(data);
         
@@ -68,46 +68,41 @@ public class CSD {
         cTabItem5.setText("Search");
         
        
-        new Label(shell,SWT.NONE).setText("Loaded Data");;
-        final List LoadedData = new List(shell, SWT.MULTI | SWT.V_SCROLL | SWT.WRAP |SWT.RIGHT| SWT.BORDER);
+        new Label(parent,SWT.NONE).setText("Loaded Data");;
+        final List LoadedData = new List(parent, SWT.MULTI | SWT.V_SCROLL | SWT.WRAP |SWT.RIGHT| SWT.BORDER);
         GridData data2 = new GridData(SWT.FILL, SWT.FILL, true, false,1, 1);
         data2.minimumWidth = 200;
         LoadedData.setLayoutData(data2);
         
         MyDataHolder holder = new MyDataHolder();
+        
         // in all cases I am making a composite controller to each tab
         // add in the load tab (this will allow reading of data)
         loadtab = new LoadTab(holder);
-        cTabItem1.setControl(loadtab.create(folder,shell,display,LoadedData));
+        cTabItem1.setControl(loadtab.create(folder,parent,display,LoadedData));
         //add in the find peaks tab
         FindPeaks findtab =  new FindPeaks();
-        cTabItem2.setControl(findtab.create(folder,shell,display));
+        cTabItem2.setControl(findtab.create(folder,parent,display));
         //add in index tab
         indextab = new IndexTab(holder);
-        cTabItem3.setControl(indextab.create(folder,shell,display));
+        cTabItem3.setControl(indextab.create(folder,parent,display));
         
         final CompareTab comparetab = new CompareTab(holder);
-        cTabItem4.setControl(comparetab.create(folder,shell,display));
+        cTabItem4.setControl(comparetab.create(folder,parent,display));
         
         SearchTab searchtab = new SearchTab();
-        cTabItem5.setControl(searchtab.create(folder,shell,display));
+        cTabItem5.setControl(searchtab.create(folder,parent,display));
         
         // functions
         clicker(LoadedData);
         setDragDrop(LoadedData);
         compareselect(folder,LoadedData);
-
+		
         // pack and load shell
         folder.pack();
-        shell.pack();
-        shell.setSize(700, 800);
-        shell.open();
-        while (!shell.isDisposed()) {
-          if (!display.readAndDispatch()) {
-            display.sleep();
-          }
+        parent.pack();
+        return parent;
         }
-        display.dispose();}
     
     
     public static void clicker(final List LoadedData){

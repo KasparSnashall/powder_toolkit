@@ -50,7 +50,7 @@ public class IndexTab {
 		this.holder = holder;
 	}
 	
-	public Composite create(CTabFolder folder,final Shell shell,Display display){// composite allows me to use more then one item in my tab folder
+	public Composite create(CTabFolder folder,Composite parent,Display display){// composite allows me to use more then one item in my tab folder
 		// new master composite
         Composite composite = new Composite(folder, SWT.LEFT);
         GridLayout gridlayout = new GridLayout(3, false);
@@ -190,7 +190,7 @@ public class IndexTab {
         
         //*************************** functions *************************************//
         // browse selection function
-        
+        final Shell shell = new Shell();
         browse.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
 				String filepath = new FileDialog(shell).open();

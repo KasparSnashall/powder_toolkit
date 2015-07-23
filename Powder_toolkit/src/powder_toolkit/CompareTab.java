@@ -39,7 +39,7 @@ public class CompareTab {
 		
 	}
 	
-	public Composite create(CTabFolder folder,Shell shell,Display display){// composite allows me to use more then one item in my tab folder
+	public Composite create(CTabFolder folder,Composite parent,Display display){// composite allows me to use more then one item in my tab folder
         Composite composite = new Composite(folder, SWT.NONE);
         griddata = new GridData(SWT.FILL, SWT.FILL, true, false); // must figure these variables out
         griddata.horizontalSpan = 2;
@@ -135,10 +135,12 @@ public class CompareTab {
 				String name2 = Data2.getText();
 				String column1 = combo1.getItem(combo1.getSelectionIndex());
 				String column2 = combo2.getItem(combo2.getSelectionIndex());
+				System.out.println(name1);
 				IDataset data1 = holder.getDataSet(name1, column1);
 				IDataset data2 = holder.getDataSet(name2, column2);
 				String choice = types.getText();
 				
+				System.out.println(data1);
 				Comparator.setData1(data1);
 				Comparator.setData2(data2);
 				

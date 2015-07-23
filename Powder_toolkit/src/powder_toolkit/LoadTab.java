@@ -30,14 +30,14 @@ public class LoadTab{
 	public static GridData griddata = new GridData();
 	private Text textboxtext;
 	private MyDataHolder holder;
-	
+	private static Text sampletext;
 	LoadTab(MyDataHolder holder){
 		this.holder = holder;
 	
 	}
 	
 
-	public Composite create(CTabFolder folder,final Shell shell,Display display,final List LoadedData){// composite allows me to use more then one item in my tab folder
+	public Composite create(CTabFolder folder,Composite parent,Display display,final List LoadedData){// composite allows me to use more then one item in my tab folder
         
 		Composite composite = new Composite(folder, SWT.NONE);
         GridLayout layout = new GridLayout(3,false);
@@ -56,7 +56,7 @@ public class LoadTab{
 		Label samplename = new Label(composite, SWT.NONE);
 		samplename.setText("Sample Name:");
 		// textbox
-		final Text sampletext = new Text(composite,SWT.BORDER);
+		sampletext = new Text(composite,SWT.BORDER);
 		sampletext.setText(" ");
 		griddata = new GridData(150,15);
 		griddata.horizontalSpan = 2;
@@ -76,6 +76,7 @@ public class LoadTab{
 		browse.setAlignment(SWT.LEFT);
 		browse.setText("Browse...");
 		// browse function
+		final Shell shell = new Shell();
 		browse.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
 				String filepath = new FileDialog(shell).open();
@@ -193,6 +194,7 @@ public class LoadTab{
 		try{
 		LoadedDataObject mydata = holder.getData(name);
 		textboxtext.setText("");
+		sampletext.setText(name);
 		for(int i = 0; i < mydata.data.size();i++){
 			IDataset mytext = mydata.data.get(i);
 			textboxtext.append(mytext+"\n");

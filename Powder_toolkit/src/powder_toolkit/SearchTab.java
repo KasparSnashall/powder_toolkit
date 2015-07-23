@@ -10,7 +10,7 @@ import org.eclipse.swt.widgets.Shell;
 
 
 public class SearchTab {
-	public Composite create(CTabFolder folder,Shell shell,Display display){// composite allows me to use more then one item in my tab folder
+	public Composite create(CTabFolder folder,Composite parent,Display display){// composite allows me to use more then one item in my tab folder
         Composite composite = new Composite(folder, SWT.NONE);
         GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, false); // must figure these variables out
         gridData.horizontalSpan = 2;

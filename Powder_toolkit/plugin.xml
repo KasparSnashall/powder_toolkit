@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="perspective.PowderToolkit"
+            icon="icons/releng_gears.gif"
+            id="perspective.PowderToolkit"
+            name="Powder Toolkit">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="Views.PowderToolkitView"
+            id="Views.PowderToolkitView"
+            name="PowderToolKit">
+      </view>
+   </extension>
+
+</plugin>

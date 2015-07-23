@@ -42,7 +42,7 @@ public class MyDataHolder {
 	public IDataset getDataSet(String name,String columnname){
 		for(int i=0; i < datalist.size();i++){
 			LoadedDataObject loaded = datalist.get(i);
-			if(loaded.name == name){
+			if(loaded.name.equals(name)){
 				List<IDataset> mydata = loaded.data;
 				for(int j = 0; j< mydata.size();j++){
 					if(mydata.get(j).getName().equals(columnname)){
