@@ -17,6 +17,36 @@
             id="Views.PowderToolkitView"
             name="PowderToolKit">
       </view>
+      <view
+            class="Views.Loadview"
+            id="Views.Loadview"
+            name="Load">
+      </view>
+      <view
+            class="Views.Peakview"
+            id="Views.Peakview"
+            name="Find Peaks">
+      </view>
+      <view
+            class="Views.Indexview"
+            id="Views.Indexview"
+            name="Index">
+      </view>
+      <view
+            class="Views.Compareview"
+            id="Views.Compareview"
+            name="Compare">
+      </view>
+      <view
+            class="Views.Searchview"
+            id="Views.Searchview"
+            name="search CSD">
+      </view>
+      <view
+            class="Views.LoadedDataview"
+            id="Views.LoadedDataview"
+            name="Loaded Data">
+      </view>
    </extension>
 
 </plugin>

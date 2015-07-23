@@ -10,7 +10,6 @@ public class PowderToolkit implements IPerspectiveFactory {
 	 * Creates the initial layout for a page.
 	 */
 	public void createInitialLayout(IPageLayout layout) {
-		layout.setFixed(true);
 		layout.setEditorAreaVisible(false);
 		
 		addFastViews(layout);
@@ -18,8 +17,14 @@ public class PowderToolkit implements IPerspectiveFactory {
 		addPerspectiveShortcuts(layout);
 		{
 			IFolderLayout folderLayout = layout.createFolder("Powder folder", IPageLayout.LEFT, 0.76f, IPageLayout.ID_EDITOR_AREA);
-			folderLayout.addView("Views.PowderToolkitView");
+			folderLayout.addView("Views.Loadview");
+			folderLayout.addView("Views.Peakview");
+			folderLayout.addView("Views.Indexview");
+			folderLayout.addView("Views.Compareview");
+			folderLayout.addView("Views.Searchview");
 		}
+		layout.addView("Views.LoadedDataview", IPageLayout.RIGHT, 0.81f, "Powder folder");
+		layout.addView("uk.ac.diamond.scisoft.analysis.rcp.plotView1", IPageLayout.BOTTOM, 0.63f, "Powder folder");
 	}
 
 	/**
