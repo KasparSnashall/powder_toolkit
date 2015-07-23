@@ -140,6 +140,7 @@ public class LoadTab{
 		
 		
 		// load button function
+        folder.setSelection(0);
         load.addSelectionListener(new SelectionListener(){
 			@Override
 			public void widgetSelected(SelectionEvent e) {

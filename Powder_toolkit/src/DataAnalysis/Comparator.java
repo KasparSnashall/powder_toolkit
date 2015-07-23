@@ -53,7 +53,7 @@ public class Comparator {
 			double a = priv_data1.getDouble(i); // element a
 			double b = priv_data2.getDouble(i); // element b
 			Double tol = tolerance*priv_data1.getDouble(i)/100.0; // percentage tolerance tol
-			System.out.println(tol);
+			
 			if(a - tol <= b && b <= a+tol){ // is it in range?
 				counts.add(1.0);} // positive
 			else{
@@ -168,7 +168,7 @@ public class Comparator {
 		double sum = 0;
 		for(int i = 0; i < percents.size(); i++)
 		    sum += percents.get(i);
-		System.out.println(percents);
+		
 		double percent = sum/percents.size();
 		return percent;
 	}
@@ -227,7 +227,7 @@ public class Comparator {
 
 	private static Double both() throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("here");
+		
 		Double percent1 = binary();
 		Double percent2 = fractional();
 		Double average = 0.0;

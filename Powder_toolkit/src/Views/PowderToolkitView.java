@@ -1,14 +1,8 @@
 package Views;
 
-import java.io.IOException;
-
-import javax.script.ScriptException;
-
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 
@@ -16,7 +10,7 @@ import powder_toolkit.PowderToolKit;
 
 public class PowderToolkitView extends ViewPart {
 
-	public static final String ID = "Views.CSDview"; //$NON-NLS-1$
+	public static final String ID = "Views.PowderToolKitView"; //$NON-NLS-1$
 
 	public PowderToolkitView() {
 	}

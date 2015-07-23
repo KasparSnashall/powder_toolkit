@@ -17,7 +17,7 @@ public class PowderToolkit implements IPerspectiveFactory {
 		addViewShortcuts(layout);
 		addPerspectiveShortcuts(layout);
 		{
-			IFolderLayout folderLayout = layout.createFolder("Powder folder", IPageLayout.LEFT, 0.95f, IPageLayout.ID_EDITOR_AREA);
+			IFolderLayout folderLayout = layout.createFolder("Powder folder", IPageLayout.LEFT, 0.76f, IPageLayout.ID_EDITOR_AREA);
 			folderLayout.addView("Views.PowderToolkitView");
 		}
 	}

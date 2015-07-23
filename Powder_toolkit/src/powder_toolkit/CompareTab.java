@@ -15,7 +15,6 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import DataAnalysis.Comparator;
@@ -33,6 +32,7 @@ public class CompareTab {
 	private static Combo combo2; // drop down 2
 	private static Combo types; // drop down with comparison types
 	private static Text output; // output text box
+	private static Text tolerance;
 	
 	CompareTab(MyDataHolder holder){
 		CompareTab.holder = holder;
@@ -88,6 +88,9 @@ public class CompareTab {
         types.add("Fractional");
         types.add("Binary");
         
+        tolerance = new Text(composite,SWT.BORDER);
+        tolerance.setLayoutData(griddata);
+        
         Button compare = new Button(composite, SWT.PUSH);
         compare.setText("Compare");
         griddata = new GridData();
@@ -96,9 +99,8 @@ public class CompareTab {
         comparefunction(compare);
         
         output = new Text(composite, SWT.BORDER | SWT.MULTI | SWT.WRAP);
-        griddata = new GridData(SWT.FILL, SWT.FILL, true, true);
+        griddata = new GridData(200,100);
         griddata.horizontalSpan = 2;
-        griddata.minimumHeight = 200;
         output.setLayoutData(griddata);
         
         return composite;}

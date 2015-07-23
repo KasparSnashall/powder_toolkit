@@ -122,6 +122,7 @@ public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
 		    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));// exe writter
 		    BufferedReader input = new BufferedReader( new InputStreamReader(process.getInputStream()));// exe output
 		    System.out.println(filepath+title);
+		    
 		    String line = null; // output
 		    bw.write("N\n"); // general info?
 		    bw.write(filepath+title+".dat"+"\n"); // dat location
