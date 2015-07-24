@@ -270,7 +270,7 @@ public class Loadview extends ViewPart {
 							for(int i =0; i < dh.size();i++){
 								TableEditor editor = new TableEditor(table);
 						        Combo combo = new Combo(table,SWT.BORDER);
-						        combo.setSize(15, 50);
+						        
 						        combo.setText("CCombo");
 						        combo.add("item 1");
 						        combo.add("item 2");
