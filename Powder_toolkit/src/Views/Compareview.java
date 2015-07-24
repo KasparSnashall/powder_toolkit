@@ -53,7 +53,7 @@ public class Compareview extends ViewPart {
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
-		Composite composite = new Composite(parent, SWT.V_SCROLL);
+		Composite composite = new Composite(parent, SWT.NONE);
 		composite.setFont(SWTResourceManager.getFont("Sans", 12, SWT.NORMAL));
         GridLayout gl_composite = new GridLayout(4, false);
         gl_composite.marginBottom = 20;

@@ -16,15 +16,17 @@ public class PowderToolkit implements IPerspectiveFactory {
 		addViewShortcuts(layout);
 		addPerspectiveShortcuts(layout);
 		{
-			IFolderLayout folderLayout = layout.createFolder("Powder folder", IPageLayout.LEFT, 0.76f, IPageLayout.ID_EDITOR_AREA);
+			IFolderLayout folderLayout = layout.createFolder("Powder folder", IPageLayout.TOP, 0.84f, IPageLayout.ID_EDITOR_AREA);
 			folderLayout.addView("Views.Loadview");
 			folderLayout.addView("Views.Peakview");
 			folderLayout.addView("Views.Indexview");
 			folderLayout.addView("Views.Compareview");
 			folderLayout.addView("Views.Searchview");
 		}
-		layout.addView("Views.LoadedDataview", IPageLayout.RIGHT, 0.81f, "Powder folder");
-		layout.addView("uk.ac.diamond.scisoft.analysis.rcp.plotView1", IPageLayout.BOTTOM, 0.63f, "Powder folder");
+		{
+			IFolderLayout folderLayout = layout.createFolder("folder", IPageLayout.RIGHT, 0.82f, "Powder folder");
+			folderLayout.addView("Views.LoadedDataview");
+		}
 	}
 
 	/**

@@ -19,6 +19,7 @@
       </view>
       <view
             class="Views.Loadview"
+            icon="icons/releng_gears.gif"
             id="Views.Loadview"
             name="Load">
       </view>
@@ -46,6 +47,11 @@
             class="Views.LoadedDataview"
             id="Views.LoadedDataview"
             name="Loaded Data">
+      </view>
+      <view
+            class="powder_toolkit.DataView"
+            id="powder_toolkit.DataView"
+            name="Data view">
       </view>
    </extension>
 
