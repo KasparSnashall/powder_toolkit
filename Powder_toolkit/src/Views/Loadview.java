@@ -2,12 +2,16 @@ package Views;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Logger;
 
 import javax.swing.text.View;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.dawnsci.analysis.api.io.IDataHolder;
+import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.swt.SWT;
@@ -19,6 +23,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
@@ -61,8 +66,7 @@ public class Loadview extends ViewPart {
 	private MyDataHolder holder;
 	private static Text sampletext;
 	private Table table;
-	private Table table_1;
-	
+	private static Map<TableEditor, String> editors = new HashMap<TableEditor, String>(); // I know its back to front this doesnt matter
 	public void setholder(MyDataHolder holder){
 		
 	}
@@ -217,8 +221,8 @@ public class Loadview extends ViewPart {
         new Label(composite, SWT.NONE);
         new Label(composite, SWT.NONE);
         
-        final TableViewer tableViewer = new TableViewer(composite, SWT.BORDER | SWT.FULL_SELECTION );
-        table = tableViewer.getTable();
+        
+        table = new Table(composite,SWT.NONE);
         GridData gd_table_2 = new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1);
         gd_table_2.heightHint = 201;
         gd_table_2.widthHint = 412;
@@ -236,21 +240,27 @@ public class Loadview extends ViewPart {
 			        	  sampletext.setText(file.getName());
 			        	  
 						try {
-							
-							table = tableViewer.getTable();
+						
+							if(editors.size() != 0){
+								for(TableEditor myeditor : editors.keySet()){
+									myeditor.getEditor().dispose();
+								}
+							}
 							table.removeAll(); // refresh
+							TableItem[] items = table.getItems();
+							for (TableItem myitem : items){
+								myitem.dispose();	
+							}
 							TableColumn[] columns = table.getColumns();
-							for( TableColumn tc : columns ) {
-							      tc.dispose() ;}
+							for( TableColumn tc : columns ) {  
+								tc.dispose() ;}
 							GridData gd_table_2 = new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1);
 						    gd_table_2.heightHint = 201;
 						    gd_table_2.widthHint = 510;
 					        table.setLayoutData(gd_table_2);
 					        table.setHeaderVisible(true);
 					        table.setLinesVisible(true);
-					       
-					        
-					       
+
 							String[] myextension = filepath.split("\\.");
 							System.out.println(myextension.length);
 							String extension = myextension[myextension.length-1];
@@ -268,8 +278,12 @@ public class Loadview extends ViewPart {
 							
 							final TableItem item = new TableItem(table, SWT.NULL);
 							
+							
 							for(int i =0; i < dh.size();i++){
+								
 								TableEditor editor = new TableEditor(table);
+								String countnum = String.valueOf(i);
+								editors.put(editor, countnum);
 						        CCombo combo = new CCombo(table,SWT.BORDER);
 						        combo.add("Intensity");
 						        combo.add("Two theta");
@@ -277,13 +291,17 @@ public class Loadview extends ViewPart {
 						        combo.add("Theta");
 						        editor.grabHorizontal = true;
 						        editor.setEditor(combo, item,i);
+						        item.setData("combo", combo); //Point to notice
 							}
+							System.out.println(editors.size());
 							
 
 							final TableItem item2 = new TableItem(table, SWT.NULL);
 							for(int i =0; i < dh.size();i++){
 								TableEditor editor = new TableEditor(table);
 						        Button buttonb = new Button(table,SWT.CHECK);
+						        String countnum = String.valueOf(i);
+								editors.put(editor, countnum);
 						        editor.grabHorizontal = true;
 						        editor.setEditor(buttonb, item2,i);
 							}
@@ -309,12 +327,15 @@ public class Loadview extends ViewPart {
 								}
 								
 							}
+							TableColumn[] mycolumnlist = table.getColumns();
+							for(TableColumn mycol : mycolumnlist){
+								mycol.setWidth(150);
+							}
 							table.pack();
 							table.layout();
-							//tableViewer.re
-							tableViewer.refresh();
-							//composite.layout();
-							parent.update();
+							
+							composite.layout();
+							parent.layout();
 					        
 								
 							
@@ -378,4 +399,5 @@ public class Loadview extends ViewPart {
 	public void setFocus() {
 		// Set the focus
 	}
+	
 }
