@@ -35,6 +35,7 @@ import DataAnalysis.Loader;
 import DataAnalysis.MyDataHolder;
 
 import org.eclipse.wb.swt.SWTResourceManager;
+import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.TableEditor;
 import org.eclipse.swt.widgets.Table;
@@ -269,14 +270,25 @@ public class Loadview extends ViewPart {
 							
 							for(int i =0; i < dh.size();i++){
 								TableEditor editor = new TableEditor(table);
-						        Combo combo = new Combo(table,SWT.BORDER);
-						        
-						        combo.setText("CCombo");
-						        combo.add("item 1");
-						        combo.add("item 2");
+						        CCombo combo = new CCombo(table,SWT.BORDER);
+						        combo.add("Intensity");
+						        combo.add("Two theta");
+						        combo.add("D_space");
+						        combo.add("Theta");
 						        editor.grabHorizontal = true;
 						        editor.setEditor(combo, item,i);
 							}
+							
+
+							final TableItem item2 = new TableItem(table, SWT.NULL);
+							for(int i =0; i < dh.size();i++){
+								TableEditor editor = new TableEditor(table);
+						        Button buttonb = new Button(table,SWT.CHECK);
+						        editor.grabHorizontal = true;
+						        editor.setEditor(buttonb, item2,i);
+							}
+							
+							
 							for(int i =0; i < dh.size();i++){
 								IDataset dataset = dh.getDataset(i);
 								if(i == 0){
@@ -302,7 +314,7 @@ public class Loadview extends ViewPart {
 							//tableViewer.re
 							tableViewer.refresh();
 							//composite.layout();
-							
+							parent.update();
 					        
 								
 							
