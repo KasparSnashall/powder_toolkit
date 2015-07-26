@@ -6,88 +6,87 @@ import java.util.Map;
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 public interface IPowderIndexer {
 	
-	
+	/**
+	 * 
+	 * @return returns a map of keywords and values used in the indexing program
+	 */
 	public Map<String, String> getKeywords();
 	/**
 	 * 
-	 * @param keywords
-	 * Map<string,string> set of keywords to be added to the indexing program
+	 * @param keywords Map<string,string> set of keywords to be added to the indexing program
+	 * 
 	 */
 	public void setKeywords(Map<String, String> keywords);
 	/**
+	 * Adds keyowrds to the keyword map
+	 * @param key of indexing program keywords
+	 * @param value a string usually in a numeric form the value of keyword key
 	 * 
-	 * @param key
-	 * the key a string
-	 * @param value
-	 * a string usually in a numeric form
 	 */
 	public void addKeyword(String key,String value);
 	/**
-	 * Adds keywords to the keyword map
-	 * @return
+	 * 
+	 * @return the standard values of the indexing programs keywords for example is x has a normal value 4 it will return 4 
 	 */
 	public String[] getStandard_values();
 	/**
-	 * Returns the list of standard values defined in each program
-	 * @return
+	 * 
+	 * @return Returns the list of standard keys
 	 */
 	public String[] getKeys();
 	/**
-	 * Returns the key of the standard values
-	 * @return
+	 * 
+	 * @return the filepath used for creating a data file or running a data file
 	 */
 	public String getFilepath();
 	/**
 	 * 
-	 * @param filepath
-	 * The path to the run directory/ data
+	 * @param filepath sets the filepath used to create dat or run dat files
+	 * 
 	 */
 	public void setFilepath(String filepath);
 	/**
 	 * 
-	 * @return
-	 * Returns the run directory/data
+	 * @return returns the set of datasets used in the program
+	 *
 	 */
 	public List<IDataset> getData();
 	/**
 	 * 
-	 * @param data
-	 * the dataset used in all programs usually just a single array with greater then 20 points
+	 * @param data the dataset used in the program usually just a single array with greater then 20 points
+	 * 
 	 */
 	public void setData(List<IDataset> data);
 	/**
 	 * 
-	 * @return
-	 * Returns the data used in the indexing program
+	 * @return gets the title used to create the files
+	 *
 	 */
 	public String getTitle();
 	/**
 	 * 
-	 * @param mytitle
-	 * Some programs have options for a title this is used only in that case
+	 * @param mytitle Some programs have options for a title this is used only in that case
+	 * 
 	 */
 	public void setTitle(String mytitle);
 	/**
 	 * 
-	 * @return
-	 * Sets the title used in some indexing programs
+	 * @return gets the clean output usually a string list that can then be printed to screen
+	 * 
 	 */
 	public List<String> read_output();
 	/**
-	 * Reads the output of the programs usually by parsing an output file
+	 * writes the input file, uses title filepath and data
 	 */
 	public void write_input();
 	/**
-	 * Writes an input file for the indexing program
-	 * @return
+	 * Run runs the indexing program
+	 * @return a string list raw output
 	 */
 	public List<String> Run();
 	/**
-	 * Runs the indexing programs, using a runtime routine,
-	 *  usually by passing it filenames
-	 */
-	public void resetKeywords();
-	/**
 	 * Resets the keywords map
 	 */
+	public void resetKeywords();
+	
 }

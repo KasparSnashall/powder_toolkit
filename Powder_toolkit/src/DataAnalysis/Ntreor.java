@@ -14,7 +14,11 @@ import java.util.Map.Entry;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.dawnsci.analysis.api.dataset.Slice;
-
+/**
+ * Ntreor indexing wrapper, all new indexing programs should have structure similar to this
+ * @author kaspar
+ *
+ */
 public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
 	
 	//keys
