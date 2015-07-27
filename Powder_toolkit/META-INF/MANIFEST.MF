@@ -13,6 +13,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.console,
  org.eclipse.jdt.ui,
  org.eclipse.swt,
- org.eclipse.jface
+ org.eclipse.jface,
+ org.eclipse.dawnsci.plotting.api,
+ org.eclipse.osgi.services,
+ org.dawb.common.util
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
+Import-Package: org.dawb.common.ui
+Bundle-ClassPath: .,
+ swing2swt.jar
