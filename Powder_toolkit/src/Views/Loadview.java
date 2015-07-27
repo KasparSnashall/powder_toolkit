@@ -234,7 +234,6 @@ public class Loadview extends ViewPart {
 		sampletext.setLayoutData(griddata_1);
 		// browse function
 		
-		new Label(composite, SWT.NONE);
         // check box
 		final Button rangebox = new Button(composite, SWT.CHECK);
 		rangebox.setText("Range");
@@ -303,17 +302,10 @@ public class Loadview extends ViewPart {
         	public void widgetDefaultSelected(SelectionEvent e) {
         		// TODO Auto-generated method stub}
         	}});
-        new Label(composite, SWT.NONE);
-        
         Label lblDataTable = new Label(composite, SWT.NONE);
         lblDataTable.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 2));
         lblDataTable.setText("Data Table");
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        
-       
-        
+
         rangebox.addSelectionListener(new SelectionAdapter()
 		{
 		    @Override
@@ -332,8 +324,6 @@ public class Loadview extends ViewPart {
 		        	}
 		    }
 		});
-        new Label(composite, SWT.NONE);
-        
         
         table = new Table(composite,SWT.BORDER);
         GridData gd_table_2 = new GridData(SWT.FILL, SWT.FILL, true, true, 3, 2);
