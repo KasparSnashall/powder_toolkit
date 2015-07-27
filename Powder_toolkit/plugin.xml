@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="perspective.PowderToolkit"
+            icon="icons/releng_gears.gif"
+            id="perspective.PowderToolkit"
+            name="Powder Toolkit">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="Views.PowderToolkitView"
+            id="Views.PowderToolkitView"
+            name="PowderToolKit">
+      </view>
+      <view
+            class="Views.Loadview"
+            id="Views.Loadview"
+            name="Load">
+      </view>
+      <view
+            class="Views.Peakview"
+            id="Views.Peakview"
+            name="Find Peaks">
+      </view>
+      <view
+            class="Views.Indexview"
+            id="Views.Indexview"
+            name="Index">
+      </view>
+      <view
+            class="Views.Compareview"
+            id="Views.Compareview"
+            name="Compare">
+      </view>
+      <view
+            class="Views.Searchview"
+            id="Views.Searchview"
+            name="search CSD">
+      </view>
+      <view
+            class="Views.LoadedDataview"
+            id="Views.LoadedDataview"
+            name="Loaded Data">
+      </view>
+      <view
+            class="powder_toolkit.DataView"
+            id="powder_toolkit.DataView"
+            name="Data view">
+      </view>
+   </extension>
+
+</plugin>

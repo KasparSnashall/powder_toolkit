@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Powder_toolkit
-Bundle-SymbolicName: Powder_toolkit
+Bundle-SymbolicName: Powder_toolkit;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: powder_toolkit.Activator
 Require-Bundle: org.eclipse.ui,
@@ -9,6 +9,16 @@ Require-Bundle: org.eclipse.ui,
  org.python.pydev.jython;bundle-version="3.6.0",
  org.eclipse.dawnsci.analysis.dataset;bundle-version="1.0.0",
  org.eclipse.dawnsci.analysis.api;bundle-version="1.0.0",
- uk.ac.diamond.scisoft.analysis;bundle-version="1.3.0"
+ uk.ac.diamond.scisoft.analysis;bundle-version="1.3.0",
+ org.eclipse.ui.console,
+ org.eclipse.jdt.ui,
+ org.eclipse.swt,
+ org.eclipse.jface,
+ org.eclipse.dawnsci.plotting.api,
+ org.eclipse.osgi.services,
+ org.dawb.common.util
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
+Import-Package: org.dawb.common.ui
+Bundle-ClassPath: .,
+ swing2swt.jar

@@ -14,7 +14,11 @@ import java.util.Map.Entry;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.dawnsci.analysis.api.dataset.Slice;
-
+/**
+ * Ntreor indexing wrapper, all new indexing programs should have structure similar to this
+ * @author kaspar
+ *
+ */
 public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
 	
 	//keys
@@ -122,6 +126,7 @@ public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
 		    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));// exe writter
 		    BufferedReader input = new BufferedReader( new InputStreamReader(process.getInputStream()));// exe output
 		    System.out.println(filepath+title);
+		    
 		    String line = null; // output
 		    bw.write("N\n"); // general info?
 		    bw.write(filepath+title+".dat"+"\n"); // dat location

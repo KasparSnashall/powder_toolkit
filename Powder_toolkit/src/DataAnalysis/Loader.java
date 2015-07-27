@@ -12,7 +12,7 @@ import uk.ac.diamond.scisoft.analysis.io.LoaderFactory;
 public class Loader {
 	
 	
-	public static String Filepath;
+	private static String Filepath;
 	public static int Upper;
 	public static int Lower;
 	public static boolean range;
@@ -30,80 +30,33 @@ public class Loader {
 		Loader.range = range;
 		}
 	
-	public List<IDataset> Load_data(String filepath) {
+	public List<IDataset> Load_data(String filepath,List<String> names,String flag,List<Integer> colnumbers) {
+			try{
 			Filepath = filepath;
-			if(filepath.contains(".hkl")){
-				return Loadhkl();
-			}
-			else if(filepath.contains(".xy") | filepath.contains(".xye")){}
-			return LoadXY();
-		}
-	
-	@SuppressWarnings("deprecation")
-	public static List<IDataset> Loadhkl() {
-		try {
-			LoaderFactory.registerLoader(".hkl", DatLoader.class);
+			LoaderFactory.registerLoader(flag, DatLoader.class);
 			IDataHolder dh = LoaderFactory.getData(Filepath);
-
-			IDataset dataset = dh.getDataset(3); // d_space
-			IDataset dataset2 = dh.getDataset(4); // f square
-			List<IDataset> dataholder = new ArrayList<IDataset>();
-			
-			if(range){
-				Slice mySlice = new Slice(Lower,Upper); 
-				dataset = dh.getDataset(3).getSliceView(mySlice);
-				dataset.setName("D_space");
-				dataset2 = dh.getDataset(4).getSliceView(mySlice);
-				dataset2.setName("Intensity");
-				dataholder.add(dataset2); // add in desired datasets
-				dataholder.add(dataset);	
-			}
-			else{
-				dataset.setName("D_space");
-				dataset2.setName("Intensity");
-				dataholder.add(dataset2); // add in desired datasets
-				dataholder.add(dataset);	
+			List<IDataset> dataholder = new ArrayList<IDataset>(); // the list of datasets
+			for(int i = 0; i < colnumbers.size(); i ++){
+				
+				IDataset column = dh.getDataset(colnumbers.get(i));
+				column.setName(names.get(i));
+				if(range){
+					IDataset ranged = column.getSliceView(new Slice(Lower,Upper));
+					dataholder.add(ranged);	
+				}
+				else{
+					dataholder.add(column); // add in desired datasets	
+				}
 				
 			}
 			return dataholder;
-			
-		} catch (Exception e1) {
-			e1.printStackTrace();
+			}
+			catch(Exception e){
+				System.out.println(e.getMessage());
+			}
+			return null;
 		}
-		return null;
-		
-	}
 	
-	@SuppressWarnings("deprecation")
-	public static List<IDataset> LoadXY(){
-		try{
-			LoaderFactory.registerLoader(".xye", DatLoader.class);
-			IDataHolder dh = LoaderFactory.getData(Filepath);
-			IDataset column1 = dh.getDataset(0);
-			column1.setName("Theta");
-			IDataset column2 = dh.getDataset(1);
-			column2.setName("Intensity");
-			List<IDataset> dataholder = new ArrayList<IDataset>();
-			if(range){
-				IDataset ranged1 = column1.getSliceView(new Slice(Lower,Upper));
-				IDataset ranged2 = column2.getSliceView(new Slice(Lower,Upper));
-				dataholder.add(ranged1); // add in desired datasets
-				dataholder.add(ranged2);	
-			}
-			else{
-				dataholder.add(column1); // add in desired datasets
-				dataholder.add(column2);	
-				
-			}
-			return dataholder;
-
-			}
-		catch(Exception e){
-			System.out.println(e.getMessage());
-			}
-		return null;
-		}
-
-	}
+}
 	
 

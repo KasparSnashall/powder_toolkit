@@ -15,7 +15,6 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import DataAnalysis.Comparator;
@@ -33,13 +32,14 @@ public class CompareTab {
 	private static Combo combo2; // drop down 2
 	private static Combo types; // drop down with comparison types
 	private static Text output; // output text box
+	private static Text tolerance;
 	
 	CompareTab(MyDataHolder holder){
 		CompareTab.holder = holder;
 		
 	}
 	
-	public Composite create(CTabFolder folder,Shell shell,Display display){// composite allows me to use more then one item in my tab folder
+	public Composite create(CTabFolder folder,Composite parent,Display display){// composite allows me to use more then one item in my tab folder
         Composite composite = new Composite(folder, SWT.NONE);
         griddata = new GridData(SWT.FILL, SWT.FILL, true, false); // must figure these variables out
         griddata.horizontalSpan = 2;
@@ -88,6 +88,9 @@ public class CompareTab {
         types.add("Fractional");
         types.add("Binary");
         
+        tolerance = new Text(composite,SWT.BORDER);
+        tolerance.setLayoutData(griddata);
+        
         Button compare = new Button(composite, SWT.PUSH);
         compare.setText("Compare");
         griddata = new GridData();
@@ -96,9 +99,8 @@ public class CompareTab {
         comparefunction(compare);
         
         output = new Text(composite, SWT.BORDER | SWT.MULTI | SWT.WRAP);
-        griddata = new GridData(SWT.FILL, SWT.FILL, true, true);
+        griddata = new GridData(200,100);
         griddata.horizontalSpan = 2;
-        griddata.minimumHeight = 200;
         output.setLayoutData(griddata);
         
         return composite;}
@@ -135,10 +137,12 @@ public class CompareTab {
 				String name2 = Data2.getText();
 				String column1 = combo1.getItem(combo1.getSelectionIndex());
 				String column2 = combo2.getItem(combo2.getSelectionIndex());
+				System.out.println(name1);
 				IDataset data1 = holder.getDataSet(name1, column1);
 				IDataset data2 = holder.getDataSet(name2, column2);
 				String choice = types.getText();
 				
+				System.out.println(data1);
 				Comparator.setData1(data1);
 				Comparator.setData2(data2);
 				
