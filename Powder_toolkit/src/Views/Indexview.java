@@ -52,10 +52,8 @@ public class Indexview extends ViewPart {
 	private final Color grey = Display.getCurrent().getSystemColor(SWT.COLOR_GRAY);
 	private final Color green = Display.getCurrent().getSystemColor(SWT.COLOR_GREEN);
 	private final Color red = Display.getCurrent().getSystemColor(SWT.COLOR_RED);
-	private MyDataHolder holder;
+	private static MyDataHolder holder  = LoadedDataview.holder;
 	
-	public Indexview() {
-	}
 
 	/**
 	 * Create contents of the view part.
@@ -245,10 +243,7 @@ public class Indexview extends ViewPart {
         cleanOutTab.setControl(cleanoutput);
         outputfolder.setSelection(rawOutTab);
         
-        
-        
        
-        
         Save.addSelectionListener(new SelectionAdapter(){
         	public void widgetSelected(SelectionEvent event) {
         			if (loadButton.getSelection()){
@@ -294,7 +289,7 @@ public class Indexview extends ViewPart {
                 		
                 		if(title.contains(".")){
                 			title = title.split("\\.")[0];
-                			System.out.println(title);
+                			
                 		}
                 		myprog.setTitle(title); // set the filename (file.end , handled in the python script )  
                 		myprog.setFilepath(relativepath.toString()+"/");
@@ -351,14 +346,12 @@ public class Indexview extends ViewPart {
         		File myfile = new File(filepath); // check if file
         		String mynewfilepath  = myfile.getParent().toString(); // get the parent directory
         		String mybase = System.getProperty("user.dir"); // current base directory
-        		//TODO mybase more generic
         		Path base = Paths.get(mybase); // current module path will make this automatic
         		Path myfilepath = Paths.get(mynewfilepath); 
         		Path relativepath = base.relativize(myfilepath); // relative path of runfile (Ntreor requires this)
-        		System.out.print(relativepath.toString()); // dev check
         		myprog.setFilepath(relativepath.toString()+"/"); // pass the relative filepath to the prog
         		myprog.setTitle(myfile.getName().split("\\.")[0]); // set the filename (file.end , handled in the python script ) 
-        		System.out.println(myfile.getName());
+        		
         		List<String> newoutput = myprog.Run(); // the output
         		List<String> cleanout = myprog.read_output();
         		
@@ -392,11 +385,6 @@ public class Indexview extends ViewPart {
         		}
         		}
         	});
-        
-        // ******************** output tabs *************************************//
-        
-        
-        
         
         //*************************** functions *************************************//
         // browse selection function
@@ -502,14 +490,16 @@ public class Indexview extends ViewPart {
 	// ***************** getters and setters **********************//
 
 
-	public void setData(String name) {
+	public static void setData(String name) {
 		try{
 		LoadedDataObject mydata = holder.getData(name);
 		data = mydata.data;
 		title = mydata.name;
 		filepath = mydata.filepath;
 		textbox.setText(title);
-		}catch(Exception e){System.out.println(e.getMessage());}
+		}catch(Exception e){
+			//System.out.println(e.getMessage());
+			}
 	}
 
 	/**
