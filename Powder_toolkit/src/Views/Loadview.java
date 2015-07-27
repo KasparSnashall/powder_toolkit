@@ -5,54 +5,37 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
-
-import javax.swing.text.View;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.dawnsci.analysis.api.io.IDataHolder;
-import org.eclipse.jface.action.IContributionItem;
-import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CCombo;
+import org.eclipse.swt.custom.TableEditor;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
+import org.eclipse.wb.swt.SWTResourceManager;
 
-import powder_toolkit.IndexTab;
 import uk.ac.diamond.scisoft.analysis.io.DatLoader;
 import uk.ac.diamond.scisoft.analysis.io.LoaderFactory;
-import DataAnalysis.LoadedDataObject;
 import DataAnalysis.Loader;
 import DataAnalysis.MyDataHolder;
 
-import org.eclipse.wb.swt.SWTResourceManager;
-import org.eclipse.swt.custom.CCombo;
-import org.eclipse.swt.custom.ScrolledComposite;
-import org.eclipse.swt.custom.TableEditor;
-import org.eclipse.swt.widgets.Table;
-import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.ComboBoxViewerCellEditor;
-import org.eclipse.jface.viewers.IBaseLabelProvider;
-import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.swt.widgets.Tree;
-import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.jface.viewers.CheckboxTreeViewer;
-
 public class Loadview extends ViewPart {
+	
+	
 	public Loadview() {
 	}
 
@@ -63,6 +46,7 @@ public class Loadview extends ViewPart {
 	private static GridData griddata_3;
 	private static GridData griddata_2;
 	private static GridData griddata_1;
+	@SuppressWarnings("unused")
 	private MyDataHolder holder;
 	private static Text sampletext;
 	private Table table;
@@ -80,22 +64,12 @@ public class Loadview extends ViewPart {
 	@Override
 	public void createPartControl(final Composite parent) {
 		final Composite composite = new Composite(parent, SWT.NONE);
+		final Shell shell = new Shell();
 		composite.setFont(SWTResourceManager.getFont("Sans", 12, SWT.NORMAL));
-        GridLayout layout = new GridLayout(4,false);
+        GridLayout layout = new GridLayout(3,false);
         layout.marginWidth = 25;
         layout.marginHeight = 25;
         composite.setLayout(layout);
-		// first label sample name
-		Label samplename = new Label(composite, SWT.NONE);
-		samplename.setText("Sample Name:");
-		// textbox
-		sampletext = new Text(composite,SWT.BORDER);
-		sampletext.setText(" ");
-		griddata_1 = new GridData(150,15);
-		griddata_1.horizontalAlignment = SWT.CENTER;
-		sampletext.setLayoutData(griddata_1);
-		new Label(composite, SWT.NONE);
-		new Label(composite, SWT.NONE);
 		
 		
 		// label filepath
@@ -111,122 +85,7 @@ public class Loadview extends ViewPart {
 		Button browse = new Button(composite, SWT.PUSH);
 		browse.setAlignment(SWT.LEFT);
 		browse.setText("Browse...");
-		// browse function
-		final Shell shell = new Shell();
-		new Label(composite, SWT.NONE);
-		
-		
-		
-		
-        // check box
-		final Button rangebox = new Button(composite, SWT.CHECK);
-		rangebox.setText("Range");
-		
-		final Text lower = new Text(composite,SWT.BORDER);
-		lower.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
-		lower.setText("lower");
-		lower.setEnabled(false);
-		// upper and lower limit text boxes
-		final Text upper = new Text(composite, SWT.BORDER);
-		upper.setText("upper");
-		upper.setEnabled(false);
-		// rangebox function
-		rangebox.addSelectionListener(new SelectionAdapter()
-		{
-		    @Override
-		    public void widgetSelected(SelectionEvent e)
-		    {
-		        if (rangebox.getSelection())
-		            {myrange = true;
-		            upper.setEnabled(true);
-		            lower.setEnabled(true);
-		            }
-		        else
-		        	{
-		        	myrange = false;
-		        	upper.setEnabled(false);
-		        	lower.setEnabled(false);
-		        	}
-		    }
-		});
-        new Label(composite, SWT.NONE);
-        // load button
-        Button load = new Button(composite,SWT.PUSH);
-        load.setText("Load");
-        griddata_3 = new GridData(300,30);
-        griddata_3.horizontalAlignment = SWT.LEFT;
-        griddata_3.horizontalSpan = 3;
-        griddata_3.minimumWidth = 40;
-        load.setLayoutData(griddata_3);
-        
-       
-		
-		
-		// load button function
-       
-        load.addSelectionListener(new SelectionListener(){
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				try{
-					
-					//textboxtext.setText(""); // clear text
-					String myfilepath = filetext.getText(); // get filepath
-					filepath = myfilepath; // set the general filepath
-					Loader loader = new Loader();
-					if (myrange){
-						// if ranged must be able to accept doubles or floats
-						loader.setRange(true);
-						String l = lower.getText();
-						String u = upper.getText();
-						loader.setUpper(Integer.valueOf(u));
-						loader.setLower(Integer.valueOf(l));
-						}
-					else{
-						loader.setRange(false);
-					}
-					String flag = filepath.split("\\.")[1];
-					List<String> names =  new ArrayList<String>();
-					for(int j : columnnumbers){
-						String columnName = comboList.get(j);
-						names.add(columnName);
-					}
-					List<IDataset> data = loader.Load_data(myfilepath, names, flag, columnnumbers); // may change this
-					LoadedDataview.addData(sampletext.getText(), flag, data,filepath);
-					Indexview.setData(sampletext.getText());
-					}
-					
-					catch(Exception z){
-						
-						System.out.println(z.getMessage());
-						}	
-			}
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-				// TODO Auto-generated method stub}
-			}});
-
-        composite.pack();
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        
-        Label lblDataTable = new Label(composite, SWT.NONE);
-        lblDataTable.setText("Data Table");
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        
-        
-        table = new Table(composite,SWT.BORDER);
-        GridData gd_table_2 = new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1);
-        gd_table_2.heightHint = 201;
-        gd_table_2.widthHint = 412;
-        table.setLayoutData(gd_table_2);
-        new Label(composite, SWT.NONE);
-        browse.addSelectionListener(new SelectionAdapter() {
+		browse.addSelectionListener(new SelectionAdapter() {
 			@SuppressWarnings("deprecation")
 			public void widgetSelected(SelectionEvent event) {
 				String filepath = new FileDialog(shell).open();
@@ -367,6 +226,126 @@ public class Loadview extends ViewPart {
 				}
 			}
 		});
+		// first label sample name
+		Label samplename = new Label(composite, SWT.NONE);
+		samplename.setText("Sample Name:");
+		// textbox
+		sampletext = new Text(composite,SWT.BORDER);
+		sampletext.setText(" ");
+		griddata_1 = new GridData(150,15);
+		griddata_1.horizontalAlignment = SWT.CENTER;
+		sampletext.setLayoutData(griddata_1);
+		// browse function
+		
+		new Label(composite, SWT.NONE);
+		
+		
+		
+		
+        // check box
+		final Button rangebox = new Button(composite, SWT.CHECK);
+		rangebox.setText("Range");
+		// rangebox function
+		
+		
+		final Text lower = new Text(composite,SWT.BORDER);
+		lower.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
+		lower.setText("lower");
+		lower.setEnabled(false);
+		// upper and lower limit text boxes
+		final Text upper = new Text(composite, SWT.BORDER);
+		upper.setText("upper");
+		upper.setEnabled(false);
+
+        composite.pack();
+        // load button
+        Button load = new Button(composite,SWT.PUSH);
+        load.setText("Load");
+        griddata_3 = new GridData(276,30);
+        griddata_3.horizontalSpan = 2;
+        griddata_3.horizontalAlignment = SWT.LEFT;
+        griddata_3.minimumWidth = 40;
+        load.setLayoutData(griddata_3);
+        // load button function
+        
+        load.addSelectionListener(new SelectionListener(){
+        	@Override
+        	public void widgetSelected(SelectionEvent e) {
+        		try{
+        			
+        			//textboxtext.setText(""); // clear text
+        			String myfilepath = filetext.getText(); // get filepath
+        			filepath = myfilepath; // set the general filepath
+        			Loader loader = new Loader();
+        			if (myrange){
+        				// if ranged must be able to accept doubles or floats
+        				loader.setRange(true);
+        				String l = lower.getText();
+        				String u = upper.getText();
+        				loader.setUpper(Integer.valueOf(u));
+        				loader.setLower(Integer.valueOf(l));
+        				}
+        			else{
+        				loader.setRange(false);
+        			}
+        			String flag = filepath.split("\\.")[1];
+        			List<String> names =  new ArrayList<String>();
+        			for(int j : columnnumbers){
+        				String columnName = comboList.get(j);
+        				names.add(columnName);
+        			}
+        			List<IDataset> data = loader.Load_data(myfilepath, names, flag, columnnumbers); // may change this
+        			LoadedDataview.addData(sampletext.getText(), flag, data,filepath);
+        			Indexview.setData(sampletext.getText());
+        			}
+        			
+        			catch(Exception z){
+        				
+        				System.out.println(z.getMessage());
+        				}	
+        	}
+
+        	@Override
+        	public void widgetDefaultSelected(SelectionEvent e) {
+        		// TODO Auto-generated method stub}
+        	}});
+        new Label(composite, SWT.NONE);
+        
+        Label lblDataTable = new Label(composite, SWT.NONE);
+        lblDataTable.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 2));
+        lblDataTable.setText("Data Table");
+        new Label(composite, SWT.NONE);
+        new Label(composite, SWT.NONE);
+        new Label(composite, SWT.NONE);
+        
+       
+        
+        rangebox.addSelectionListener(new SelectionAdapter()
+		{
+		    @Override
+		    public void widgetSelected(SelectionEvent e)
+		    {
+		        if (rangebox.getSelection())
+		            {myrange = true;
+		            upper.setEnabled(true);
+		            lower.setEnabled(true);
+		            }
+		        else
+		        	{
+		        	myrange = false;
+		        	upper.setEnabled(false);
+		        	lower.setEnabled(false);
+		        	}
+		    }
+		});
+        new Label(composite, SWT.NONE);
+        
+        
+        table = new Table(composite,SWT.BORDER);
+        GridData gd_table_2 = new GridData(SWT.FILL, SWT.FILL, true, true, 3, 2);
+        gd_table_2.heightHint = 201;
+        gd_table_2.widthHint = 412;
+        table.setLayoutData(gd_table_2);
         createActions();
 		initializeToolBar();
 		initializeMenu();
@@ -387,16 +366,14 @@ public class Loadview extends ViewPart {
 	 * Initialize the toolbar.
 	 */
 	private void initializeToolBar() {
-		IToolBarManager toolbarManager = getViewSite().getActionBars()
-				.getToolBarManager();
+		
 	}
 
 	/**
 	 * Initialize the menu.
 	 */
 	private void initializeMenu() {
-		IMenuManager menuManager = getViewSite().getActionBars()
-				.getMenuManager();
+		
 	}
 
 	@Override
