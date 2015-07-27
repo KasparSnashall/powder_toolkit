@@ -87,6 +87,7 @@ public class LoadedDataview extends ViewPart {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				datalist.removeAll();
+				holder.delAllData();
 			}
 		});
 		btnClearAll.setBounds(171, 295, 88, 29);
@@ -95,6 +96,7 @@ public class LoadedDataview extends ViewPart {
 		cellList= new List(container, SWT.BORDER);
 		cellList.addDragDetectListener(new DragDetectListener() {
 			public void dragDetected(DragDetectEvent arg0) {
+				
 			}
 		});
 		cellList.setBounds(23, 371, 236, 177);
