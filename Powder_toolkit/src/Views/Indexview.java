@@ -39,9 +39,13 @@ import DataAnalysis.MyDataHolder;
 import DataAnalysis.Ntreor;
 
 public class Indexview extends ViewPart {
+	public Indexview() {
+	}
 
 	public static final String ID = "Views.Indexview"; //$NON-NLS-1$
 	GridData griddata;
+	private GridData griddata_4;
+	private GridData griddata_3;
 	private GridData griddata_2;
 	private GridData griddata_1;
 	public static Text textbox; // loaded_data output
@@ -133,14 +137,13 @@ public class Indexview extends ViewPart {
         
         // indeing programs list
         final Table indexingprogs = new Table(composite,SWT.CHECK | SWT.SCROLL_LINE |SWT.BORDER); // list of programs
-        griddata_2 = new GridData(SWT.FILL,SWT.FILL,false, false, 1, 2);
+        griddata_2 = new GridData(SWT.FILL,SWT.FILL,false, false, 2, 2);
         griddata_2.heightHint = 181;
         griddata_2.minimumHeight = 200;
         indexingprogs.setLayoutData(griddata_2);
         new TableColumn(indexingprogs,SWT.NULL).setText("Programs");
         indexingprogs.getColumn(0).pack();
         indexingprogs.setHeaderVisible(true);
-        new Label(composite, SWT.NONE);
         
         // properties widget tabs
         final CTabFolder indexfolder = new CTabFolder(composite, SWT.TOP | SWT.BORDER); // create a tab set
@@ -160,29 +163,29 @@ public class Indexview extends ViewPart {
         new Label(composite, SWT.NONE);
         new Label(composite, SWT.NONE);
         new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
         
         
         // add variable button
         Button addvariable = new Button(composite,SWT.NONE);
-        GridData gd_addvariable = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
+        GridData gd_addvariable = new GridData(SWT.LEFT, SWT.FILL, false, false, 1, 1);
         gd_addvariable.widthHint = 146;
-        gd_addvariable.heightHint = 41;
+        gd_addvariable.heightHint = 45;
         addvariable.setLayoutData(gd_addvariable);
         addvariable.setText("Add variables");
         
         // reset button
         Button Reset = new Button(composite,SWT.NONE);
-        GridData gd_Reset = new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1);
-        gd_Reset.heightHint = 35;
+        GridData gd_Reset = new GridData(SWT.RIGHT, SWT.FILL, false, false, 1, 1);
+        gd_Reset.heightHint = 48;
         gd_Reset.widthHint = 100;
         Reset.setLayoutData(gd_Reset);
         Reset.setText("Reset");
         
         Button Save = new Button(composite,SWT.NONE);
-        griddata = new GridData(150,34);
-        griddata.horizontalAlignment = SWT.RIGHT;
-        Save.setLayoutData(griddata);
+        griddata_4 = new GridData(150,50);
+        griddata_4.verticalAlignment = SWT.FILL;
+        griddata_4.horizontalAlignment = SWT.RIGHT;
+        Save.setLayoutData(griddata_4);
         Save.setText("Save");
        
         
@@ -213,10 +216,11 @@ public class Indexview extends ViewPart {
 		// run button
         Button run = new Button(composite, SWT.NONE);
         run.setText("Save and Run");
-        griddata = new GridData(150,43);
-        griddata.horizontalAlignment = SWT.RIGHT;
-        run.setLayoutData(griddata);
-        new Label(composite, SWT.NONE);
+        griddata_3 = new GridData(151,50);
+        griddata_3.horizontalSpan = 2;
+        griddata_3.verticalAlignment = SWT.FILL;
+        griddata_3.horizontalAlignment = SWT.RIGHT;
+        run.setLayoutData(griddata_3);
         // run button function
         final CTabFolder outputfolder = new CTabFolder(composite, SWT.TOP |SWT.BORDER); // create a tab set
         griddata = new GridData(SWT.FILL,SWT.FILL,false, true, 5, 1);
