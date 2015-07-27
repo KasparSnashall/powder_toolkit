@@ -29,13 +29,14 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.wb.swt.SWTResourceManager;
+import org.eclipse.swt.widgets.Group;
 
 public class Compareview extends ViewPart {
 
 	public static final String ID = "Views.Compareview"; //$NON-NLS-1$
 	private static GridData griddata;
 	private static GridData compgriddata;
-	private static MyDataHolder holder;
+	private static MyDataHolder holder = LoadedDataview.holder;
 	private static Text Data1; // data text box 1
 	private static Text Data2; // data text box 2
 	private static Combo combo1; // drop down 1
@@ -55,7 +56,7 @@ public class Compareview extends ViewPart {
 	public void createPartControl(Composite parent) {
 		Composite composite = new Composite(parent, SWT.NONE);
 		composite.setFont(SWTResourceManager.getFont("Sans", 12, SWT.NORMAL));
-        GridLayout gl_composite = new GridLayout(4, false);
+        GridLayout gl_composite = new GridLayout(1, false);
         gl_composite.marginBottom = 20;
         gl_composite.marginRight = 20;
         gl_composite.marginLeft = 20;
@@ -64,82 +65,78 @@ public class Compareview extends ViewPart {
         gl_composite.marginWidth = 20;
         composite.setLayout(gl_composite);
         
+        Group grpCompare = new Group(composite, SWT.NONE);
+        grpCompare.setLayout(new GridLayout(3, false));
+        GridData gd_grpCompare = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
+        gd_grpCompare.widthHint = 408;
+        gd_grpCompare.heightHint = 519;
+        grpCompare.setLayoutData(gd_grpCompare);
+        grpCompare.setText("Compare");
+        
        
         // addition of new items
         
-        Label header = new Label(composite, SWT.NONE);
+        Label header = new Label(grpCompare, SWT.NONE);
         header.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
         header.setText("Compare View");
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
+        new Label(grpCompare, SWT.NONE);
         
         
-        Label data1label = new Label(composite, SWT.NONE);
+        Label data1label = new Label(grpCompare, SWT.NONE);
         data1label.setText("Data 1");
         
-        Data1 = new Text(composite, SWT.BORDER);
-        Data1.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
+        Data1 = new Text(grpCompare, SWT.BORDER);
         
         // add in listeners
-        getdatalistener(Data1,combo1);
-        combo1 = new Combo(composite,SWT.NONE);
-        GridData gd_combo1 = new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1);
-        gd_combo1.widthHint = 192;
+       
+        combo1 = new Combo(grpCompare,SWT.NONE);
+        GridData gd_combo1 = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+        gd_combo1.widthHint = 222;
         combo1.setLayoutData(gd_combo1);
-        
-        Label data2label = new Label(composite, SWT.NONE);
+        getdatalistener(Data1,combo1);
+        Label data2label = new Label(grpCompare, SWT.NONE);
         data2label.setText("Data 2");
         
-        Data2 = new Text(composite, SWT.BORDER);
-        Data2.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
-        getdatalistener(Data2,combo2);
-        combo2 = new Combo(composite,SWT.NONE);
-        GridData gd_combo2 = new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1);
-        gd_combo2.widthHint = 191;
+        Data2 = new Text(grpCompare, SWT.BORDER);
+       
+        combo2 = new Combo(grpCompare,SWT.NONE);
+        GridData gd_combo2 = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+        gd_combo2.widthHint = 216;
         combo2.setLayoutData(gd_combo2);
-        
-        Label lblTolerance = new Label(composite, SWT.NONE);
+        getdatalistener(Data2,combo2);
+        Label lblTolerance = new Label(grpCompare, SWT.NONE);
         lblTolerance.setText("Tolerance");
-        tolerance = new Text(composite,SWT.BORDER);
+        tolerance = new Text(grpCompare,SWT.BORDER);
+        new Label(grpCompare, SWT.NONE);
+        new Label(grpCompare, SWT.NONE);
+        new Label(grpCompare, SWT.NONE);
+        new Label(grpCompare, SWT.NONE);
+        new Label(grpCompare, SWT.NONE);
         
-        Label lblType = new Label(composite, SWT.NONE);
-        GridData gd_lblType = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
-        gd_lblType.widthHint = 62;
-        lblType.setLayoutData(gd_lblType);
+        Label lblType = new Label(grpCompare, SWT.NONE);
         lblType.setText("Type");
         
-        types = new Combo(composite,SWT.NONE);
-        GridData gd_types = new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1);
-        gd_types.widthHint = 193;
+        types = new Combo(grpCompare,SWT.NONE);
+        GridData gd_types = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+        gd_types.widthHint = 223;
         types.setLayoutData(gd_types);
+        types.setText("Both");
         types.add("Both");
         types.add("Fractional");
         types.add("Binary");
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
+        new Label(grpCompare, SWT.NONE);
+        new Label(grpCompare, SWT.NONE);
         
-        Button compare = new Button(composite, SWT.PUSH);
-        GridData gd_compare = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 2);
-        gd_compare.widthHint = 183;
-        compare.setLayoutData(gd_compare);
+        Button compare = new Button(grpCompare, SWT.PUSH);
         compare.setText("Compare");
         comparefunction(compare);
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
+        new Label(grpCompare, SWT.NONE);
+        new Label(grpCompare, SWT.NONE);
         
-        output = new Text(composite, SWT.BORDER | SWT.MULTI | SWT.WRAP);
+        output = new Text(grpCompare, SWT.BORDER | SWT.MULTI | SWT.WRAP);
         GridData gd_output = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
-        gd_output.widthHint = 188;
-        gd_output.heightHint = 81;
+        gd_output.widthHint = 218;
+        gd_output.heightHint = 93;
         output.setLayoutData(gd_output);
         createActions();
 		initializeToolBar();
@@ -154,7 +151,9 @@ public class Compareview extends ViewPart {
 		        // Get the widget whose text was modified
 		    	  combo.removeAll();
 		        try{
+		        	System.out.println(text.getText());
 		        	LoadedDataObject loaded = holder.getData(text.getText());
+		        	System.out.println(loaded);
 		        	List<IDataset> datalist = loaded.data;
 		        	for(int i = 0; i < datalist.size(); i++){
 		        		System.out.println(datalist.get(i));
