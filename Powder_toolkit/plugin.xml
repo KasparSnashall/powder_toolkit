@@ -19,7 +19,6 @@
       </view>
       <view
             class="Views.Loadview"
-            icon="icons/releng_gears.gif"
             id="Views.Loadview"
             name="Load">
       </view>
