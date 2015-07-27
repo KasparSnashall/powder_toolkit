@@ -1,5 +1,6 @@
 package Views;
 
+import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.swt.SWT;
@@ -16,7 +17,9 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.wb.swt.SWTResourceManager;
+
 import DataAnalysis.MyDataHolder;
+
 import org.eclipse.swt.events.DragDetectListener;
 import org.eclipse.swt.events.DragDetectEvent;
 import org.eclipse.jface.action.Separator;
@@ -31,7 +34,9 @@ import org.eclipse.jface.action.Separator;
 public class LoadedDataview extends ViewPart {
 
 	public static final String ID = "Views.LoadedDataview"; //$NON-NLS-1$
-	public static MyDataHolder holder = new MyDataHolder();
+	public static MyDataHolder holder = new MyDataHolder(); // the data holder
+	private static List datalist;
+	private static List cellList;
 	public LoadedDataview() {
 	}
 
@@ -52,12 +57,12 @@ public class LoadedDataview extends ViewPart {
 		fd_container.right = new FormAttachment(100, -10);
 		container.setLayoutData(fd_container);
 		
-		final List list = new List(container, SWT.BORDER);	
-		list.addDragDetectListener(new DragDetectListener() {
+		datalist = new List(container, SWT.BORDER);	
+		datalist.addDragDetectListener(new DragDetectListener() {
 			public void dragDetected(DragDetectEvent arg0) {
 			}
 		});
-		list.setBounds(23, 32, 236, 245);
+		datalist.setBounds(23, 32, 236, 245);
 		
 		Label lblLoadedData = new Label(container, SWT.NONE);
 		lblLoadedData.setBounds(99, 9, 93, 17);
@@ -69,10 +74,10 @@ public class LoadedDataview extends ViewPart {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// remove the selected from the list
-				int[] myitems = list.getSelectionIndices();
+				int[] myitems = datalist.getSelectionIndices();
 				for(int i = 0; i < myitems.length;i++){
-					list.remove(i);
-					holder.delData(list.getItem(i));}
+					datalist.remove(i);
+					holder.delData(datalist.getItem(i));}
 			}
 		});
 		
@@ -81,27 +86,27 @@ public class LoadedDataview extends ViewPart {
 		btnClearAll.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				list.removeAll();
+				datalist.removeAll();
 			}
 		});
 		btnClearAll.setBounds(171, 295, 88, 29);
 		btnClearAll.setText("Clear All");
 		
-		final List list_1 = new List(container, SWT.BORDER);
-		list_1.addDragDetectListener(new DragDetectListener() {
+		cellList= new List(container, SWT.BORDER);
+		cellList.addDragDetectListener(new DragDetectListener() {
 			public void dragDetected(DragDetectEvent arg0) {
 			}
 		});
-		list_1.setBounds(23, 371, 236, 177);
+		cellList.setBounds(23, 371, 236, 177);
 		
 		Button btnClearCell = new Button(container, SWT.NONE);
 		btnClearCell.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// remove the selected from the list
-				int[] myitems = list_1.getSelectionIndices();
+				int[] myitems = cellList.getSelectionIndices();
 				for(int i = 0; i < myitems.length;i++){
-					list_1.remove(i);}
+					cellList.remove(i);}
 			}
 		});
 		btnClearCell.setBounds(23, 554, 88, 29);
@@ -111,12 +116,12 @@ public class LoadedDataview extends ViewPart {
 		btnClearAll_1.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				list_1.removeAll();
+				cellList.removeAll();	
 			}
 		});
 		btnClearAll_1.setBounds(171, 554, 88, 29);
 		btnClearAll_1.setText("Clear All");
-		
+
 		Label label = new Label(container, SWT.NONE);
 		label.setBounds(111, 339, 60, 17);
 		label.setText("Cell Data");
@@ -127,6 +132,11 @@ public class LoadedDataview extends ViewPart {
 		createActions();
 		initializeToolBar();
 		initializeMenu();
+	}
+	
+	public static void addData(String name,String flag, java.util.List<IDataset> data, String filepath){
+		holder.addData(name, flag, data, filepath);
+		datalist.add(name);
 	}
 
 	/**
