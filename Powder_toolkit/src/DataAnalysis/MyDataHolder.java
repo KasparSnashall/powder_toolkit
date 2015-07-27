@@ -56,5 +56,12 @@ public class MyDataHolder {
 		return null;
 	}
 	
+	public void delAllData(){
+		datalist = new ArrayList<LoadedDataObject>();	
+	}
+	public void delAllCells(){
+		celldata = new ArrayList<List<Double>>();
+	}
+	
 	
 }
