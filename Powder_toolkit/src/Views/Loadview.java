@@ -84,7 +84,7 @@ public class Loadview extends ViewPart {
 		// browse buutton
 		Button browse = new Button(composite, SWT.PUSH);
 		browse.setAlignment(SWT.LEFT);
-		browse.setText("Browse...");
+		browse.setText("Open");
 		browse.addSelectionListener(new SelectionAdapter() {
 			@SuppressWarnings("deprecation")
 			public void widgetSelected(SelectionEvent event) {
@@ -221,11 +221,10 @@ public class Loadview extends ViewPart {
 						}
 			        	  
 			        	 }
-			          else
-			        	  filetext.setText("Not a file");
 				}
 			}
 		});
+		
 		// first label sample name
 		Label samplename = new Label(composite, SWT.NONE);
 		samplename.setText("Sample Name:");
@@ -238,10 +237,6 @@ public class Loadview extends ViewPart {
 		// browse function
 		
 		new Label(composite, SWT.NONE);
-		
-		
-		
-		
         // check box
 		final Button rangebox = new Button(composite, SWT.CHECK);
 		rangebox.setText("Range");
@@ -297,6 +292,7 @@ public class Loadview extends ViewPart {
         			List<IDataset> data = loader.Load_data(myfilepath, names, flag, columnnumbers); // may change this
         			LoadedDataview.addData(sampletext.getText(), flag, data,filepath);
         			Indexview.setData(sampletext.getText());
+        			Peakview.createMyplot(data.get(0));
         			}
         			
         			catch(Exception z){
@@ -346,35 +342,10 @@ public class Loadview extends ViewPart {
         gd_table_2.heightHint = 201;
         gd_table_2.widthHint = 412;
         table.setLayoutData(gd_table_2);
-        createActions();
-		initializeToolBar();
-		initializeMenu();
+       
        
 		}
 	
-
-
-
-	/**
-	 * Create the actions.
-	 */
-	private void createActions() {
-		// Create the actions
-	}
-
-	/**
-	 * Initialize the toolbar.
-	 */
-	private void initializeToolBar() {
-		
-	}
-
-	/**
-	 * Initialize the menu.
-	 */
-	private void initializeMenu() {
-		
-	}
 
 	@Override
 	public void setFocus() {
