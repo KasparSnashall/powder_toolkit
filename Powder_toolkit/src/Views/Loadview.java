@@ -98,17 +98,15 @@ public class Loadview extends ViewPart {
 			        	  sampletext.setText(file.getName());
 			        	  
 						try {
-						
-							if(editors.size() != 0){
+							try{
 								for(TableEditor myeditor : editors.values()){
-									myeditor.getEditor().dispose();
-								}
-							}
+									myeditor.getEditor().dispose();}
+							}catch(Exception e){}
+							editors = new HashMap<String,TableEditor>(); 
 							table.removeAll(); // refresh
 							TableItem[] items = table.getItems();
 							for (TableItem myitem : items){
-								myitem.dispose();	
-							}
+								myitem.dispose();}
 							TableColumn[] columns = table.getColumns();
 							for( TableColumn tc : columns ) {  
 								tc.dispose() ;}
@@ -140,7 +138,7 @@ public class Loadview extends ViewPart {
 								final int k = i;
 								TableEditor editor = new TableEditor(table);
 								String countnum = String.valueOf(i);
-								editors.put(countnum,editor);
+								editors.put(countnum+"C",editor);
 						        final CCombo combo = new CCombo(table,SWT.BORDER);
 						        combo.setText("Select");
 						        combo.add("Intensity");
@@ -166,7 +164,7 @@ public class Loadview extends ViewPart {
 								TableEditor editor = new TableEditor(table);
 						        final Button buttonb = new Button(table,SWT.CHECK);
 						        String countnum = String.valueOf(i);
-								editors.put(countnum,editor);
+								editors.put(countnum+"B",editor);
 						        editor.grabHorizontal = true;
 						        editor.setEditor(buttonb, item2,i);
 						        buttonb.addSelectionListener(new SelectionAdapter() {
