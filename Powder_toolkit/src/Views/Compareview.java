@@ -66,20 +66,15 @@ public class Compareview extends ViewPart {
         composite.setLayout(gl_composite);
         
         Group grpCompare = new Group(composite, SWT.NONE);
-        grpCompare.setLayout(new GridLayout(3, false));
+        GridLayout gl_grpCompare = new GridLayout(3, false);
+        gl_grpCompare.marginWidth = 15;
+        gl_grpCompare.marginHeight = 25;
+        grpCompare.setLayout(gl_grpCompare);
         GridData gd_grpCompare = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
         gd_grpCompare.widthHint = 408;
         gd_grpCompare.heightHint = 519;
         grpCompare.setLayoutData(gd_grpCompare);
         grpCompare.setText("Compare");
-        
-       
-        // addition of new items
-        
-        Label header = new Label(grpCompare, SWT.NONE);
-        header.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
-        header.setText("Compare View");
-        new Label(grpCompare, SWT.NONE);
         
         
         Label data1label = new Label(grpCompare, SWT.NONE);
