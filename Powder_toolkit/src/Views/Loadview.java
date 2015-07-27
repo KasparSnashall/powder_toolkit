@@ -66,13 +66,13 @@ public class Loadview extends ViewPart {
 	private MyDataHolder holder;
 	private static Text sampletext;
 	private Table table;
-	private static Map<TableEditor, String> editors = new HashMap<TableEditor, String>(); // I know its back to front this doesnt matter
+	private static Map<String,TableEditor> editors = new HashMap<String,TableEditor>(); // I know its back to front this doesnt matter
+	private static Map<Integer,String> comboList =  new HashMap<Integer,String>(); // list of combo data
+	private static List<Integer> columnnumbers = new ArrayList<Integer>(); // list of column numbers needed?
 	public void setholder(MyDataHolder holder){
 		
 	}
 	
-	
-
 	/**
 	 * Create contents of the view part.
 	 * @param parent
@@ -173,8 +173,6 @@ public class Loadview extends ViewPart {
 					String myfilepath = filetext.getText(); // get filepath
 					filepath = myfilepath; // set the general filepath
 					Loader loader = new Loader();
-					
-					
 					if (myrange){
 						// if ranged must be able to accept doubles or floats
 						loader.setRange(true);
@@ -186,21 +184,20 @@ public class Loadview extends ViewPart {
 					else{
 						loader.setRange(false);
 					}
-					
-					java.util.List<IDataset> data = loader.Load_data(filepath);
-					
 					String flag = filepath.split("\\.")[1];
-					holder.addData(sampletext.getText(), flag, data,filepath);
-					//LoadedData.add(sampletext.getText());
-					//IndexTab indextab = new IndexTab(holder);
-					//indextab.setData(sampletext.getText());
-					setData(sampletext.getText());
-
+					List<String> names =  new ArrayList<String>();
+					for(int j : columnnumbers){
+						String columnName = comboList.get(j);
+						names.add(columnName);
+					}
+					List<IDataset> data = loader.Load_data(myfilepath, names, flag, columnnumbers); // may change this
+					LoadedDataview.addData(sampletext.getText(), flag, data,filepath);
+					Indexview.setData(sampletext.getText());
 					}
 					
 					catch(Exception z){
-						//textboxtext.append(z.toString());
-						System.out.println(z.getStackTrace().toString());
+						
+						System.out.println(z.getMessage());
 						}	
 			}
 
@@ -208,6 +205,7 @@ public class Loadview extends ViewPart {
 			public void widgetDefaultSelected(SelectionEvent e) {
 				// TODO Auto-generated method stub}
 			}});
+
         composite.pack();
         new Label(composite, SWT.NONE);
         new Label(composite, SWT.NONE);
@@ -222,11 +220,12 @@ public class Loadview extends ViewPart {
         new Label(composite, SWT.NONE);
         
         
-        table = new Table(composite,SWT.NONE);
+        table = new Table(composite,SWT.BORDER);
         GridData gd_table_2 = new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1);
         gd_table_2.heightHint = 201;
         gd_table_2.widthHint = 412;
         table.setLayoutData(gd_table_2);
+        new Label(composite, SWT.NONE);
         browse.addSelectionListener(new SelectionAdapter() {
 			@SuppressWarnings("deprecation")
 			public void widgetSelected(SelectionEvent event) {
@@ -242,7 +241,7 @@ public class Loadview extends ViewPart {
 						try {
 						
 							if(editors.size() != 0){
-								for(TableEditor myeditor : editors.keySet()){
+								for(TableEditor myeditor : editors.values()){
 									myeditor.getEditor().dispose();
 								}
 							}
@@ -260,17 +259,16 @@ public class Loadview extends ViewPart {
 					        table.setLayoutData(gd_table_2);
 					        table.setHeaderVisible(true);
 					        table.setLinesVisible(true);
+					       
 
 							String[] myextension = filepath.split("\\.");
-							System.out.println(myextension.length);
 							String extension = myextension[myextension.length-1];
 							LoaderFactory.registerLoader(extension, DatLoader.class);
 							IDataHolder dh = LoaderFactory.getData(filepath);
-							System.out.println(dh.getList());
+							
 							
 							for(int i =0; i < dh.size();i++){
 								IDataset dataset = dh.getDataset(i);
-								System.out.println(dataset.getName());
 								TableColumn column = new TableColumn(table, SWT.NULL);				
 								column.setText(dataset.getName());
 								column.pack();}
@@ -280,11 +278,12 @@ public class Loadview extends ViewPart {
 							
 							
 							for(int i =0; i < dh.size();i++){
-								
+								final int k = i;
 								TableEditor editor = new TableEditor(table);
 								String countnum = String.valueOf(i);
-								editors.put(editor, countnum);
-						        CCombo combo = new CCombo(table,SWT.BORDER);
+								editors.put(countnum,editor);
+						        final CCombo combo = new CCombo(table,SWT.BORDER);
+						        combo.setText("Select");
 						        combo.add("Intensity");
 						        combo.add("Two theta");
 						        combo.add("D_space");
@@ -292,18 +291,37 @@ public class Loadview extends ViewPart {
 						        editor.grabHorizontal = true;
 						        editor.setEditor(combo, item,i);
 						        item.setData("combo", combo); //Point to notice
+						        combo.addSelectionListener(new SelectionAdapter() {
+						            public void widgetSelected(SelectionEvent event) {
+						            	comboList.put(k,combo.getText());
+						              }
+						            }
+						          );     
 							}
-							System.out.println(editors.size());
+							
 							
 
 							final TableItem item2 = new TableItem(table, SWT.NULL);
 							for(int i =0; i < dh.size();i++){
+								final int k = i;
 								TableEditor editor = new TableEditor(table);
-						        Button buttonb = new Button(table,SWT.CHECK);
+						        final Button buttonb = new Button(table,SWT.CHECK);
 						        String countnum = String.valueOf(i);
-								editors.put(editor, countnum);
+								editors.put(countnum,editor);
 						        editor.grabHorizontal = true;
 						        editor.setEditor(buttonb, item2,i);
+						        buttonb.addSelectionListener(new SelectionAdapter() {
+						        	public void widgetSelected(SelectionEvent event) {
+						        		 if (buttonb.getSelection()){
+						        			 columnnumbers.add(k);
+						        		 }   
+						        	     else{
+						        	        columnnumbers.remove(columnnumbers.indexOf(k)); // remove value is unchecked	
+						        	        }
+						        	           
+	
+						              }
+						        });
 							}
 							
 							
@@ -313,14 +331,13 @@ public class Loadview extends ViewPart {
 									for(int j = 0; j < dataset.getSize();j++){
 										final TableItem item1 = new TableItem(table, SWT.NULL);
 										item1.setText(String.valueOf(dataset.getDouble(j)));
-										System.out.println(dataset.getDouble(j));	
+										
 									}
 									}
 								else{
-									for(int j = 0; j < dataset.getSize(); j++){
-										TableItem item1 = table.getItem(j+1);
+									for(int j = -1; j < dataset.getSize(); j++){
+										TableItem item1 = table.getItem(j+2);
 										item1.setText(i, String.valueOf(dataset.getDouble(j)));
-										System.out.println(dataset.getDouble(j));
 										
 									}
 								
@@ -350,27 +367,14 @@ public class Loadview extends ViewPart {
 				}
 			}
 		});
+        createActions();
+		initializeToolBar();
+		initializeMenu();
        
 		}
 	
 
 
-	public void setData(String name) {
-		// append the textbox
-		try{
-		LoadedDataObject mydata = holder.getData(name);
-		//textboxtext.setText("");
-		sampletext.setText(name);
-		for(int i = 0; i < mydata.data.size();i++){
-			IDataset mytext = mydata.data.get(i);
-			
-		}
-		}
-		catch(Exception e){System.out.println(e.getMessage());}
-		createActions();
-		initializeToolBar();
-		initializeMenu();
-	}
 
 	/**
 	 * Create the actions.
