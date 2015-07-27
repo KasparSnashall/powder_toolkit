@@ -140,7 +140,7 @@ public class Loadview extends ViewPart {
 								String countnum = String.valueOf(i);
 								editors.put(countnum+"C",editor);
 						        final CCombo combo = new CCombo(table,SWT.BORDER);
-						        combo.setText("Select");
+						        combo.setText("Intensity");
 						        combo.add("Intensity");
 						        combo.add("Two theta");
 						        combo.add("D_space");
