@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Powder_toolkit
 Bundle-SymbolicName: Powder_toolkit;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: powder_toolkit.Activator
+Bundle-Activator: widgets.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.python.pydev.jython;bundle-version="3.6.0",
