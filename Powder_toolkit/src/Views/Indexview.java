@@ -32,7 +32,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
-import powder_toolkit.Properties_Widget;
+import widgets.Properties_Widget;
 import DataAnalysis.IPowderIndexer;
 import DataAnalysis.LoadedDataObject;
 import DataAnalysis.MyDataHolder;
