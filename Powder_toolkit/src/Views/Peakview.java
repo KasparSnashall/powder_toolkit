@@ -52,14 +52,6 @@ public class Peakview extends ViewPart {
 			
 			Button btnNewButton = new Button(composite, SWT.NONE);
 			btnNewButton.setText("New Button");
-			new Label(composite, SWT.NONE);
-			new Label(composite, SWT.NONE);
-			new Label(composite, SWT.NONE);
-			new Label(composite, SWT.NONE);
-			new Label(composite, SWT.NONE);
-			new Label(composite, SWT.NONE);
-			new Label(composite, SWT.NONE);
-			new Label(composite, SWT.NONE);
 			
 			Composite composite_1 = new Composite(composite, SWT.NONE);
 			composite_1.setLayout(new FillLayout(SWT.HORIZONTAL));
