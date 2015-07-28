@@ -137,13 +137,8 @@ public class Loadview extends ViewPart {
 							for(int i =0; i < dh.size();i++){
 								final int k = i;
 								TableEditor editor = new TableEditor(table);
-<<<<<<< HEAD
 								String countnum = String.valueOf(i) + "C";
 								editors.put(countnum,editor);
-=======
-								String countnum = String.valueOf(i);
-								editors.put(countnum+"C",editor);
->>>>>>> branch 'master' of https://github.com/KasparSnashall/powder_toolkit.git
 						        final CCombo combo = new CCombo(table,SWT.BORDER);
 						        combo.setText("Intensity");
 						        combo.add("Intensity");
@@ -168,13 +163,8 @@ public class Loadview extends ViewPart {
 								final int k = i;
 								TableEditor editor = new TableEditor(table);
 						        final Button buttonb = new Button(table,SWT.CHECK);
-<<<<<<< HEAD
 						        String countnum = String.valueOf(i)+"B";
 								editors.put(countnum,editor);
-=======
-						        String countnum = String.valueOf(i);
-								editors.put(countnum+"B",editor);
->>>>>>> branch 'master' of https://github.com/KasparSnashall/powder_toolkit.git
 						        editor.grabHorizontal = true;
 						        editor.setEditor(buttonb, item2,i);
 						        buttonb.addSelectionListener(new SelectionAdapter() {
