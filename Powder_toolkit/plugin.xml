@@ -13,11 +13,6 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="Views.PowderToolkitView"
-            id="Views.PowderToolkitView"
-            name="PowderToolKit">
-      </view>
-      <view
             class="Views.Loadview"
             id="Views.Loadview"
             name="Load">
@@ -38,19 +33,9 @@
             name="Compare">
       </view>
       <view
-            class="Views.Searchview"
-            id="Views.Searchview"
-            name="search CSD">
-      </view>
-      <view
             class="Views.LoadedDataview"
             id="Views.LoadedDataview"
             name="Loaded Data">
-      </view>
-      <view
-            class="powder_toolkit.DataView"
-            id="powder_toolkit.DataView"
-            name="Data view">
       </view>
    </extension>
 
