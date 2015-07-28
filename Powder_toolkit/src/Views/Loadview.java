@@ -98,17 +98,15 @@ public class Loadview extends ViewPart {
 			        	  sampletext.setText(file.getName());
 			        	  
 						try {
-						
-							if(editors.size() != 0){
+							try{
 								for(TableEditor myeditor : editors.values()){
-									myeditor.getEditor().dispose();
-								}
-							}
+									myeditor.getEditor().dispose();}
+							}catch(Exception e){}
+							editors = new HashMap<String,TableEditor>(); 
 							table.removeAll(); // refresh
 							TableItem[] items = table.getItems();
 							for (TableItem myitem : items){
-								myitem.dispose();	
-							}
+								myitem.dispose();}
 							TableColumn[] columns = table.getColumns();
 							for( TableColumn tc : columns ) {  
 								tc.dispose() ;}
@@ -139,10 +137,15 @@ public class Loadview extends ViewPart {
 							for(int i =0; i < dh.size();i++){
 								final int k = i;
 								TableEditor editor = new TableEditor(table);
+<<<<<<< HEAD
 								String countnum = String.valueOf(i) + "C";
 								editors.put(countnum,editor);
+=======
+								String countnum = String.valueOf(i);
+								editors.put(countnum+"C",editor);
+>>>>>>> branch 'master' of https://github.com/KasparSnashall/powder_toolkit.git
 						        final CCombo combo = new CCombo(table,SWT.BORDER);
-						        combo.setText("Select");
+						        combo.setText("Intensity");
 						        combo.add("Intensity");
 						        combo.add("Two theta");
 						        combo.add("D_space");
@@ -165,8 +168,13 @@ public class Loadview extends ViewPart {
 								final int k = i;
 								TableEditor editor = new TableEditor(table);
 						        final Button buttonb = new Button(table,SWT.CHECK);
+<<<<<<< HEAD
 						        String countnum = String.valueOf(i)+"B";
 								editors.put(countnum,editor);
+=======
+						        String countnum = String.valueOf(i);
+								editors.put(countnum+"B",editor);
+>>>>>>> branch 'master' of https://github.com/KasparSnashall/powder_toolkit.git
 						        editor.grabHorizontal = true;
 						        editor.setEditor(buttonb, item2,i);
 						        buttonb.addSelectionListener(new SelectionAdapter() {
@@ -236,7 +244,6 @@ public class Loadview extends ViewPart {
 		sampletext.setLayoutData(griddata_1);
 		// browse function
 		
-		new Label(composite, SWT.NONE);
         // check box
 		final Button rangebox = new Button(composite, SWT.CHECK);
 		rangebox.setText("Range");
@@ -305,17 +312,10 @@ public class Loadview extends ViewPart {
         	public void widgetDefaultSelected(SelectionEvent e) {
         		// TODO Auto-generated method stub}
         	}});
-        new Label(composite, SWT.NONE);
-        
         Label lblDataTable = new Label(composite, SWT.NONE);
         lblDataTable.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 2));
         lblDataTable.setText("Data Table");
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        
-       
-        
+
         rangebox.addSelectionListener(new SelectionAdapter()
 		{
 		    @Override
@@ -334,8 +334,6 @@ public class Loadview extends ViewPart {
 		        	}
 		    }
 		});
-        new Label(composite, SWT.NONE);
-        
         
         table = new Table(composite,SWT.BORDER);
         GridData gd_table_2 = new GridData(SWT.FILL, SWT.FILL, true, true, 3, 2);
