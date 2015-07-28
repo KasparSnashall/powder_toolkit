@@ -1,4 +1,4 @@
-package powder_toolkit;
+package widgets;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.TableEditor;
