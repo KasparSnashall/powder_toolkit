@@ -139,7 +139,7 @@ public class Loadview extends ViewPart {
 							for(int i =0; i < dh.size();i++){
 								final int k = i;
 								TableEditor editor = new TableEditor(table);
-								String countnum = String.valueOf(i);
+								String countnum = String.valueOf(i) + "C";
 								editors.put(countnum,editor);
 						        final CCombo combo = new CCombo(table,SWT.BORDER);
 						        combo.setText("Select");
@@ -160,12 +160,12 @@ public class Loadview extends ViewPart {
 							
 							
 
-							final TableItem item2 = new TableItem(table, SWT.NULL);
+							final TableItem item2 = new TableItem(table, SWT.NONE);
 							for(int i =0; i < dh.size();i++){
 								final int k = i;
 								TableEditor editor = new TableEditor(table);
 						        final Button buttonb = new Button(table,SWT.CHECK);
-						        String countnum = String.valueOf(i);
+						        String countnum = String.valueOf(i)+"B";
 								editors.put(countnum,editor);
 						        editor.grabHorizontal = true;
 						        editor.setEditor(buttonb, item2,i);
