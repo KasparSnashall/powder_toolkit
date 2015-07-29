@@ -1,6 +1,6 @@
 package powder_toolkit.jython_programs;
 import org.python.core.PyInstance;
-import org.python.util.PythonInterpreter;
+import org.python.pydev.jython.PythonInterpreterWrapper;
 /**
  * interpreter class is designed to create a jython interpreter
  * This class can then create jyhton classes via createClass function
@@ -8,15 +8,18 @@ import org.python.util.PythonInterpreter;
  * @author kaspar
  *
  */
-public class interpreter
-{
-   PythonInterpreter interpreter = null;
+public class Interpreter
+{	
+	
+	private PythonInterpreterWrapper interpreter = null;
+	
+    //PythonInterpreter interpreter = null;
  
-   public interpreter()
+   public Interpreter()
    {
-      PythonInterpreter.initialize(System.getProperties(),
-                                   System.getProperties(), new String[0]);
-      this.interpreter = new PythonInterpreter();
+	  
+      //interpreter.initialize(System.getProperties(),System.getProperties(), new String[0]);
+      this.interpreter = new PythonInterpreterWrapper();
    }
    /**
     * excefile executes the python file

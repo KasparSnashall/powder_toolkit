@@ -25,6 +25,9 @@ import org.eclipse.swt.events.DragDetectEvent;
 import org.eclipse.jface.action.Separator;
 
 import powder_toolkit.dataAnalysis.MyDataHolder;
+import org.eclipse.swt.layout.RowLayout;
+import org.eclipse.swt.layout.RowData;
+import org.eclipse.swt.layout.GridData;
 
 
 /**
@@ -49,28 +52,26 @@ public class LoadedDataview extends ViewPart {
 	@Override
 	public void createPartControl(Composite parent) {
 		parent.setFont(SWTResourceManager.getFont("Sans", 12, SWT.NORMAL));
-		parent.setLayout(new FormLayout());
+		FillLayout fl_parent = new FillLayout(SWT.HORIZONTAL);
+		fl_parent.spacing = 25;
+		fl_parent.marginWidth = 15;
+		fl_parent.marginHeight = 25;
+		parent.setLayout(fl_parent);
 		Composite container = new Composite(parent, SWT.NONE);
-		container.setLayout(null);
-		FormData fd_container = new FormData();
-		fd_container.top = new FormAttachment(0, 21);
-		fd_container.left = new FormAttachment(0, 10);
-		fd_container.bottom = new FormAttachment(100, -29);
-		fd_container.right = new FormAttachment(100, -10);
-		container.setLayoutData(fd_container);
+		container.setLayout(new GridLayout(2, true));
+		
+		Label lblLoadedData = new Label(container, SWT.HORIZONTAL | SWT.CENTER);
+		lblLoadedData.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 2, 1));
+		lblLoadedData.setText("Loaded Data");
 		
 		datalist = new List(container, SWT.BORDER);	
+		datalist.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 		datalist.addDragDetectListener(new DragDetectListener() {
 			public void dragDetected(DragDetectEvent arg0) {
 			}
 		});
-		datalist.setBounds(23, 32, 236, 245);
-		
-		Label lblLoadedData = new Label(container, SWT.NONE);
-		lblLoadedData.setBounds(99, 9, 93, 17);
-		lblLoadedData.setText("Loaded Data");		
 		Button btnClear = new Button(container, SWT.NONE);
-		btnClear.setBounds(23, 295, 88, 29);
+		btnClear.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
 		btnClear.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -85,6 +86,7 @@ public class LoadedDataview extends ViewPart {
 		
 		btnClear.setText("Clear");
 		Button btnClearAll = new Button(container, SWT.NONE);
+		btnClearAll.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		btnClearAll.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -92,18 +94,24 @@ public class LoadedDataview extends ViewPart {
 				holder.delAllData();
 			}
 		});
-		btnClearAll.setBounds(171, 295, 88, 29);
 		btnClearAll.setText("Clear All");
+				new Label(container, SWT.NONE);
+				new Label(container, SWT.NONE);
+		
+				Label label = new Label(container, SWT.CENTER);
+				label.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 2, 1));
+				label.setText("Cell Data");
 		
 		cellList= new List(container, SWT.BORDER);
+		cellList.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 		cellList.addDragDetectListener(new DragDetectListener() {
 			public void dragDetected(DragDetectEvent arg0) {
 				
 			}
 		});
-		cellList.setBounds(23, 371, 236, 177);
 		
 		Button btnClearCell = new Button(container, SWT.NONE);
+		btnClearCell.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		btnClearCell.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -113,25 +121,17 @@ public class LoadedDataview extends ViewPart {
 					cellList.remove(i);}
 			}
 		});
-		btnClearCell.setBounds(23, 554, 88, 29);
 		btnClearCell.setText("Clear Cell");
 		
 		Button btnClearAll_1 = new Button(container, SWT.NONE);
+		btnClearAll_1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		btnClearAll_1.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				cellList.removeAll();	
 			}
 		});
-		btnClearAll_1.setBounds(171, 554, 88, 29);
 		btnClearAll_1.setText("Clear All");
-
-		Label label = new Label(container, SWT.NONE);
-		label.setBounds(111, 339, 60, 17);
-		label.setText("Cell Data");
-		
-		Label label_1 = new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_1.setBounds(0, 330, 282, 2);
 
 		createActions();
 		initializeToolBar();

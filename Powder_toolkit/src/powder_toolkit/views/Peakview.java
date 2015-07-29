@@ -25,7 +25,6 @@ import org.eclipse.swt.widgets.Button;
 public class Peakview extends ViewPart {
 
 	public static final String ID = "Views.Peakview"; //$NON-NLS-1$
-	protected ILoaderService  service;
 	protected static IPlottingSystem plotting;
 	
 	public Peakview() {

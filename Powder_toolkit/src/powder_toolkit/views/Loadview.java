@@ -163,11 +163,12 @@ public class Loadview extends ViewPart {
 					if (filepath != null) {
 							// if a filepath is input
 				          File file = new File(filepath);
+				          
 				          if (file.isFile()){
 				        	  // check is actually a file and not just directory
 				        	  filetext.setText(filepath);
 				        	  sampletext.setText(file.getName());
-				        	  
+				        	  checkboxnumber = 0;
 							try {
 								try{
 									for(TableEditor myeditor : editors.values()){
@@ -380,6 +381,7 @@ public class Loadview extends ViewPart {
         			}
         			LoadedDataview.addData(sampletext.getText(), flag, data,filepath);
         			Indexview.setData(sampletext.getText());
+        			Plotview.createMyplot(data);
         			
         			}
         			

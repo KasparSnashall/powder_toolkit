@@ -22,19 +22,19 @@ import org.eclipse.dawnsci.analysis.api.dataset.Slice;
 public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
 	
 	//keys
-	public static String[] keys = {"KH","KK","KL","KS","THH","THL","THK","THS","OH1","OK1","OL1","OS1","OH2","OK2","OL2","OS2","OH3","OK3","OL3","OS3","MH1","MK1","ML1",
+	public static String[] keys = {"WAVE","KH","KK","KL","KS","THH","THL","THK","THS","OH1","OK1","OL1","OS1","OH2","OK2","OL2","OS2","OH3","OK3","OL3","OS3","MH1","MK1","ML1",
             "MS1","MH2","MK2","ML2","MS2","MH3","MK3","ML3","MS3","MH4","MK4","ML4","MS4",
             "MONOSET","MONOGRAM","MONO","SHORT","USE","IQ","LIST","SELECT","MERIT",
-            "NIX","IDIV","WAVE","VOL","CEM","D1","SSQTL","D2",
+            "NIX","IDIV","VOL","CEM","D1","SSQTL","D2",
             "CHOICE","DENS","EDENS","MOLW","TRIC"};
 	//values
-	public static String[] standard_values = {"4","4","4","6","4","4","4","4","2","2","2","3","2","2","2","4","2","2",
+	public static String[] standard_values = {"1.5405981","4","4","4","6","4","4","4","4","2","2","2","3","2","2","2","4","2","2",
 			"2","4","2","2","2","2","2","2","2","3","2","2","2","2","2","2","2","2","0","1","0","1",
-			"19","16","0","0","10","1","1","1.5405981","2000","25","0.002","0.05","0.0004",
+			"19","16","0","0","10","1","1","2000","25","0.002","0.05","0.0004",
             "0","0","0","0","0"};
 	private IDataset data1;
 	private List<String> celldata;
-	
+	//TODO add in cell data
 	@Override
 	public void write_input() {
 		// data check

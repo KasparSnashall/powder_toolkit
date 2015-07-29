@@ -33,10 +33,9 @@ class CSD_cell_search:
  
     """
     
-    def __init__(self,angles,lengths):
-        self.angles = angles
-        self.cell_lengths = lengths
-        self.lattice_centring = 'primitive'
+    def __init__(self):
+        1
+    
     
     def get_angles(self):
         return self.angles

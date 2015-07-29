@@ -1,5 +1,6 @@
 package powder_toolkit.views;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
@@ -25,12 +26,11 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import powder_toolkit.dataAnalysis.Comparator;
 import powder_toolkit.dataAnalysis.LoadedDataObject;
 import powder_toolkit.dataAnalysis.MyDataHolder;
+import powder_toolkit.jython_programs.CSD_cellsearch;
 
 public class Compareview extends ViewPart {
 
 	public static final String ID = "Views.Compareview"; //$NON-NLS-1$
-	private static GridData griddata;
-	private static GridData compgriddata;
 	private static MyDataHolder holder = LoadedDataview.holder;
 	private static Text Data1; // data text box 1
 	private static Text Data2; // data text box 2
@@ -39,13 +39,14 @@ public class Compareview extends ViewPart {
 	private static Combo types; // drop down with comparison types
 	private static Text output; // output text box
 	private static Text tolerance;
-	private Text txtAlength;
-	private Text txtBlength;
-	private Text txtClength;
-	private Text txtAplha;
-	private Text txtBeta;
-	private Text txtGamma;
-	private Label lblAlpha;
+	private static Text txtAlength;
+	private static Text txtBlength;
+	private static Text txtClength;
+	private static Text txtAlpha;
+	private static Text txtBeta;
+	private static Text txtGamma;
+
+	private Text txtNumresults;
 	
 	public Compareview() {
 	}
@@ -56,6 +57,10 @@ public class Compareview extends ViewPart {
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
+		FillLayout fillLayout = (FillLayout) parent.getLayout();
+		fillLayout.spacing = 10;
+		fillLayout.marginWidth = 15;
+		fillLayout.marginHeight = 15;
 		Composite composite = new Composite(parent, SWT.NONE);
 		composite.setFont(SWTResourceManager.getFont("Sans", 12, SWT.NORMAL));
         composite.setLayout(new FillLayout(SWT.HORIZONTAL));
@@ -115,7 +120,7 @@ public class Compareview extends ViewPart {
         
         Button compare = new Button(grpCompare, SWT.PUSH);
         compare.setText("Compare");
-        comparefunction(compare);
+        
         new Label(grpCompare, SWT.NONE);
         new Label(grpCompare, SWT.NONE);
         
@@ -133,7 +138,8 @@ public class Compareview extends ViewPart {
         gl_grpSearch.marginWidth = 35;
         gl_grpSearch.marginHeight = 25;
         grpSearch.setLayout(gl_grpSearch);
- 
+        
+       
         
         Label lblA = new Label(grpSearch, SWT.NONE);
         lblA.setText("A");
@@ -161,9 +167,9 @@ public class Compareview extends ViewPart {
         lblAlpha_1.setText("Alpha");
         
         
-        txtAplha = new Text(grpSearch, SWT.BORDER);
-        txtAplha.setText("Aplha");
-        txtAplha.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        txtAlpha = new Text(grpSearch, SWT.BORDER);
+        txtAlpha.setText("Aplha");
+        txtAlpha.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         
         Label lblBeta = new Label(grpSearch, SWT.NONE);
         lblBeta.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
@@ -185,22 +191,71 @@ public class Compareview extends ViewPart {
         new Label(grpSearch, SWT.NONE);
         new Label(grpSearch, SWT.NONE);
         new Label(grpSearch, SWT.NONE);
-        createActions();
-		initializeToolBar();
-		initializeMenu();
         
+        Label lblNumresults = new Label(grpSearch, SWT.NONE);
+        lblNumresults.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 3, 1));
+        lblNumresults.setText("num_results");
+        
+        txtNumresults = new Text(grpSearch, SWT.BORDER);
+        txtNumresults.setText("num_results");
+        GridData gd_txtNumresults = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
+        gd_txtNumresults.widthHint = 84;
+        txtNumresults.setLayoutData(gd_txtNumresults);
+        new Label(grpSearch, SWT.NONE);
+        
+        Button btnSearch = new Button(grpSearch, SWT.NONE);
+        btnSearch.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+        btnSearch.setText("Search");
+        
+        
+        /////////// functions //////////////
+        comparefunction(compare);
+        searchfunction(btnSearch);        
         }
-
+	
+	public static void searchfunction(Button search){
+		
+		SelectionAdapter searchfunc = new SelectionAdapter() {
+		      
+			public void widgetSelected(SelectionEvent event) {
+				try{
+					double a = Double.valueOf(txtAlength.getText());
+					double b = Double.valueOf(txtBlength.getText());
+					double c = Double.valueOf(txtClength.getText());
+					
+					double alpha = Double.valueOf(txtAlpha.getText());
+					double beta = Double.valueOf(txtBeta.getText());
+					double gamma = Double.valueOf(txtGamma.getText());
+					System.out.println("compare1");
+					List<Double> lengths = new ArrayList<Double>();
+					lengths.add(a);lengths.add(b);lengths.add(c);
+					
+					List<Double> angles = new ArrayList<Double>();
+					angles.add(alpha);angles.add(beta);angles.add(gamma);
+					CSD_cellsearch mysearcher = new CSD_cellsearch();
+					mysearcher.setCell_angles(angles);
+					mysearcher.setCell_lengths(lengths);
+					mysearcher.search();
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+		        
+		        }
+		};
+		search.addSelectionListener(searchfunc);
+		
+	}
 	
 	public static void getdatalistener(final Text text,final Combo combo){
 	ModifyListener modifyListener = new ModifyListener(){
 		      public void modifyText(ModifyEvent event) {
 		        // Get the widget whose text was modified
 		    	  combo.removeAll();
-		        try{
-		        	System.out.println(text.getText());
+		        try{	
 		        	LoadedDataObject loaded = holder.getData(text.getText());
-		        	System.out.println(loaded);
 		        	List<IDataset> datalist = loaded.data;
 		        	for(int i = 0; i < datalist.size(); i++){
 		        		System.out.println(datalist.get(i));
@@ -225,12 +280,11 @@ public class Compareview extends ViewPart {
 				String name2 = Data2.getText();
 				String column1 = combo1.getItem(combo1.getSelectionIndex());
 				String column2 = combo2.getItem(combo2.getSelectionIndex());
-				System.out.println(name1);
+				
 				IDataset data1 = holder.getDataSet(name1, column1);
 				IDataset data2 = holder.getDataSet(name2, column2);
 				String choice = types.getText();
-				
-				System.out.println(data1);
+
 				Comparator.setData1(data1);
 				Comparator.setData2(data2);
 				
@@ -246,29 +300,6 @@ public class Compareview extends ViewPart {
 		};
 		compare.addSelectionListener(comparefunc);
 		
-	}
-
-	/**
-	 * Create the actions.
-	 */
-	private void createActions() {
-		// Create the actions
-	}
-
-	/**
-	 * Initialize the toolbar.
-	 */
-	private void initializeToolBar() {
-		IToolBarManager toolbarManager = getViewSite().getActionBars()
-				.getToolBarManager();
-	}
-
-	/**
-	 * Initialize the menu.
-	 */
-	private void initializeMenu() {
-		IMenuManager menuManager = getViewSite().getActionBars()
-				.getMenuManager();
 	}
 
 	@Override
