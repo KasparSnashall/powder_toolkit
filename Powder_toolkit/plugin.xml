@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            class="perspective.PowderToolkit"
+            class="powder_toolkit.perspective.PowderToolkit"
             icon="icons/releng_gears.gif"
             id="perspective.PowderToolkit"
             name="Powder Toolkit">
@@ -13,33 +13,33 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="Views.Loadview"
-            id="Views.Loadview"
+            class="powder_toolkit.views.Loadview"
+            id="powder_toolkit.views.Loadview"
             name="Load">
       </view>
       <view
-            class="Views.Peakview"
-            id="Views.Peakview"
+            class="powder_toolkit.views.Peakview"
+            id="powder_toolkit.views.Peakview"
             name="Find Peaks">
       </view>
       <view
-            class="Views.Indexview"
-            id="Views.Indexview"
+            class="powder_toolkit.views.Indexview"
+            id="powder_toolkit.views.Indexview"
             name="Index">
       </view>
       <view
-            class="Views.Compareview"
-            id="Views.Compareview"
+            class="powder_toolkit.views.Compareview"
+            id="powder_toolkit.views.Compareview"
             name="Compare">
       </view>
       <view
-            class="Views.LoadedDataview"
-            id="Views.LoadedDataview"
+            class="powder_toolkit.views.LoadedDataview"
+            id="powder_toolkit.views.LoadedDataview"
             name="Loaded Data">
       </view>
       <view
-            class="Views.Plotview"
-            id="Views.Plotview"
+            class="powder_toolkit.views.Plotview"
+            id="powder_toolkit.views.Plotview"
             name="Plot">
       </view>
    </extension>
