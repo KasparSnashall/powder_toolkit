@@ -96,13 +96,11 @@ public class Loadview extends ViewPart {
 		sampletext.setToolTipText("Enter a custom data name, try not to include spaces");
 		sampletext.setText(" ");
 		griddata_1 = new GridData(150,15);
-		griddata_1.horizontalSpan = 2;
-		griddata_1.horizontalAlignment = SWT.CENTER;
+		griddata_1.horizontalSpan = 4;
+		griddata_1.horizontalAlignment = SWT.LEFT;
 		sampletext.setLayoutData(griddata_1);
-		new Label(composite, SWT.NONE);
 
         composite.pack();
-        new Label(composite, SWT.NONE);
         new Label(composite, SWT.NONE);
         new Label(composite, SWT.NONE);  
           // check box
@@ -116,11 +114,10 @@ public class Loadview extends ViewPart {
         lower.setToolTipText("The lower x value");
         // upper and lower limit text boxes
         final Text upper = new Text(composite, SWT.BORDER);
+        upper.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 3, 1));
         upper.setText("upper");
         upper.setEnabled(false);
         upper.setToolTipText("The upper x value");
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
         new Label(composite, SWT.NONE);
         new Label(composite, SWT.NONE);
         Label lblDataTable = new Label(composite, SWT.NONE);
