@@ -10,22 +10,17 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.RowLayout;
-import org.eclipse.swt.layout.RowData;
-import org.eclipse.swt.layout.FormLayout;
-import org.eclipse.swt.layout.FormData;
-import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.wb.swt.SWTResourceManager;
-import org.eclipse.swt.widgets.Group;
 
 import powder_toolkit.dataAnalysis.Comparator;
 import powder_toolkit.dataAnalysis.LoadedDataObject;
@@ -44,6 +39,13 @@ public class Compareview extends ViewPart {
 	private static Combo types; // drop down with comparison types
 	private static Text output; // output text box
 	private static Text tolerance;
+	private Text txtAlength;
+	private Text txtBlength;
+	private Text txtClength;
+	private Text txtAplha;
+	private Text txtBeta;
+	private Text txtGamma;
+	private Label lblAlpha;
 	
 	public Compareview() {
 	}
@@ -56,24 +58,13 @@ public class Compareview extends ViewPart {
 	public void createPartControl(Composite parent) {
 		Composite composite = new Composite(parent, SWT.NONE);
 		composite.setFont(SWTResourceManager.getFont("Sans", 12, SWT.NORMAL));
-        GridLayout gl_composite = new GridLayout(1, false);
-        gl_composite.marginBottom = 20;
-        gl_composite.marginRight = 20;
-        gl_composite.marginLeft = 20;
-        gl_composite.marginHeight = 20;
-        gl_composite.marginTop = 20;
-        gl_composite.marginWidth = 20;
-        composite.setLayout(gl_composite);
+        composite.setLayout(new FillLayout(SWT.HORIZONTAL));
         
         Group grpCompare = new Group(composite, SWT.NONE);
         GridLayout gl_grpCompare = new GridLayout(3, false);
         gl_grpCompare.marginWidth = 15;
         gl_grpCompare.marginHeight = 25;
         grpCompare.setLayout(gl_grpCompare);
-        GridData gd_grpCompare = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
-        gd_grpCompare.widthHint = 408;
-        gd_grpCompare.heightHint = 519;
-        grpCompare.setLayoutData(gd_grpCompare);
         grpCompare.setText("Compare");
         
         
@@ -133,6 +124,67 @@ public class Compareview extends ViewPart {
         gd_output.widthHint = 218;
         gd_output.heightHint = 93;
         output.setLayoutData(gd_output);
+        
+        Group grpSearch = new Group(parent, SWT.NONE);
+        grpSearch.setText("Search");
+        GridLayout gl_grpSearch = new GridLayout(6, false);
+        gl_grpSearch.horizontalSpacing = 25;
+        gl_grpSearch.verticalSpacing = 10;
+        gl_grpSearch.marginWidth = 35;
+        gl_grpSearch.marginHeight = 25;
+        grpSearch.setLayout(gl_grpSearch);
+ 
+        
+        Label lblA = new Label(grpSearch, SWT.NONE);
+        lblA.setText("A");
+        
+        txtAlength = new Text(grpSearch, SWT.BORDER);
+        GridData gd_txtAlength = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
+        gd_txtAlength.widthHint = 62;
+        txtAlength.setLayoutData(gd_txtAlength);
+        
+        Label lblB = new Label(grpSearch, SWT.NONE);
+        lblB.setText("B");
+        
+        txtBlength = new Text(grpSearch, SWT.BORDER);
+        txtBlength.setText("Blength");
+        txtBlength.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        
+        Label lblC = new Label(grpSearch, SWT.NONE);
+        lblC.setText("C");
+        
+        txtClength = new Text(grpSearch, SWT.BORDER);
+        txtClength.setText("Clength");
+        txtClength.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        
+        Label lblAlpha_1 = new Label(grpSearch, SWT.NONE);
+        lblAlpha_1.setText("Alpha");
+        
+        
+        txtAplha = new Text(grpSearch, SWT.BORDER);
+        txtAplha.setText("Aplha");
+        txtAplha.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        
+        Label lblBeta = new Label(grpSearch, SWT.NONE);
+        lblBeta.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+        lblBeta.setText("Beta");
+        
+        txtBeta = new Text(grpSearch, SWT.BORDER);
+        txtBeta.setText("Beta");
+        txtBeta.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        
+        Label lblGamma = new Label(grpSearch, SWT.NONE);
+        lblGamma.setText("Gamma");
+        
+        txtGamma = new Text(grpSearch, SWT.BORDER);
+        txtGamma.setText("Gamma");
+        txtGamma.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        new Label(grpSearch, SWT.NONE);
+        new Label(grpSearch, SWT.NONE);
+        new Label(grpSearch, SWT.NONE);
+        new Label(grpSearch, SWT.NONE);
+        new Label(grpSearch, SWT.NONE);
+        new Label(grpSearch, SWT.NONE);
         createActions();
 		initializeToolBar();
 		initializeMenu();
