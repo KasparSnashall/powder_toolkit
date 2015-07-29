@@ -35,25 +35,28 @@ import org.eclipse.swt.widgets.Combo;
 
 import powder_toolkit.dataAnalysis.Loader;
 import powder_toolkit.dataAnalysis.MyDataHolder;
-
+/**
+ * Load view is designed to make it easy for the user to load in many data types with minimal effort
+ * @author sfz19839
+ *
+ */
 @SuppressWarnings("deprecation")
 public class Loadview extends ViewPart {
 	public Loadview() {
 	}
-	
 	public static final String ID = "Views.Loadview"; //$NON-NLS-1$
-	static Boolean myrange = false;
-	public static String filepath;
-	public static GridData griddata = new GridData();
+	static Boolean myrange = false; // the internal rnage boolean
+	public static String filepath; // the filepath
+	public static GridData griddata = new GridData(); // griddata settings for the view
 	private static GridData griddata_3;
 	private static GridData griddata_2;
 	private static GridData griddata_1;
-	private static Text sampletext;
-	private Table table;
-	private static Map<String,TableEditor> editors = new HashMap<String,TableEditor>(); // I know its back to front this doesnt matter
-	private static Map<Integer,String> comboList =  new HashMap<Integer,String>(); // list of combo data
-	private static List<Integer> columnnumbers = new ArrayList<Integer>(); // list of column numbers needed?
-	private static int checkboxnumber = 0;
+	private static Text sampletext; // the sample name textbox
+	private Table table; // the data table
+	private static Map<String,TableEditor> editors = new HashMap<String,TableEditor>(); // a map of table editors used to dispose when loading new data
+	private static Map<Integer,String> comboList =  new HashMap<Integer,String>(); // column number, combo text(name of column)
+	private static List<Integer> columnnumbers = new ArrayList<Integer>(); // list of column numbers to be passed to loader
+	private static int checkboxnumber = 0; // an internal flag for preventing more then 2 columns being selected
 	/**
 	 * Create contents of the view part.
 	 * @param parent
@@ -296,7 +299,7 @@ public class Loadview extends ViewPart {
 								}
 								table.pack();
 								table.layout();
-								
+								// refresh the layout
 								composite.layout();
 								parent.layout();
 						        
@@ -344,26 +347,37 @@ public class Loadview extends ViewPart {
         			Loader loader = new Loader();
         			if (myrange){
         				// if ranged must be able to accept doubles or floats
+        				try{
         				loader.setRange(true);
 						String l = lower.getText();
         				String u = upper.getText();
         				loader.setUpper(Double.valueOf(u));
-        				loader.setLower(Double.valueOf(l));
+        				loader.setLower(Double.valueOf(l));}
+        				catch(Exception e1){
+        					System.out.println(e1.getMessage());
+        				}
         				}
         			else{
         				loader.setRange(false);
         			}
-        			String flag = filepath.split("\\.")[1];
+        			String flag = filepath.split("\\.")[1]; // get the file ending, do not put dots in you file name!
         			List<String> names =  new ArrayList<String>();
+        			
         			for(int j : columnnumbers){
         				String columnName = comboList.get(j);
         				names.add(columnName);
+        			}
+        			if(names.isEmpty()){
+        				throw new Exception("No columns selected");
         			}
         			if(names.size() > 1){
 	        			if(names.get(0).equals(names.get(1))){
 	        				throw new Exception("Column names may not be the same");
         			}}
         			List<IDataset> data = loader.Load_data(myfilepath, names, flag, columnnumbers); // may change this
+        			if(data.isEmpty()){
+        				throw new Exception("Error loading data");
+        			}
         			LoadedDataview.addData(sampletext.getText(), flag, data,filepath);
         			Indexview.setData(sampletext.getText());
         			
