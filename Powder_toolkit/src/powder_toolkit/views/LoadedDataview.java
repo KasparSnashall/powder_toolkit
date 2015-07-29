@@ -10,6 +10,9 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridLayout;
@@ -138,6 +141,8 @@ public class LoadedDataview extends ViewPart {
 	public static void addData(String name,String flag, java.util.List<IDataset> data, String filepath){
 		holder.addData(name, flag, data, filepath);
 		datalist.add(name);
+		//TODO add tooltip for list item
+		//datalist.addMouseTrackListener(listener);
 	}
 
 	/**
