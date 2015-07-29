@@ -37,6 +37,11 @@
             id="Views.LoadedDataview"
             name="Loaded Data">
       </view>
+      <view
+            class="Views.Plotview"
+            id="Views.Plotview"
+            name="Plot">
+      </view>
    </extension>
 
 </plugin>
