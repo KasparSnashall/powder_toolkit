@@ -1,4 +1,4 @@
-package DataAnalysis;
+package powder_toolkit.dataAnalysis;
 import java.util.List;
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 

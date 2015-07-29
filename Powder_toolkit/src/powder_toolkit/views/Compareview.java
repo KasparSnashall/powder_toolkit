@@ -1,4 +1,4 @@
-package Views;
+package powder_toolkit.views;
 
 import java.util.List;
 
@@ -18,10 +18,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
-
-import DataAnalysis.Comparator;
-import DataAnalysis.LoadedDataObject;
-import DataAnalysis.MyDataHolder;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.layout.RowData;
@@ -30,6 +26,10 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.widgets.Group;
+
+import powder_toolkit.dataAnalysis.Comparator;
+import powder_toolkit.dataAnalysis.LoadedDataObject;
+import powder_toolkit.dataAnalysis.MyDataHolder;
 
 public class Compareview extends ViewPart {
 

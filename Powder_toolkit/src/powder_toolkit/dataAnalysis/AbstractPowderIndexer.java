@@ -1,4 +1,4 @@
-package DataAnalysis;
+package powder_toolkit.dataAnalysis;
 
 import java.util.Collections;
 import java.util.HashMap;

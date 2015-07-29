@@ -1,4 +1,4 @@
-package Views;
+package powder_toolkit.views;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -30,9 +30,11 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 import uk.ac.diamond.scisoft.analysis.io.DatLoader;
 import uk.ac.diamond.scisoft.analysis.io.LoaderFactory;
-import DataAnalysis.Loader;
-import DataAnalysis.MyDataHolder;
+
 import org.eclipse.swt.widgets.Combo;
+
+import powder_toolkit.dataAnalysis.Loader;
+import powder_toolkit.dataAnalysis.MyDataHolder;
 
 @SuppressWarnings("deprecation")
 public class Loadview extends ViewPart {

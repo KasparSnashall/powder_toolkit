@@ -1,4 +1,4 @@
-package DataAnalysis;
+package powder_toolkit.dataAnalysis;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

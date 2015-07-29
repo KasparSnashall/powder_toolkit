@@ -1,4 +1,4 @@
-package Views;
+package powder_toolkit.views;
 
 import java.util.Arrays;
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;

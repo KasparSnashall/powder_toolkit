@@ -1,4 +1,4 @@
-package Views;
+package powder_toolkit.views;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.jface.action.IMenuManager;
@@ -17,12 +17,11 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.wb.swt.SWTResourceManager;
-
-import DataAnalysis.MyDataHolder;
-
 import org.eclipse.swt.events.DragDetectListener;
 import org.eclipse.swt.events.DragDetectEvent;
 import org.eclipse.jface.action.Separator;
+
+import powder_toolkit.dataAnalysis.MyDataHolder;
 
 
 /**

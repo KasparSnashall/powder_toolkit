@@ -1,4 +1,4 @@
-package DataAnalysis;
+package powder_toolkit.dataAnalysis;
 
 import java.util.ArrayList;
 import java.util.Collections;

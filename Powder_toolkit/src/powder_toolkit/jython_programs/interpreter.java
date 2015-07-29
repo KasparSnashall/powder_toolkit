@@ -1,4 +1,4 @@
-package Jython_programs;
+package powder_toolkit.jython_programs;
 import org.python.core.PyInstance;
 import org.python.util.PythonInterpreter;
 /**

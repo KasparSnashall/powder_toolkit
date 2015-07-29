@@ -1,4 +1,4 @@
-package perspective;
+package powder_toolkit.perspective;
 
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
