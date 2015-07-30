@@ -20,45 +20,56 @@ public class CSD_cellsearch {
 	public static PyInstance MyClass;
 	
 	public CSD_cellsearch(){
-		interpret.execfile("/home/sfz19839/Desktop/CSD_cell_search.py");
+		interpret.execfile("/scratch/clean_workpsace/powder_toolkit/Powder_toolkit/python_code/CSD_cell_search.py");
+		try{
 		MyClass = interpret.createClass("CSD_cell_search", "");	
+		}catch(Exception e){System.out.println(e.getMessage());}
 	}
 	
 	
-	public static void search(){
+	public static String search(){
 		try{
-		
-		
-		
-		MyClass.invoke("search");
+		String result = MyClass.invoke("search").toString();
+		return result;
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 			
 		}
+		return null;
 	}
 	
 	
 
-	public static void setCell_lengths(List<Double> cell_lengths) {
+	public void setCell_lengths(List<Double> cell_lengths) {
 		try{
 		if(cell_lengths.size() != 3){
 			throw new Exception("lengths not correct");
 		}
 		CSD_cellsearch.cell_lengths = cell_lengths;
-		PyList mylist = (PyList) cell_lengths;
-		MyClass.invoke("set_angles",mylist);}
+		System.out.println(MyClass.invoke("Printme"));
+		PyList mylist = new PyList();
+		for(Double item : cell_lengths){
+			mylist.add(item);
+		}
+		
+		
+		MyClass.invoke("set_angles",mylist);
+		}
 		catch(Exception e){System.out.println(e.getMessage());
 		}
 	}
 
 
-	public static void setCell_angles(List<Double> cell_angles) {
+	public void setCell_angles(List<Double> cell_angles) {
 		try{
 		if(cell_angles.size() != 3){
 			throw new Exception("angles not correct");
 		}
 		CSD_cellsearch.cell_angles = cell_angles;
-		PyList mylist = (PyList) cell_angles;
+		PyList mylist = new PyList();
+		for(Double item : cell_angles){
+			mylist.add(item);
+		}
 		MyClass.invoke("set_angles",mylist);
 		}catch(Exception e){System.out.println(e.getMessage());}
 	}

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
-import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -147,20 +145,21 @@ public class Compareview extends ViewPart {
         txtAlength = new Text(grpSearch, SWT.BORDER);
         GridData gd_txtAlength = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
         gd_txtAlength.widthHint = 62;
+        txtAlength.setText("10");
         txtAlength.setLayoutData(gd_txtAlength);
         
         Label lblB = new Label(grpSearch, SWT.NONE);
         lblB.setText("B");
         
         txtBlength = new Text(grpSearch, SWT.BORDER);
-        txtBlength.setText("Blength");
+        txtBlength.setText("10");
         txtBlength.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         
         Label lblC = new Label(grpSearch, SWT.NONE);
         lblC.setText("C");
         
         txtClength = new Text(grpSearch, SWT.BORDER);
-        txtClength.setText("Clength");
+        txtClength.setText("10");
         txtClength.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         
         Label lblAlpha_1 = new Label(grpSearch, SWT.NONE);
@@ -168,7 +167,7 @@ public class Compareview extends ViewPart {
         
         
         txtAlpha = new Text(grpSearch, SWT.BORDER);
-        txtAlpha.setText("Aplha");
+        txtAlpha.setText("90");
         txtAlpha.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         
         Label lblBeta = new Label(grpSearch, SWT.NONE);
@@ -176,14 +175,14 @@ public class Compareview extends ViewPart {
         lblBeta.setText("Beta");
         
         txtBeta = new Text(grpSearch, SWT.BORDER);
-        txtBeta.setText("Beta");
+        txtBeta.setText("90");
         txtBeta.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         
         Label lblGamma = new Label(grpSearch, SWT.NONE);
         lblGamma.setText("Gamma");
         
         txtGamma = new Text(grpSearch, SWT.BORDER);
-        txtGamma.setText("Gamma");
+        txtGamma.setText("90");
         txtGamma.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         new Label(grpSearch, SWT.NONE);
         new Label(grpSearch, SWT.NONE);
@@ -232,11 +231,11 @@ public class Compareview extends ViewPart {
 					
 					List<Double> angles = new ArrayList<Double>();
 					angles.add(alpha);angles.add(beta);angles.add(gamma);
-					CSD_cellsearch mysearcher = new CSD_cellsearch();
-					mysearcher.setCell_angles(angles);
-					mysearcher.setCell_lengths(lengths);
-					mysearcher.search();
-					
+					CSD_cellsearch mysearch = new CSD_cellsearch();
+					mysearch.setCell_angles(angles);
+					mysearch.setCell_lengths(lengths);
+					String result = CSD_cellsearch.search();
+					System.out.println(result);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

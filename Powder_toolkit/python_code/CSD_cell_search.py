@@ -1,5 +1,13 @@
-from ccdc.search import ReducedCellSearch
-from collections import namedtuple
+import sys
+
+
+
+
+import ccdc
+
+
+#from ccdc.search import ReducedCellSearch
+#from collections import namedtuple
 
 
 class CSD_cell_search:
@@ -30,20 +38,24 @@ class CSD_cell_search:
     converts lists to named tuples
     calls ccdc ReducedCellSearch using tuples
     returns tuple(h.identifier, h.crystal.cell_lengths, h.crystal.cell_angles, h.crystal.lattice_centring)
- 
-    """
+     """
+    
     
     def __init__(self):
         1
-    
+    def Printme(self):
+        return "here"
     
     def get_angles(self):
         return self.angles
     def set_angles(self,angles):
+        print angles
         self.angles = angles
     def get_cell_lengths(self):
+        
         return self.cell_lengths
     def set_cell_lengths(self,lengths):
+        print lengths
         self.cell_lengths = lengths
     def get_lattice_centring(self):
         return self.lattice_centring
@@ -67,6 +79,3 @@ class CSD_cell_search:
         h = hits[0] # top hit
         print h.identifier, h.crystal.cell_lengths, h.crystal.cell_angles, h.crystal.lattice_centring # print the best result 
 
-if __name__ == '__main__':
-    csd = CSD_cell_search([108.75, 71.07000000000001,96.16],[11.372,10.272,7.359]) # the exact AABHTZ crystal parameters
-    csd.search()

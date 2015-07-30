@@ -1,13 +1,10 @@
 package powder_toolkit.dataAnalysis;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
-import org.eclipse.dawnsci.analysis.dataset.impl.Dataset;
-import org.eclipse.dawnsci.analysis.dataset.impl.DoubleDataset;
 /**
  * Abstract class used to create an indexing wrapper
  * @author kaspar

@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
-import org.eclipse.dawnsci.analysis.api.io.IDataHolder;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.TableEditor;
@@ -28,13 +27,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-import uk.ac.diamond.scisoft.analysis.io.DatLoader;
-import uk.ac.diamond.scisoft.analysis.io.LoaderFactory;
-
-import org.eclipse.swt.widgets.Combo;
-
 import powder_toolkit.dataAnalysis.Loader;
-import powder_toolkit.dataAnalysis.MyDataHolder;
 /**
  * Load view is designed to make it easy for the user to load in many data types with minimal effort
  * @author sfz19839
@@ -57,6 +50,7 @@ public class Loadview extends ViewPart {
 	private static Map<Integer,String> comboList =  new HashMap<Integer,String>(); // column number, combo text(name of column)
 	private static List<Integer> columnnumbers = new ArrayList<Integer>(); // list of column numbers to be passed to loader
 	private static int checkboxnumber = 0; // an internal flag for preventing more then 2 columns being selected
+	private static List<IDataset> dataset;
 	/**
 	 * Create contents of the view part.
 	 * @param parent
@@ -159,162 +153,139 @@ public class Loadview extends ViewPart {
 	private void BrowseFunction(final Button browse,final Shell shell,final Text filetext, final Composite composite,final Composite parent){
 		browse.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
-					String filepath = new FileDialog(shell).open();
-					if (filepath != null) {
-							// if a filepath is input
-				          File file = new File(filepath);
-				          
-				          if (file.isFile()){
-				        	  // check is actually a file and not just directory
-				        	  filetext.setText(filepath);
-				        	  sampletext.setText(file.getName());
-				        	  checkboxnumber = 0;
-							try {
-								try{
-									for(TableEditor myeditor : editors.values()){
-										myeditor.getEditor().dispose();}
-								}catch(Exception e){}
-								editors = new HashMap<String,TableEditor>(); 
-								table.removeAll(); // refresh
-								TableItem[] items = table.getItems();
-								for (TableItem myitem : items){
-									myitem.dispose();}
-								TableColumn[] columns = table.getColumns();
-								for( TableColumn tc : columns ) {  
-									tc.dispose() ;}
-								GridData gd_table_2 = new GridData(SWT.FILL, SWT.FILL, true, true, 7, 4);
-							    gd_table_2.heightHint = 201;
-							    gd_table_2.widthHint = 510;
-						        table.setLayoutData(gd_table_2);
-						        table.setHeaderVisible(true);
-						        table.setLinesVisible(true);
-						       
+				String filepath = new FileDialog(shell).open();
+				try{
+				if (filepath != null) {
+						// if a filepath is input
+			          File file = new File(filepath);
+			          
+			          if (file.isFile()){
+			        	  // check is actually a file and not just directory
+			        	  filetext.setText(filepath);
+			        	  sampletext.setText(file.getName());
+			        	  checkboxnumber = 0;
+						
+							try{
+								for(TableEditor myeditor : editors.values()){
+									myeditor.getEditor().dispose();}
+							}catch(Exception e){}
+							editors = new HashMap<String,TableEditor>(); 
+							table.removeAll(); // refresh
+							TableItem[] items = table.getItems();
+							for (TableItem myitem : items){
+								myitem.dispose();}
+							TableColumn[] columns = table.getColumns();
+							for( TableColumn tc : columns ) {  
+								tc.dispose() ;}
+							GridData gd_table_2 = new GridData(SWT.FILL, SWT.FILL, true, true, 7, 4);
+						    gd_table_2.heightHint = 201;
+						    gd_table_2.widthHint = 510;
+					        table.setLayoutData(gd_table_2);
+					        table.setHeaderVisible(true);
+					        table.setLinesVisible(true);
+					        
+							dataset = Loader.openData(filepath);
+							for(int i =0; i < dataset.size();i++){
+								IDataset mydata = dataset.get(i);
+								TableColumn column = new TableColumn(table, SWT.NULL);				
+								column.setText(mydata.getName());
+								column.pack();}
 
-								String[] myextension = filepath.split("\\.");
-								String extension = myextension[myextension.length-1];
-								LoaderFactory.registerLoader(extension, DatLoader.class);
-								IDataHolder dh = LoaderFactory.getData(filepath);
-								
-								
-								for(int i =0; i < dh.size();i++){
-									IDataset dataset = dh.getDataset(i);
-									TableColumn column = new TableColumn(table, SWT.NULL);				
-									column.setText(dataset.getName());
-									column.pack();}
-								
-								
-								final TableItem item = new TableItem(table, SWT.NULL);
-								
-								
-								for(int i =0; i < dh.size();i++){
-									final int k = i;
-									TableEditor editor = new TableEditor(table);
-									String countnum = String.valueOf(i) + "C";
-									editors.put(countnum,editor);
+							final TableItem item = new TableItem(table, SWT.NULL);
+							
+							for(int i =0; i < dataset.size();i++){
+								final int k = i;
+								TableEditor editor = new TableEditor(table);
+								String countnum = String.valueOf(i) + "C";
+								editors.put(countnum,editor);
 
-							        final CCombo combo = new CCombo(table,SWT.BORDER);
-							        combo.setText("Select");
-							        combo.add("Intensity");
-							        combo.add("Two theta");
-							        combo.add("D_space");
-							        combo.add("Theta");
-							        combo.setToolTipText("Select the name of the column");
-							        editor.grabHorizontal = true;
-							        combo.setEnabled(false);
-							        editor.setEditor(combo, item,i);
-							        item.setData("combo", combo); //Point to notice
-							        combo.addSelectionListener(new SelectionAdapter() {
-							            public void widgetSelected(SelectionEvent event) {
-							            	if(combo.isEnabled()){
-							            	comboList.put(k,combo.getText());}
-							              }
-							            	
-							            }
-							          );     
-								}
-								
-								
+						        final CCombo combo = new CCombo(table,SWT.BORDER);
+						        combo.setText("Select");
+						        combo.add("Intensity");
+						        combo.add("Two theta");
+						        combo.add("D_space");
+						        combo.add("Theta");
+						        combo.setToolTipText("Select the name of the column");
+						        editor.grabHorizontal = true;
+						        combo.setEnabled(false);
+						        editor.setEditor(combo, item,i);
+						        item.setData("combo", combo); //Point to notice
+						        combo.addSelectionListener(new SelectionAdapter() {
+						            public void widgetSelected(SelectionEvent event) {
+						            	if(combo.isEnabled()){
+						            	comboList.put(k,combo.getText());}
+						              }
+						            	
+						            });}
 
-								final TableItem item2 = new TableItem(table, SWT.NONE);
-								for(int i =0; i < dh.size();i++){
-									final int k = i;
-									TableEditor editor = new TableEditor(table);
-							        final Button buttonb = new Button(table,SWT.CHECK);
-							        buttonb.setToolTipText("Enable column");
-							        String countnum = String.valueOf(i);
-									editors.put(countnum,editor);
-							        editor.grabHorizontal = true;
-							        editor.setEditor(buttonb, item2,i);
-							        buttonb.addSelectionListener(new SelectionAdapter() {
-							        	public void widgetSelected(SelectionEvent event) {
-							        		 if (buttonb.getSelection()){
-							        			 if(checkboxnumber == 0){
-							        			 columnnumbers.add(k);
+							
+
+							final TableItem item2 = new TableItem(table, SWT.NONE);
+							for(int i =0; i < dataset.size();i++){
+								final int k = i;
+								TableEditor editor = new TableEditor(table);
+						        final Button buttonb = new Button(table,SWT.CHECK);
+						        buttonb.setToolTipText("Enable column");
+						        String countnum = String.valueOf(i);
+								editors.put(countnum,editor);
+						        editor.grabHorizontal = true;
+						        editor.setEditor(buttonb, item2,i);
+						        buttonb.addSelectionListener(new SelectionAdapter() {
+						        	public void widgetSelected(SelectionEvent event) {
+						        		
+										if (buttonb.getSelection()){
+						        			 if(checkboxnumber == 0){
+						        			 columnnumbers.add(k);
+						        			 editors.get(k+"C").getEditor().setEnabled(true);
+						        			 checkboxnumber += 1;
+						        			 }
+						        			 else if(checkboxnumber == 1){
+						        				 columnnumbers.add(k);
 							        			 editors.get(k+"C").getEditor().setEnabled(true);
 							        			 checkboxnumber += 1;
-							        			 }
-							        			 else if(checkboxnumber == 1){
-							        				 columnnumbers.add(k);
-								        			 editors.get(k+"C").getEditor().setEnabled(true);
-								        			 checkboxnumber += 1;
-							        			 }
-							        			 else{
-							        				 System.out.println("Too many boxes");
-							        				 
-							        			 }
-							        		 }   
-							        	     else{
-							        	        columnnumbers.remove(columnnumbers.indexOf(k)); // remove value is unchecked
-							        	        editors.get(k+"C").getEditor().setEnabled(false);
-							        	        checkboxnumber -= 1;
-							        	        }
-							        	           
-		
-							              }
-							        });
-								}
+						        			 }
+						        			 else{
+						        				 System.out.println("Too many boxes");
+						        				 
+						        			 }
+						        		 }   
+						        	     else{
+						        	        columnnumbers.remove(columnnumbers.indexOf(k)); // remove value is unchecked
+						        	        editors.get(k+"C").getEditor().setEnabled(false);
+						        	        checkboxnumber -= 1;
+						        	        }
+						        	           
+	
+						              }});}
+						        }
+							for(int i =0; i < dataset.size();i++){
 								
-								
-								for(int i =0; i < dh.size();i++){
-									IDataset dataset = dh.getDataset(i);
-									if(i == 0){
-										for(int j = 0; j < dataset.getSize();j++){
-											final TableItem item1 = new TableItem(table, SWT.NULL);
-											item1.setText(String.valueOf(dataset.getDouble(j)));
-											
+								IDataset mydata = dataset.get(i);
+								if(i == 0){
+									for(int j = 0; j < mydata.getSize();j++){
+										final TableItem item1 = new TableItem(table, SWT.NULL);
+										item1.setText(String.valueOf(mydata.getDouble(j)));
 										}
-										}
-									else{
-										for(int j = -1; j < dataset.getSize(); j++){
-											TableItem item1 = table.getItem(j+2);
-											item1.setText(i, String.valueOf(dataset.getDouble(j)));
-											
-										}
-									
 									}
-									
-								}
-								TableColumn[] mycolumnlist = table.getColumns();
-								for(TableColumn mycol : mycolumnlist){
-									mycol.setWidth(150);
-								}
-								table.pack();
-								table.layout();
-								// refresh the layout
-								composite.layout();
-								parent.layout();
-						        
-									
+								else{
+									for(int j = -1; j < mydata.getSize(); j++){
+										TableItem item1 = table.getItem(j+2);
+										item1.setText(i, String.valueOf(mydata.getDouble(j)));}
+									}
 								
-							} catch (Exception e) {
-								// TODO Auto-generated catch block
-								System.out.println(e.getMessage());
 							}
-				        	  
-				        	 }
-					}
-				}
-			});
+							TableColumn[] mycolumnlist = table.getColumns();
+							for(TableColumn mycol : mycolumnlist){
+								mycol.setWidth(150);}
+							table.pack();
+							table.layout();
+							// refresh the layout
+							composite.layout();
+							parent.layout();
+	
+			          }     	  
+			}catch(Exception e){}
+			}});
 	}
 	
 	private void RangeBoxFunction(final Button rangebox,final Text lower,final Text upper) {
@@ -375,7 +346,7 @@ public class Loadview extends ViewPart {
 	        			if(names.get(0).equals(names.get(1))){
 	        				throw new Exception("Column names may not be the same");
         			}}
-        			List<IDataset> data = loader.Load_data(myfilepath, names, flag, columnnumbers); // may change this
+        			List<IDataset> data = loader.setData(dataset, names, flag, columnnumbers); // may change this
         			if(data.isEmpty()){
         				throw new Exception("Error loading data");
         			}

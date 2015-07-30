@@ -1,16 +1,16 @@
 package powder_toolkit.dataAnalysis;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
+import org.eclipse.dawnsci.analysis.api.dataset.ILazyDataset;
 import org.eclipse.dawnsci.analysis.api.dataset.Slice;
 import org.eclipse.dawnsci.analysis.api.io.IDataHolder;
 import org.eclipse.dawnsci.analysis.dataset.impl.Maths;
 
 import uk.ac.diamond.scisoft.analysis.io.DatLoader;
 import uk.ac.diamond.scisoft.analysis.io.LoaderFactory;
+import uk.ac.diamond.scisoft.analysis.io.NexusHDF5Loader;
 
 public class Loader {
 	
@@ -21,6 +21,7 @@ public class Loader {
 	public static boolean range;
 	private static int x1;
 	private static int x2;
+	public static IDataHolder dh;
 	
 
 	public void setUpper(double upper) {
@@ -35,19 +36,60 @@ public class Loader {
 		Loader.range = range;
 		}
 	
+	/**
+	 * Allows opening of data
+	 */
 	@SuppressWarnings("deprecation")
-	public List<IDataset> Load_data(String filepath,List<String> names,String flag,List<Integer> colnumbers) {
-			try{
-			Filepath = filepath;
-			LoaderFactory.registerLoader(flag, DatLoader.class);
-			IDataHolder dh = LoaderFactory.getData(Filepath);
-			List<IDataset> dataholder = new ArrayList<IDataset>(); // the list of datasets
+	public static List<IDataset> openData(String filepath){
+		try{
+		String[] myextension = filepath.split("\\.");
+		String extension = myextension[myextension.length-1];
+		if(filepath.contains(".nxs" ) | filepath.contains("nexus")){
+			LoaderFactory.registerLoader(extension, NexusHDF5Loader.class);
+			dh = LoaderFactory.getData(filepath);
+			List<IDataset> mydata = new ArrayList<IDataset>();
+			
+			for(int i = 0; i < dh.size();i++){
+				ILazyDataset lazydataset = dh.getLazyDataset(i);
+				System.out.println(lazydataset.getSlice());
+				final IDataset dataset = lazydataset.getSlice().squeeze();
+				mydata.add(dataset);
+				}
+			
+			
+			return mydata;
+			}
+		else{
+			List<IDataset> mydata = new ArrayList<IDataset>();
+			LoaderFactory.registerLoader(extension, DatLoader.class);
+			dh = LoaderFactory.getData(filepath);
+			for(int i = 0; i < dh.size();i++){
+				IDataset dataset = dh.getDataset(i);
+				System.out.println(dataset.getSlice());
+				mydata.add(dataset);
+				}
+			return mydata;
+			}
 		
+		
+		}catch(Exception e){
 			
+		}
+		return null;
+		
+	}
+	
+	/**
+	 * Load the data into a data object
+	 */
+	public static List<IDataset> setData(List<IDataset> data,List<String> names,String flag,List<Integer> colnumbers) {
+			try{
 			
+			List<IDataset> dataholder = new ArrayList<IDataset>(); // the list of datasets
+			System.out.println(dh);
 			
 			for(int i = 0; i < colnumbers.size(); i ++){
-				IDataset column = dh.getDataset(colnumbers.get(i));
+				IDataset column = data.get(colnumbers.get(i));
 				column.setName(names.get(i));
 				dataholder.add(column);}
 			if(range){
@@ -63,8 +105,6 @@ public class Loader {
 	
 	
 	private static List<IDataset> RangeData(List<String> names, List<IDataset> dataholder){
-		
-	
 	for(IDataset col : dataholder){
 				if(!col.getName().equals("Intensity")){
 					x1 = Maths.abs(Maths.subtract(col, Lower)).argMin();
