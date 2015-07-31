@@ -33,7 +33,6 @@ import powder_toolkit.dataAnalysis.Loader;
  * @author sfz19839
  *
  */
-@SuppressWarnings("deprecation")
 public class Loadview extends ViewPart {
 	public Loadview() {
 	}
@@ -164,6 +163,9 @@ public class Loadview extends ViewPart {
 			        	  filetext.setText(filepath);
 			        	  sampletext.setText(file.getName());
 			        	  checkboxnumber = 0;
+			        	  columnnumbers.clear();;
+			        	  comboList.clear();
+			        	  
 						
 							try{
 								for(TableEditor myeditor : editors.values()){
@@ -334,7 +336,7 @@ public class Loadview extends ViewPart {
         			}
         			String flag = filepath.split("\\.")[1]; // get the file ending, do not put dots in you file name!
         			List<String> names =  new ArrayList<String>();
-        			
+        			System.out.println("337");
         			for(int j : columnnumbers){
         				String columnName = comboList.get(j);
         				names.add(columnName);
@@ -346,7 +348,9 @@ public class Loadview extends ViewPart {
 	        			if(names.get(0).equals(names.get(1))){
 	        				throw new Exception("Column names may not be the same");
         			}}
-        			List<IDataset> data = loader.setData(dataset, names, flag, columnnumbers); // may change this
+        			System.out.println(dataset);
+        			System.out.println(names);
+        			List<IDataset> data = Loader.setData(dataset, names, flag, columnnumbers); // may change this
         			if(data.isEmpty()){
         				throw new Exception("Error loading data");
         			}
