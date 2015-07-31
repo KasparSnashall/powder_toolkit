@@ -17,6 +17,8 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.wb.swt.SWTResourceManager;
@@ -25,6 +27,8 @@ import powder_toolkit.dataAnalysis.Comparator;
 import powder_toolkit.dataAnalysis.LoadedDataObject;
 import powder_toolkit.dataAnalysis.MyDataHolder;
 import powder_toolkit.jython_programs.CSD_cellsearch;
+
+import org.eclipse.swt.widgets.Table;
 
 public class Compareview extends ViewPart {
 
@@ -43,8 +47,8 @@ public class Compareview extends ViewPart {
 	private static Text txtAlpha;
 	private static Text txtBeta;
 	private static Text txtGamma;
-
-	private Text txtNumresults;
+	private static Text txtNumresults;
+	private static Table search_out;
 	
 	public Compareview() {
 	}
@@ -193,10 +197,10 @@ public class Compareview extends ViewPart {
         
         Label lblNumresults = new Label(grpSearch, SWT.NONE);
         lblNumresults.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 3, 1));
-        lblNumresults.setText("num_results");
+        lblNumresults.setText("Number of results");
         
         txtNumresults = new Text(grpSearch, SWT.BORDER);
-        txtNumresults.setText("num_results");
+        txtNumresults.setText("1");
         GridData gd_txtNumresults = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
         gd_txtNumresults.widthHint = 84;
         txtNumresults.setLayoutData(gd_txtNumresults);
@@ -210,6 +214,16 @@ public class Compareview extends ViewPart {
         /////////// functions //////////////
         comparefunction(compare);
         searchfunction(btnSearch);        
+        
+      
+        search_out = new Table(grpSearch, SWT.BORDER | SWT.FULL_SELECTION | SWT.CHECK);
+        search_out.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 6, 1));
+        search_out.setHeaderVisible(true);
+        search_out.setLinesVisible(true);
+        search_out.setToolTipText("The first n matching results");
+        TableColumn column = new TableColumn(search_out, SWT.NULL);
+        column.setText("Output");
+        column.pack();
         }
 	
 	public static void searchfunction(Button search){
@@ -234,8 +248,23 @@ public class Compareview extends ViewPart {
 					CSD_cellsearch mysearch = new CSD_cellsearch();
 					mysearch.setCell_angles(angles);
 					mysearch.setCell_lengths(lengths);
-					String result = CSD_cellsearch.search();
-					System.out.println(result);
+					mysearch.set_hits(Integer.valueOf(txtNumresults.getText()));
+					
+					List<String> result = CSD_cellsearch.search();
+					search_out.removeAll();
+					TableColumn[] columns = search_out.getColumns();
+					for( TableColumn tc : columns ) {  
+						tc.dispose() ;}
+			        TableColumn column = new TableColumn(search_out, SWT.NULL);
+			        column.setText("Output");
+			       
+					
+					for(String r : result){
+						final TableItem item1 = new TableItem(search_out, SWT.NULL);
+						item1.setText(r);
+						
+					}
+					 column.pack();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
