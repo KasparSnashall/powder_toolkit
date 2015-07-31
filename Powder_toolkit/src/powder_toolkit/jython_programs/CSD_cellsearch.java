@@ -1,10 +1,17 @@
 package powder_toolkit.jython_programs;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
 
-import org.python.core.PyInstance;
-import org.python.core.PyList;
 /**
  * Jython wrapper for a cell search python program
  * @author sfz19839
@@ -12,50 +19,66 @@ import org.python.core.PyList;
  */
 public class CSD_cellsearch {
 	
-	private static Interpreter interpret = new Interpreter();
-	public static List<Double> cell_lengths = new ArrayList<Double>();
-	public static List<Double> cell_angles = new ArrayList<Double>();
+	
+	private static List<Double> cell_lengths = new ArrayList<Double>();
+	private static List<Double> cell_angles = new ArrayList<Double>();
+	private static int hits = 1;
 	
 
-	public static PyInstance MyClass;
 	
-	public CSD_cellsearch(){
-		interpret.execfile("/scratch/clean_workpsace/powder_toolkit/Powder_toolkit/python_code/CSD_cell_search.py");
+	public static List<String> search(){
 		try{
-		MyClass = interpret.createClass("CSD_cell_search", "");	
-		}catch(Exception e){System.out.println(e.getMessage());}
-	}
-	
-	
-	public static String search(){
-		try{
-		String result = MyClass.invoke("search").toString();
-		return result;
+			PrintWriter writer = new PrintWriter("/scratch/clean_workpsace/powder_toolkit/Powder_toolkit/python_code/csd.sh", "UTF-8");
+			writer.write("module load python/ana \n");
+			writer.write("module load ccdc/api-quiet \n");
+			writer.write("source activate ccdc \n");
+			writer.write("python /scratch/clean_workpsace/powder_toolkit/Powder_toolkit/python_code/CSD_cell_search.py ");
+			// write in the lengths and angles
+			for(double length : cell_lengths){
+				writer.write(length+" ");}
+			for(double angle : cell_angles){
+				writer.write(angle+" ");
+			}
+			writer.write("primitive ");
+			writer.write(String.valueOf(hits));
+			writer.close();
 		}catch(Exception e){
-			System.out.println(e.getMessage());
 			
 		}
-		return null;
+		
+		final String cmd = " /scratch/clean_workpsace/powder_toolkit/Powder_toolkit/python_code/csd.sh";
+		//TODO make this more permentant
+		Process process;
+		try {
+			
+			process = Runtime.getRuntime().exec("sh"+cmd);
+			System.out.println(process.toString());
+			List<String> myoutput = new ArrayList<String>();
+		    //BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));// exe writter
+		    BufferedReader output = new BufferedReader( new InputStreamReader(process.getInputStream()));// exe output
+		    String line;
+		    while((line=output.readLine()) != null) {
+		            myoutput.add(line);
+		            }
+		   return myoutput;
+
+		} catch (IOException  e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+				return null;
+		
 	}
 	
-	
-
 	public void setCell_lengths(List<Double> cell_lengths) {
 		try{
 		if(cell_lengths.size() != 3){
 			throw new Exception("lengths not correct");
 		}
 		CSD_cellsearch.cell_lengths = cell_lengths;
-		System.out.println(MyClass.invoke("Printme"));
-		PyList mylist = new PyList();
-		for(Double item : cell_lengths){
-			mylist.add(item);
-		}
 		
 		
-		MyClass.invoke("set_angles",mylist);
-		}
-		catch(Exception e){System.out.println(e.getMessage());
+		}catch(Exception e){System.out.println(e.getMessage());
 		}
 	}
 
@@ -66,14 +89,14 @@ public class CSD_cellsearch {
 			throw new Exception("angles not correct");
 		}
 		CSD_cellsearch.cell_angles = cell_angles;
-		PyList mylist = new PyList();
-		for(Double item : cell_angles){
-			mylist.add(item);
-		}
-		MyClass.invoke("set_angles",mylist);
+		
 		}catch(Exception e){System.out.println(e.getMessage());}
 	}
 	
+	public void set_hits(int hits){
+		CSD_cellsearch.hits = hits;
+		
+	}
 	
 
 }
