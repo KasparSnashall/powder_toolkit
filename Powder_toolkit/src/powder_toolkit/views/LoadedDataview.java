@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+import powder_toolkit.dataAnalysis.LoadedDataObject;
 import powder_toolkit.dataAnalysis.MyDataHolder;
 
 
@@ -129,7 +130,13 @@ public class LoadedDataview extends ViewPart {
 		initializeMenu();
 	}
 	
-	public static void addData(String name,String flag, java.util.List<IDataset> data, String filepath){
+	public static void addData(String name,String flag, java.util.List<IDataset> data, String filepath) throws Exception{
+		for(LoadedDataObject loads : holder.getDatalist()){
+			if(loads.name.equals(name)){
+				throw new Exception("No two datasets may have the same name, try clearing the data beforehand");
+			}
+			
+		}
 		holder.addData(name, flag, data, filepath);
 		datalist.add(name);
 		//TODO add tooltip for list item
