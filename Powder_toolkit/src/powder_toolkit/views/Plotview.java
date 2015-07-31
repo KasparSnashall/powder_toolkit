@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
+import org.eclipse.dawnsci.analysis.dataset.impl.Dataset;
+import org.eclipse.dawnsci.analysis.dataset.impl.DatasetFactory;
 import org.eclipse.dawnsci.plotting.api.IPlottingSystem;
 import org.eclipse.dawnsci.plotting.api.PlotType;
 import org.eclipse.dawnsci.plotting.api.PlottingFactory;
@@ -41,8 +43,23 @@ public class Plotview extends ViewPart {
 	}
 	
 	public static void createMyplot(List<IDataset> data){
-		
-		plotting.createPlot1D(data.get(0), Arrays.asList(data.get(1)), "New plot", null);	
+		plotting.clear();
+		plotting.reset();
+		IDataset intensity = null;
+		IDataset x = null;
+		for(IDataset mydata: data){
+			if(mydata.getName().equals("Intensity"))
+				 intensity = mydata;
+			else if(mydata.getName().equals("D_space")){
+				x = DatasetFactory.createRange(mydata.getSize(), Dataset.INT32);
+				}
+			else{
+				x = mydata;}
+		}
+		try{
+		plotting.createPlot1D(x,Arrays.asList(intensity), "New plot", null);	
+		}
+		catch(Exception e){}
 	}
 
 	/**
