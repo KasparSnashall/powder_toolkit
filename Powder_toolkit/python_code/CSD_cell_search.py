@@ -1,13 +1,9 @@
 import sys
+#sys.path.append("/dls_sw/apps/ccdc/api-0.7.0/ccdc")
+sys.path.append("/home/sfz19839/Desktop/api")
 
-
-
-
-import ccdc
-
-
-#from ccdc.search import ReducedCellSearch
-#from collections import namedtuple
+from ccdc.search import ReducedCellSearch
+from ccdc.collections import namedtuple
 
 
 class CSD_cell_search:
