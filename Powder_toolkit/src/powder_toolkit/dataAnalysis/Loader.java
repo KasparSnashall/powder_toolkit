@@ -15,10 +15,9 @@ import uk.ac.diamond.scisoft.analysis.io.NexusHDF5Loader;
 public class Loader {
 	
 	
-	private static String Filepath;
 	public static double Upper;
 	public static double Lower;
-	public static boolean range;
+	public static boolean range = false;
 	private static int x1;
 	private static int x2;
 	public static IDataHolder dh;
@@ -51,7 +50,6 @@ public class Loader {
 			
 			for(int i = 0; i < dh.size();i++){
 				ILazyDataset lazydataset = dh.getLazyDataset(i);
-				System.out.println(lazydataset.getSlice());
 				final IDataset dataset = lazydataset.getSlice().squeeze();
 				mydata.add(dataset);
 				}
@@ -65,7 +63,7 @@ public class Loader {
 			dh = LoaderFactory.getData(filepath);
 			for(int i = 0; i < dh.size();i++){
 				IDataset dataset = dh.getDataset(i);
-				System.out.println(dataset.getSlice());
+				System.out.println(dataset);
 				mydata.add(dataset);
 				}
 			return mydata;
@@ -84,22 +82,27 @@ public class Loader {
 	 */
 	public static List<IDataset> setData(List<IDataset> data,List<String> names,String flag,List<Integer> colnumbers) {
 			try{
-			
 			List<IDataset> dataholder = new ArrayList<IDataset>(); // the list of datasets
-			System.out.println(dh);
-			
+			System.out.println(names);
+			System.out.println(dataholder);
 			for(int i = 0; i < colnumbers.size(); i ++){
 				IDataset column = data.get(colnumbers.get(i));
 				column.setName(names.get(i));
 				dataholder.add(column);}
+			
 			if(range){
 				dataholder = RangeData(names, dataholder);
 				return dataholder;
 				}
-				
+			else{
+			System.out.println(names);
+			System.out.println(dataholder);
 			return dataholder;
 			}
-			catch(Exception e){System.out.println(e.getMessage());}
+			}
+			catch(Exception e){
+				System.out.println(e.getMessage());
+				System.out.println("Error in load");}
 			return null;
 			}
 	
