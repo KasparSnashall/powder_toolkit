@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.ws.Holder;
+
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
@@ -17,6 +19,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
@@ -28,6 +31,7 @@ import org.eclipse.ui.part.ViewPart;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import powder_toolkit.dataAnalysis.Loader;
+import powder_toolkit.widgets.ErrorWidget;
 /**
  * Load view is designed to make it easy for the user to load in many data types with minimal effort
  * @author sfz19839
@@ -286,7 +290,9 @@ public class Loadview extends ViewPart {
 							parent.layout();
 	
 			          }     	  
-			}catch(Exception e){}
+			}catch(Exception e){
+				new ErrorWidget(e);
+			}
 			}});
 	}
 	
@@ -316,8 +322,13 @@ public class Loadview extends ViewPart {
 		SelectionListener mylistener  = new SelectionListener(){
         	@Override
         	public void widgetSelected(SelectionEvent e) {
-        		try{String myfilepath = filetext.getText(); // get filepath
+        		try{
+        			String myfilepath = filetext.getText(); // get filepath
         			filepath = myfilepath; // set the general filepath
+        			if (filepath.equals(null) | filepath.equals(" ")){
+        				throw new Exception("File path is Null");	
+        			}
+        			
         			Loader loader = new Loader();
         			if (myrange){
         				// if ranged must be able to accept doubles or floats
@@ -336,7 +347,7 @@ public class Loadview extends ViewPart {
         			}
         			String flag = filepath.split("\\.")[1]; // get the file ending, do not put dots in you file name!
         			List<String> names =  new ArrayList<String>();
-        			System.out.println("337");
+        			
         			for(int j : columnnumbers){
         				String columnName = comboList.get(j);
         				names.add(columnName);
@@ -354,16 +365,15 @@ public class Loadview extends ViewPart {
         			if(data.isEmpty()){
         				throw new Exception("Error loading data");
         			}
+        			
         			LoadedDataview.addData(sampletext.getText(), flag, data,filepath);
         			Indexview.setData(sampletext.getText());
         			Plotview.createMyplot(data);
         			
         			}
         			
-        			catch(Exception z){
-        				
-        				System.out.println(z.getMessage());
-        				}	
+        			catch(Exception e1){
+        				new ErrorWidget(e1);}	
         	}
         	@Override
         	public void widgetDefaultSelected(SelectionEvent e) {
