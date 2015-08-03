@@ -24,7 +24,7 @@ import powder_toolkit.dataAnalysis.MyDataHolder;
 
 /**
  * LoadedDataView
- * view to hold and share data
+ * view to hold and share data with other views
  * @author sfz19839
  *
  */

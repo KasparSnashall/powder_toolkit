@@ -9,7 +9,12 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
-
+/**
+ * A widget designed to be used for error handling
+ * Currently very basic but will improve this
+ * @author sfz19839
+ *
+ */
 public class ErrorWidget  {
 	
 	public ErrorWidget(Exception e){
