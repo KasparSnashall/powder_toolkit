@@ -7,7 +7,6 @@ import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 public class MyDataHolder {
 	
 	public List<LoadedDataObject> datalist = new ArrayList<LoadedDataObject>(); // arraylist
-	public List<List<Double>> celldata = new ArrayList<List<Double>>();
 
 	public List<LoadedDataObject> getDatalist() {
 		return datalist;
@@ -20,7 +19,7 @@ public class MyDataHolder {
 	public void delData(String name){
 		for(int i=0; i < datalist.size();i++){
 			LoadedDataObject loaded = datalist.get(i);
-			if(loaded.name == name){
+			if(loaded.name.equals(name)){
 				datalist.remove(i);
 			} 
 		}
@@ -35,10 +34,7 @@ public class MyDataHolder {
 		return null;
 	}
 
-	public void addCellData(List<Double> cleanout) {
-		celldata.add(cleanout);
-
-	}
+	
 	public IDataset getDataSet(String name,String columnname){
 		for(int i=0; i < datalist.size();i++){
 			LoadedDataObject loaded = datalist.get(i);
@@ -58,9 +54,6 @@ public class MyDataHolder {
 	
 	public void delAllData(){
 		datalist = new ArrayList<LoadedDataObject>();	
-	}
-	public void delAllCells(){
-		celldata = new ArrayList<List<Double>>();
 	}
 	
 	
