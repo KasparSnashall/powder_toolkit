@@ -233,7 +233,14 @@ public class Indexview extends ViewPart {
         CTabItem cleanOutTab = new CTabItem(outputfolder,SWT.NONE);
         cleanOutTab.setText("Cleaned Data");
         final Text rawoutput = new Text(outputfolder,SWT.BORDER | SWT.MULTI | SWT.WRAP |SWT.V_SCROLL);
-        final Text cleanoutput = new Text(outputfolder,SWT.BORDER | SWT.MULTI | SWT.WRAP |SWT.V_SCROLL);
+        final Table cleanoutput = new Table(outputfolder,SWT.CHECK | SWT.BORDER |SWT.V_SCROLL);
+        cleanoutput.setHeaderVisible(true);
+        TableColumn Outcolumn1 = new TableColumn(cleanoutput,SWT.NONE);
+        Outcolumn1.setText("Cell");
+        Outcolumn1.pack();
+        TableColumn Outcolumn2 = new TableColumn(cleanoutput,SWT.NONE);
+        Outcolumn2.setText("Cell values");
+        Outcolumn2.pack();
         griddata = new GridData(SWT.FILL,SWT.FILL,false, true, 3, 1);
         griddata.minimumHeight = 200;
         griddata.horizontalSpan = 3;
@@ -303,7 +310,7 @@ public class Indexview extends ViewPart {
                 			myprog.write_input();}
 
                 		List<String> newoutput = myprog.Run(); // the output
-                		List<String> cleanout = myprog.read_output();
+                		List<Double> cleanout = myprog.read_output();
                 		//holder.addCellData(cleanout);
                 		
                 		
@@ -312,9 +319,11 @@ public class Indexview extends ViewPart {
                 		}
                 		int cellnum = 1;
                 		for(int i = 0; i < cleanout.size();i++, cellnum ++){
-                			cleanoutput.append("Cell Number " + String.valueOf(cellnum)+"\n");
-                			cleanoutput.append(cleanout.get(i)+"\n");
-                			cleanoutput.append("\n");
+                			TableItem cleanitem = new TableItem(cleanoutput,SWT.NONE);
+                			cleanitem.setText(0,"Cell Number " + String.valueOf(cellnum));
+                			cleanitem.setText(1,String.valueOf(cleanout.get(i)));
+                			System.out.println(cleanout.get(i));
+                			
                 			}
                 		}}}
                 		catch(Exception e){
@@ -383,7 +392,7 @@ public class Indexview extends ViewPart {
 				  	      myitem.setChecked(false); // unckeck the boxes
 				  	      myitem.setBackground(grey); // clear the background
 				  	      rawoutput.setText("");
-				  	      cleanoutput.setText("");    
+				  	      cleanoutput.removeAll();    
 					}
 					}
         	}
