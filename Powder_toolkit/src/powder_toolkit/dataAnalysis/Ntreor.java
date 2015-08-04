@@ -35,7 +35,7 @@ public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
 			"19","16","0","0","10","1","1","2000","25","0.002","0.05","0.0004",
             "0","0","0","0","0"};
 	private IDataset data1;
-	private List<String> celldata;
+	
 	//TODO add in cell data
 	@Override
 	public void write_input() {
@@ -43,9 +43,21 @@ public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
 		for(int i= 0; i < data.size(); i++)
 		{IDataset mydataset = data.get(i);
 		System.out.println(mydataset.getName());
+		// accomodate for ntreor choices
 		if (mydataset.getName().contains("D_space")){
-		data1 = mydataset.getSliceView(new Slice(0,20));}
+		data1 = mydataset.getSliceView(new Slice(0,20));
+		keywords.put("CHOICE", "4");
 		}
+		else if(mydataset.getName().contains("Theta")){
+			data1 = mydataset.getSliceView(new Slice(0,20));
+			keywords.put("CHOICE", "2");
+		}
+		else if(mydataset.getName().contains("Two Theta")){
+			data1 = mydataset.getSliceView(new Slice(0,20));
+			keywords.put("CHOICE", "3");
+		}
+		}
+		
 		if(data1 == null){
 			try {
 				throw new Exception("No data submitted");
@@ -83,13 +95,10 @@ public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
 		}
 	}
 	@Override
-	public List<String> read_output() {
-		List<String> output = new ArrayList<String>(); // my output array
+	public List<Double> read_output() {
+		List<Double> output = new ArrayList<Double>(); // my output string array
 		try{
-		System.out.println(filepath);
-		System.out.println(title);
 		String outputfile = filepath+title+".short";
-		System.out.println(outputfile);
 		BufferedReader br = new BufferedReader(new FileReader(outputfile));
 		String line; // line variable
 		
@@ -101,10 +110,11 @@ public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
 		    String newline = "";
 		    for(int i = 0; i<3;i++){
 			line = br.readLine(); // grab the 3 lines after
+			System.out.println(line);
 			newline += line;
 			
 			}
-		    output.add(newline); // append the output
+		    //output.add(newline); // append the output
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
