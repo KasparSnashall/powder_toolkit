@@ -18,7 +18,6 @@ public class PowderToolkit implements IPerspectiveFactory {
 		{
 			IFolderLayout folderLayout = layout.createFolder("Powder folder", IPageLayout.TOP, 0.84f, IPageLayout.ID_EDITOR_AREA);
 			folderLayout.addView("powder_toolkit.views.Loadview");
-			folderLayout.addView("powder_toolkit.views.Peakview");
 			folderLayout.addView("powder_toolkit.views.Indexview");
 			folderLayout.addView("powder_toolkit.views.Compareview");
 		}
