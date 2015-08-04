@@ -8,13 +8,21 @@ import org.eclipse.swt.events.DragDetectEvent;
 import org.eclipse.swt.events.DragDetectListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
+import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.wb.swt.SWTResourceManager;
 
@@ -32,8 +40,8 @@ public class LoadedDataview extends ViewPart {
 
 	public static final String ID = "Views.LoadedDataview"; //$NON-NLS-1$
 	public static MyDataHolder holder = new MyDataHolder(); // the data holder
-	private static List datalist;
-	private static List cellList;
+	private static Table datalist;
+	private static Table cellList;
 	public LoadedDataview() {
 	}
 
@@ -56,7 +64,8 @@ public class LoadedDataview extends ViewPart {
 		lblLoadedData.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 2, 1));
 		lblLoadedData.setText("Loaded Data");
 		
-		datalist = new List(container, SWT.BORDER);	
+		datalist = new Table(container, SWT.BORDER);
+		datalist.setHeaderVisible(true);
 		datalist.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 		datalist.addDragDetectListener(new DragDetectListener() {
 			public void dragDetected(DragDetectEvent arg0) {
@@ -71,30 +80,32 @@ public class LoadedDataview extends ViewPart {
 				// remove the selected from the list
 				int[] myitems = datalist.getSelectionIndices();
 				for(int i = 0; i < myitems.length;i++){
-					datalist.remove(i);
-					holder.delData(datalist.getItem(i));}
+					holder.delData(datalist.getItem(i).getText());
+					datalist.remove(i);}
 			}
 		});
 		
 		btnClear.setText("Clear");
 		Button btnClearAll = new Button(container, SWT.NONE);
 		btnClearAll.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-		btnClearAll.addSelectionListener(new SelectionAdapter() {
+		btnClearAll.addSelectionListener(new SelectionAdapter() {	
 			@Override
-			public void widgetSelected(SelectionEvent e) {
-				datalist.removeAll();
-				holder.delAllData();
+			public void widgetSelected(SelectionEvent e) {				
+				for(int i = 0; i < datalist.getItemCount();i++){
+					holder.delData(datalist.getItem(i).getText());
+					datalist.remove(i);}
 			}
 		});
 		btnClearAll.setText("Clear All");
-				new Label(container, SWT.NONE);
-				new Label(container, SWT.NONE);
+		new Label(container, SWT.NONE);
+		new Label(container, SWT.NONE);
+
+		Label label = new Label(container, SWT.CENTER);
+		label.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 2, 1));
+		label.setText("Cell Data");
 		
-				Label label = new Label(container, SWT.CENTER);
-				label.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 2, 1));
-				label.setText("Cell Data");
-		
-		cellList= new List(container, SWT.BORDER);
+		cellList= new Table(container, SWT.BORDER | SWT.V_SCROLL);
+		cellList.setHeaderVisible(true);
 		cellList.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 		cellList.addDragDetectListener(new DragDetectListener() {
 			public void dragDetected(DragDetectEvent arg0) {
@@ -110,6 +121,8 @@ public class LoadedDataview extends ViewPart {
 				// remove the selected from the list
 				int[] myitems = cellList.getSelectionIndices();
 				for(int i = 0; i < myitems.length;i++){
+					String name = cellList.getItem(i).getText();
+					holder.delData(cellList.getItem(i).getText());
 					cellList.remove(i);}
 			}
 		});
@@ -120,11 +133,52 @@ public class LoadedDataview extends ViewPart {
 		btnClearAll_1.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				cellList.removeAll();	
+				for(int i = 0; i < cellList.getItemCount();i++){
+					holder.delData(cellList.getItem(i).getText());
+					cellList.remove(i);}
 			}
 		});
 		btnClearAll_1.setText("Clear All");
-
+		
+		
+		// tool tip functionality
+		datalist.addListener(SWT.MouseHover, new Listener() {
+		      public void handleEvent(Event event) {
+		        Point pt = new Point(event.x, event.y);
+		        TableItem item = datalist.getItem(pt);
+		        if (item == null)
+		          return;
+		        for (int i = 0; i < 1; i++) {
+		          Rectangle rect = item.getBounds(i);
+		          if (rect.contains(pt)) {
+		          datalist.setToolTipText(item.getText() +"\n" +holder.getData(item.getText()).data.toString()); 
+		          }
+		        }
+		      }
+		    });
+		
+		cellList.addListener(SWT.MouseHover, new Listener() {
+		      public void handleEvent(Event event) {
+		        Point pt = new Point(event.x, event.y);
+		        TableItem item = cellList.getItem(pt);
+		        if (item == null)
+		          return;
+		        for (int i = 0; i < 1; i++) {
+		          Rectangle rect = item.getBounds(i);
+		          if (rect.contains(pt)) {
+		        	  String angles = "";
+		        	  String lengths = "";
+		        	  String primitive = "";
+		        	  for(int i1 = 0 ; i1 < 3; i1++){
+		        		  angles += " "+holder.getData(item.getText()).data.get(0).getDouble(i1);
+		        		  lengths += " "+holder.getData(item.getText()).data.get(1).getDouble(i1);
+		        	  }
+		        	  primitive = holder.getData(item.getText()).data.get(2).getString(0);
+			          cellList.setToolTipText(item.getText() +"\n" +angles +"\n" +lengths+"\n"+primitive);
+		          }
+		        }
+		      }
+		    });
 		createActions();
 		initializeToolBar();
 		initializeMenu();
@@ -138,9 +192,20 @@ public class LoadedDataview extends ViewPart {
 			
 		}
 		holder.addData(name, flag, data, filepath);
-		datalist.add(name);
-		//TODO add tooltip for list item
-		//datalist.addMouseTrackListener(listener);
+		TableItem myitem = new TableItem(datalist,SWT.NONE);
+		myitem.setText(name);	
+	}
+	
+	public static void addCell(String name,java.util.List<IDataset> data) throws Exception{
+		for(LoadedDataObject loads : holder.getDatalist()){
+			if(loads.name.equals(name)){
+				throw new Exception("No two datasets may have the same name, try clearing the data beforehand");
+			}	
+		}
+		holder.addData(name, "cell", data, null);
+		TableItem myitem = new TableItem(cellList,SWT.NONE);
+		myitem.setText(name);
+		
 	}
 
 	/**
