@@ -36,7 +36,10 @@ import powder_toolkit.dataAnalysis.IPowderIndexer;
 import powder_toolkit.dataAnalysis.LoadedDataObject;
 import powder_toolkit.dataAnalysis.MyDataHolder;
 import powder_toolkit.dataAnalysis.Ntreor;
+import powder_toolkit.widgets.ErrorWidget;
 import powder_toolkit.widgets.Properties_Widget;
+
+import org.eclipse.swt.widgets.ProgressBar;
 
 public class Indexview extends ViewPart {
 	public Indexview() {
@@ -117,6 +120,7 @@ public class Indexview extends ViewPart {
         browse.setAlignment(SWT.LEFT);
         browse.setText("Browse...");
         browse.setEnabled(false);
+        
         final Shell shell = new Shell();
         browse.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
@@ -158,11 +162,6 @@ public class Indexview extends ViewPart {
         for (int loopIndex = 0; loopIndex < myprogslist.length; loopIndex++) {
   	      TableItem item = new TableItem(indexingprogs, SWT.NULL);
   	      item.setText(0,myprogslist[loopIndex]);}
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
-        new Label(composite, SWT.NONE);
         
         
         // add variable button
@@ -273,12 +272,15 @@ public class Indexview extends ViewPart {
         		}
         	}
         });
+        
+        
         run.addSelectionListener(new SelectionAdapter(){
         	public void widgetSelected(SelectionEvent event) {
-        		if (loadButton.getSelection()){
+        		
         			
         			try{
         				// *************************New dat file***********************
+        				
                 		for(int loopIndex = 0; loopIndex < indexer_list.size(); loopIndex++){
                 		IPowderIndexer myprog = indexer_list.get(loopIndex); // get the program
                 		TableItem myitem = indexingprogs.getItem(loopIndex); // get checked?
@@ -292,15 +294,14 @@ public class Indexview extends ViewPart {
                 		Path relativepath = base.relativize(myfilepath); // relative path of runfile (Ntreor requires this)
                 		
                 		if(title.contains(".")){
-                			title = title.split("\\.")[0];
-                			
+                			title = title.split("\\.")[0];	
                 		}
                 		myprog.setTitle(title); // set the filename (file.end , handled in the python script )  
                 		myprog.setFilepath(relativepath.toString()+"/");
                 		myprog.setData(data);
-                		myprog.write_input();
-                		
-                		
+                		if (loadButton.getSelection()){
+                			myprog.write_input();}
+
                 		List<String> newoutput = myprog.Run(); // the output
                 		List<String> cleanout = myprog.read_output();
                 		//holder.addCellData(cleanout);
@@ -310,83 +311,15 @@ public class Indexview extends ViewPart {
                 			rawoutput.append(newoutput.get(i)+"\n"); // print output	
                 		}
                 		int cellnum = 1;
-                		try{
-                			for(int i = 0; i < cleanout.size();i++, cellnum ++){
+                		for(int i = 0; i < cleanout.size();i++, cellnum ++){
                 			cleanoutput.append("Cell Number " + String.valueOf(cellnum)+"\n");
                 			cleanoutput.append(cleanout.get(i)+"\n");
                 			cleanoutput.append("\n");
                 			}
-                			
-                		}catch(Exception e){
-                			
-                		}
-                		
-                		
-                		
                 		}}}
                 		catch(Exception e){
-                			rawoutput.append(" ");
-                			
-                		}	
-        			
-        		}
-        		if(peaksButton.getSelection()){
-        			if (filepath.length() < 3){
-        				rawoutput.append("No input file selected \n");	
-        			}
-        			else{
-        		try{
-        		// **************************Existing dat file ********************************
-        		boolean runflag = false; 
-        		for(int loopIndex = 0; loopIndex < indexer_list.size(); loopIndex++){
-        		IPowderIndexer myprog = indexer_list.get(loopIndex); // get the program
-        		TableItem myitem = indexingprogs.getItem(loopIndex); // get checked?
-        		
-        		
-        		if (myitem.getChecked()){
-        		runflag = true;
-        		
-        		//output.append(myprog.get_Name()+" Running \n"); // running...
-        		File myfile = new File(filepath); // check if file
-        		String mynewfilepath  = myfile.getParent().toString(); // get the parent directory
-        		String mybase = System.getProperty("user.dir"); // current base directory
-        		Path base = Paths.get(mybase); // current module path will make this automatic
-        		Path myfilepath = Paths.get(mynewfilepath); 
-        		Path relativepath = base.relativize(myfilepath); // relative path of runfile (Ntreor requires this)
-        		myprog.setFilepath(relativepath.toString()+"/"); // pass the relative filepath to the prog
-        		myprog.setTitle(myfile.getName().split("\\.")[0]); // set the filename (file.end , handled in the python script ) 
-        		
-        		List<String> newoutput = myprog.Run(); // the output
-        		List<String> cleanout = myprog.read_output();
-        		
-        		//holder.addCellData(cleanout);
-        		
-        		for(int i = 0; i < newoutput.size();i++){
-        			rawoutput.append(newoutput.get(i)+"\n"); // print output
-        		}
-        		int cellnum = 1;
-        		try{
-        			for(int i = 0; i < cleanout.size();i++, cellnum ++){
-        			cleanoutput.append("Cell Number " + String.valueOf(cellnum)+"\n");
-        			cleanoutput.append(cleanout.get(i)+"\n");
-        			cleanoutput.append("\n");
-        			}
-        		}catch(Exception e){System.out.println(e.getMessage());
-        			
-        		}
-        		}
-        		}
-        		if (!runflag){
-        			rawoutput.append("No program selected \n");
-        			
-        		}
-        		}
-        		catch(Exception e){
-        			rawoutput.append(e.getMessage());
-        			
-        		}
-        		}
-        		}
+                			new ErrorWidget(e);
+                			}
         		}
         	});
         
@@ -428,7 +361,7 @@ public class Indexview extends ViewPart {
 				  	      }
 					  	  }}}
 				
-				catch (Exception e) {System.out.print(e.getMessage());}
+				catch (Exception e) {new ErrorWidget(e);}
 			}
 			}
 			}
