@@ -170,11 +170,11 @@ public class LoadedDataview extends ViewPart {
 		        	  String lengths = "";
 		        	  String primitive = "";
 		        	  for(int i1 = 0 ; i1 < 3; i1++){
-		        		  angles += " "+holder.getData(item.getText()).data.get(0).getDouble(i1);
-		        		  lengths += " "+holder.getData(item.getText()).data.get(1).getDouble(i1);
+		        		  angles += " "+holder.getData(item.getText()).data.get(1).getDouble(i1);
+		        		  lengths += " "+holder.getData(item.getText()).data.get(0).getDouble(i1);
 		        	  }
 		        	  primitive = holder.getData(item.getText()).data.get(2).getString(0);
-			          cellList.setToolTipText(item.getText() +"\n" +angles +"\n" +lengths+"\n"+primitive);
+			          cellList.setToolTipText(item.getText() +"\n" +"(a,b,c) "+lengths +"\n" +"(A,B,C)"+angles+"\n"+primitive);
 		          }
 		        }
 		      }
