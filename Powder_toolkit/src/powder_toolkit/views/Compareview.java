@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
+import org.eclipse.dawnsci.analysis.dataset.impl.DoubleDataset;
+import org.eclipse.dawnsci.analysis.dataset.impl.StringDataset;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -27,6 +29,7 @@ import powder_toolkit.dataAnalysis.Comparator;
 import powder_toolkit.dataAnalysis.LoadedDataObject;
 import powder_toolkit.dataAnalysis.MyDataHolder;
 import powder_toolkit.jython_programs.CSD_cellsearch;
+import powder_toolkit.widgets.ErrorWidget;
 
 import org.eclipse.swt.widgets.Table;
 
@@ -204,16 +207,60 @@ public class Compareview extends ViewPart {
         GridData gd_txtNumresults = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
         gd_txtNumresults.widthHint = 84;
         txtNumresults.setLayoutData(gd_txtNumresults);
+        
+        
+        /////////// functions //////////////
+        comparefunction(compare);
         new Label(grpSearch, SWT.NONE);
         
         Button btnSearch = new Button(grpSearch, SWT.NONE);
         btnSearch.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
         btnSearch.setText("Search");
+        searchfunction(btnSearch);
+        new Label(grpSearch, SWT.NONE);
+        new Label(grpSearch, SWT.NONE);
+        new Label(grpSearch, SWT.NONE);
+        new Label(grpSearch, SWT.NONE);
+        new Label(grpSearch, SWT.NONE);
         
-        
-        /////////// functions //////////////
-        comparefunction(compare);
-        searchfunction(btnSearch);        
+        Button btnSaveCells = new Button(grpSearch, SWT.NONE);
+        btnSaveCells.addSelectionListener(new SelectionAdapter() {
+        	@Override
+        	public void widgetSelected(SelectionEvent e) {
+        		for(TableItem item : search_out.getItems()){
+        			if(item.getChecked()){
+        				String myitem = item.getText();
+        				String[] replacelist = new String[]{"CellLengths(a",",","b=","c=","aplha=","beta=","gamma=","CellAngles(alpha=","=",")"}; // remove the junk
+        				for(String s : replacelist){
+        					myitem = myitem.replace(s, "");
+        				}
+        				// create a new dataobject for each cell
+        				String[] mylist = myitem.split(" ");
+        				IDataset celllengths = new DoubleDataset(new double[]{Double.valueOf(mylist[1]),Double.valueOf(mylist[2]),Double.valueOf(mylist[3])}); // cell lengths
+        				celllengths.setName("Cell Lengths");
+        				IDataset cellangles = new DoubleDataset(new double[]{Double.valueOf(mylist[4]),Double.valueOf(mylist[5]),Double.valueOf(mylist[6])}); // cell angles
+        				cellangles.setName("Cell angles");
+        				IDataset centering =  new StringDataset(new String[]{mylist[7]});
+        				centering.setName("Cell centering");
+        				List<IDataset> data = new ArrayList<IDataset>();
+        				data.add(celllengths);
+        				data.add(cellangles);
+        				data.add(centering);
+        				try {
+							LoadedDataview.addCell(mylist[0], data); // name, datalist
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							new ErrorWidget(e1);
+						}
+        				
+        				
+        			}
+        		}
+        		
+        	}
+        });
+        btnSaveCells.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+        btnSaveCells.setText("Save Cells");
         
       
         search_out = new Table(grpSearch, SWT.BORDER | SWT.FULL_SELECTION | SWT.CHECK);
@@ -239,7 +286,6 @@ public class Compareview extends ViewPart {
 					double alpha = Double.valueOf(txtAlpha.getText());
 					double beta = Double.valueOf(txtBeta.getText());
 					double gamma = Double.valueOf(txtGamma.getText());
-					System.out.println("compare1");
 					List<Double> lengths = new ArrayList<Double>();
 					lengths.add(a);lengths.add(b);lengths.add(c);
 					
@@ -286,12 +332,10 @@ public class Compareview extends ViewPart {
 		        	LoadedDataObject loaded = holder.getData(text.getText());
 		        	List<IDataset> datalist = loaded.data;
 		        	for(int i = 0; i < datalist.size(); i++){
-		        		System.out.println(datalist.get(i));
 		        		combo.add(datalist.get(i).getName());
-		        		System.out.println(combo.getItem(i));
 		        	}
 		        }catch(Exception e){
-		        	System.out.println(e.getMessage());
+		        	new ErrorWidget(e);
 		        	
 		        }
 		      }
