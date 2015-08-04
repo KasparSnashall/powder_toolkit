@@ -14,6 +14,8 @@ import java.util.Map.Entry;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.dawnsci.analysis.api.dataset.Slice;
+
+import powder_toolkit.widgets.ErrorWidget;
 /**
  * Ntreor indexing wrapper, all new indexing programs should have structure similar to this
  * @author kaspar
@@ -143,11 +145,13 @@ public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
 		        }
 		   
 	    	int exitVal = process.waitFor();
-        	System.out.println("Exited with error code "+exitVal);
+	    	if(exitVal != 0){
+	    		throw new Exception("Ntreor exited with Error code "+String.valueOf(exitVal));
+	    	}
+        	
 			} 
 		catch(Exception e) {
-			System.out.println(e.toString());
-			e.printStackTrace();
+			new ErrorWidget(e);
 			}
 		return output;
 	}
