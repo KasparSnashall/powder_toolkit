@@ -65,18 +65,18 @@ public interface IPowderIndexer {
 	public String getTitle();
 	/**
 	 * 
-	 * @param mytitle Some programs have options for a title this is used only in that case
+	 * @param title is the string used in file creation and in some programs operation
 	 * 
 	 */
 	public void setTitle(String mytitle);
 	/**
 	 * 
-	 * @return gets the clean output usually a string list that can then be printed to screen
+	 * @return gets the clean output List of doubles that go a,b,c,alpha,beta,gamma   all indexing programs should return something similar to this.
 	 * 
 	 */
-	public List<String> read_output();
+	public List<Double> read_output();
 	/**
-	 * writes the input file, uses title filepath and data
+	 * writes the input file, uses title file path and data
 	 */
 	public void write_input();
 	/**
