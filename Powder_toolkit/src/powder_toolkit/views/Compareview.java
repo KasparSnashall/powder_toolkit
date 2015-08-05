@@ -429,7 +429,6 @@ public class Compareview extends ViewPart {
 		        		combo.add(datalist.get(i).getName());
 		        	}
 		        }catch(Exception e){
-		        	new ErrorWidget(e);
 		        	
 		        }
 		      }
