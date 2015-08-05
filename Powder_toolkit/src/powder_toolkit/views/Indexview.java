@@ -40,6 +40,7 @@ import powder_toolkit.widgets.ErrorWidget;
 import powder_toolkit.widgets.Properties_Widget;
 
 import org.eclipse.swt.widgets.ProgressBar;
+import org.eclipse.swt.widgets.CoolBar;
 
 public class Indexview extends ViewPart {
 	public Indexview() {
@@ -60,7 +61,8 @@ public class Indexview extends ViewPart {
 	private final Color green = Display.getCurrent().getSystemColor(SWT.COLOR_GREEN);
 	private final Color red = Display.getCurrent().getSystemColor(SWT.COLOR_RED);
 	private static MyDataHolder holder  = LoadedDataview.holder;
-	
+	private static Table cleanoutput;
+	private static Text rawoutput;
 
 	/**
 	 * Create contents of the view part.
@@ -131,6 +133,7 @@ public class Indexview extends ViewPart {
 			          if (file.isFile()){
 			        	  // check is actually a file and not just directory or stub
 			        	  filepathbox.setText(filepath);
+			        	  title = file.getName().split("\\.")[0];
 			        	  }
 			          else
 			        	  filepathbox.setText("Not a file");
@@ -232,14 +235,17 @@ public class Indexview extends ViewPart {
         // output tab 2
         CTabItem cleanOutTab = new CTabItem(outputfolder,SWT.NONE);
         cleanOutTab.setText("Cleaned Data");
-        final Text rawoutput = new Text(outputfolder,SWT.BORDER | SWT.MULTI | SWT.WRAP |SWT.V_SCROLL);
-        final Table cleanoutput = new Table(outputfolder,SWT.CHECK | SWT.BORDER |SWT.V_SCROLL);
+        rawoutput = new Text(outputfolder,SWT.BORDER | SWT.MULTI | SWT.WRAP |SWT.V_SCROLL);
+        cleanoutput = new Table(outputfolder,SWT.CHECK | SWT.BORDER |SWT.V_SCROLL );
+        cleanoutput.setLinesVisible(true);
         cleanoutput.setHeaderVisible(true);
         TableColumn Outcolumn1 = new TableColumn(cleanoutput,SWT.NONE);
         Outcolumn1.setText("Cell");
+        
         Outcolumn1.pack();
+        Outcolumn1.setWidth(200);
         TableColumn Outcolumn2 = new TableColumn(cleanoutput,SWT.NONE);
-        Outcolumn2.setText("Cell values");
+        Outcolumn2.setText("Cell values [a,b,c,Aplha,Beta,Gamma]");
         Outcolumn2.pack();
         griddata = new GridData(SWT.FILL,SWT.FILL,false, true, 3, 1);
         griddata.minimumHeight = 200;
@@ -249,6 +255,7 @@ public class Indexview extends ViewPart {
         griddata.minimumHeight = 200;
         griddata.horizontalSpan = 3;
         rawoutput.setLayoutData(griddata);
+        
         rawOutTab.setControl(rawoutput);
         cleanOutTab.setControl(cleanoutput);
         outputfolder.setSelection(rawOutTab);
@@ -283,11 +290,7 @@ public class Indexview extends ViewPart {
         
         run.addSelectionListener(new SelectionAdapter(){
         	public void widgetSelected(SelectionEvent event) {
-        		
-        			
         			try{
-        				// *************************New dat file***********************
-        				
                 		for(int loopIndex = 0; loopIndex < indexer_list.size(); loopIndex++){
                 		IPowderIndexer myprog = indexer_list.get(loopIndex); // get the program
                 		TableItem myitem = indexingprogs.getItem(loopIndex); // get checked?
@@ -299,10 +302,14 @@ public class Indexview extends ViewPart {
                 		Path base = Paths.get(mybase); // current module path will make this automatic
                 		Path myfilepath = Paths.get(mynewfilepath); 
                 		Path relativepath = base.relativize(myfilepath); // relative path of runfile (Ntreor requires this)
-                		
+                		if(title.equals("")){
+                			
+                			title = myfile.getName().split("\\.")[0];
+                		}
                 		if(title.contains(".")){
                 			title = title.split("\\.")[0];	
                 		}
+                		
                 		myprog.setTitle(title); // set the filename (file.end , handled in the python script )  
                 		myprog.setFilepath(relativepath.toString()+"/");
                 		myprog.setData(data);
@@ -310,7 +317,7 @@ public class Indexview extends ViewPart {
                 			myprog.write_input();}
 
                 		List<String> newoutput = myprog.Run(); // the output
-                		List<Double> cleanout = myprog.read_output();
+                		List<List<Double>> cleanout = myprog.read_output();
                 		//holder.addCellData(cleanout);
                 		
                 		
@@ -320,7 +327,7 @@ public class Indexview extends ViewPart {
                 		int cellnum = 1;
                 		for(int i = 0; i < cleanout.size();i++, cellnum ++){
                 			TableItem cleanitem = new TableItem(cleanoutput,SWT.NONE);
-                			cleanitem.setText(0,"Cell Number " + String.valueOf(cellnum));
+                			cleanitem.setText(0,myitem.getText()+" Cell Number " + String.valueOf(cellnum));
                 			cleanitem.setText(1,String.valueOf(cleanout.get(i)));
                 			System.out.println(cleanout.get(i));
                 			
@@ -331,10 +338,6 @@ public class Indexview extends ViewPart {
                 			}
         		}
         	});
-        
-        //*************************** functions *************************************//
-        // browse selection function
-        
         // add variable button function
         addvariable.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
