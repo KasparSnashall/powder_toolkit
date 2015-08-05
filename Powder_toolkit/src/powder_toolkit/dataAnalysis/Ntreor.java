@@ -95,8 +95,8 @@ public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
 		}
 	}
 	@Override
-	public List<Double> read_output() {
-		List<Double> output = new ArrayList<Double>(); // my output string array
+	public List<List<Double>> read_output() {
+		List<List<Double>> output = new ArrayList<List<Double>>(); // my output string array
 		try{
 		String outputfile = filepath+title+".short";
 		BufferedReader br = new BufferedReader(new FileReader(outputfile));
@@ -110,11 +110,20 @@ public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
 		    String newline = "";
 		    for(int i = 0; i<3;i++){
 			line = br.readLine(); // grab the 3 lines after
-			System.out.println(line);
-			newline += line;
 			
+			newline += line;
 			}
-		    //output.add(newline); // append the output
+		    System.out.println(newline);
+		    String[] out1 = newline.split("\\s+");
+		    List<Double> numeric_out = new ArrayList<Double>();
+		    for (String s : out1) {
+		        try {
+		            numeric_out.add(Double.parseDouble(s));
+		        } catch (NumberFormatException e) {
+		            // A string which doesn't represent a number
+		        }
+		    }
+		    output.add(numeric_out);// add the list of doubles
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

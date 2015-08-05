@@ -71,10 +71,11 @@ public interface IPowderIndexer {
 	public void setTitle(String mytitle);
 	/**
 	 * 
-	 * @return gets the clean output List of doubles that go a,b,c,alpha,beta,gamma   all indexing programs should return something similar to this.
+	 * @return gets the clean output List of List of doubles that go a,b,c,alpha,beta,gamma   all indexing programs should return something similar 
+	 * to this for cleaned output to work, future developer may consider changing this.
 	 * 
 	 */
-	public List<Double> read_output();
+	public List<List<Double>> read_output();
 	/**
 	 * writes the input file, uses title file path and data
 	 */
