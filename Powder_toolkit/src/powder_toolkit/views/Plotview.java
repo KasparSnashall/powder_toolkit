@@ -16,6 +16,8 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 
+import powder_toolkit.dataAnalysis.ServiceLoader;
+
 public class Plotview extends ViewPart {
 
 	public static final String ID = "Views.Plotview"; //$NON-NLS-1$
@@ -30,13 +32,11 @@ public class Plotview extends ViewPart {
 	@Override
 	public void createPartControl(Composite parent) {
 		try{
-		plotting = PlottingFactory.createPlottingSystem();
+//		plotting = PlottingFactory.createPlottingSystem();
+		plotting = ServiceLoader.getPlottingService().createPlottingSystem();
 		parent.setLayout(new FillLayout(SWT.HORIZONTAL));
 		
-		createActions();
-		initializeToolBar();
-		initializeMenu();
-		plotting.createPlotPart(parent, "Plot",getViewSite().getActionBars(), PlotType.XY, null);
+		plotting.createPlotPart(parent, "Plot",getViewSite().getActionBars(), PlotType.XY, this);
 		}catch(Exception e){
 		
 		}
@@ -62,32 +62,16 @@ public class Plotview extends ViewPart {
 		catch(Exception e){}
 	}
 
-	/**
-	 * Create the actions.
-	 */
-	private void createActions() {
-		// Create the actions
-	}
-
-	/**
-	 * Initialize the toolbar.
-	 */
-	private void initializeToolBar() {
-		IToolBarManager toolbarManager = getViewSite().getActionBars()
-				.getToolBarManager();
-	}
-
-	/**
-	 * Initialize the menu.
-	 */
-	private void initializeMenu() {
-		IMenuManager menuManager = getViewSite().getActionBars()
-				.getMenuManager();
+	@Override
+	public void setFocus() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void setFocus() {
-		// Set the focus
+	public Object getAdapter(Class clazz) {
+		if (plotting.getAdapter(clazz)!=null) return plotting.getAdapter(clazz);
+		return super.getAdapter(clazz);
 	}
 
 }
