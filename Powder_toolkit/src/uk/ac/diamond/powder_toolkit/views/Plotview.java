@@ -12,12 +12,14 @@ import org.eclipse.dawnsci.plotting.api.PlottingFactory;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 
 import uk.ac.diamond.powder_toolkit.dataAnalysis.ServiceLoader;
-
 public class Plotview extends ViewPart {
 
 	public static final String ID = "Views.Plotview"; //$NON-NLS-1$
@@ -56,7 +58,8 @@ public class Plotview extends ViewPart {
 				x = mydata;}
 		}
 		try{
-		plotting.createPlot1D(x,Arrays.asList(intensity), "New plot", null);	
+		plotting.createPlot1D(x,Arrays.asList(intensity), "New plot", null);
+		
 		}
 		catch(Exception e){}
 	}
