@@ -4,9 +4,11 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
+import org.eclipse.dawnsci.analysis.dataset.impl.DoubleDataset;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.swt.SWT;
@@ -17,6 +19,7 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -63,6 +66,7 @@ public class Indexview extends ViewPart {
 	private static MyDataHolder holder  = LoadedDataview.holder;
 	private static Table cleanoutput;
 	private static Text rawoutput;
+	private static Button  btnSaveSelected;
 
 	/**
 	 * Create contents of the view part.
@@ -171,14 +175,14 @@ public class Indexview extends ViewPart {
         Button addvariable = new Button(composite,SWT.NONE);
         GridData gd_addvariable = new GridData(SWT.LEFT, SWT.FILL, false, false, 1, 1);
         gd_addvariable.widthHint = 146;
-        gd_addvariable.heightHint = 45;
+        gd_addvariable.heightHint = 30;
         addvariable.setLayoutData(gd_addvariable);
         addvariable.setText("Add variables");
         
         // reset button
         Button Reset = new Button(composite,SWT.NONE);
         GridData gd_Reset = new GridData(SWT.RIGHT, SWT.FILL, false, false, 1, 1);
-        gd_Reset.heightHint = 48;
+        gd_Reset.heightHint = 30;
         gd_Reset.widthHint = 100;
         Reset.setLayoutData(gd_Reset);
         Reset.setText("Reset");
@@ -218,7 +222,7 @@ public class Indexview extends ViewPart {
 		// run button
         Button run = new Button(composite, SWT.NONE);
         run.setText("Save and Run");
-        griddata_3 = new GridData(151,50);
+        griddata_3 = new GridData(151,30);
         griddata_3.horizontalSpan = 2;
         griddata_3.verticalAlignment = SWT.FILL;
         griddata_3.horizontalAlignment = SWT.RIGHT;
@@ -259,6 +263,48 @@ public class Indexview extends ViewPart {
         rawOutTab.setControl(rawoutput);
         cleanOutTab.setControl(cleanoutput);
         outputfolder.setSelection(rawOutTab);
+        new Label(composite, SWT.NONE);
+        new Label(composite, SWT.NONE);
+        new Label(composite, SWT.NONE);
+        
+        btnSaveSelected = new Button(composite, SWT.NONE);
+        btnSaveSelected.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1));
+        btnSaveSelected.setText("Save Selected");
+        
+        
+        
+        btnSaveSelected.addSelectionListener(new SelectionListener(){
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				TableItem[] myitems = cleanoutput.getItems();
+				for(TableItem item : myitems){
+					if(item.getChecked()){
+						ArrayList celldata = (ArrayList) item.getData();
+						IDataset celllengths = new DoubleDataset(new double[]{(double)celldata.get(0),(double) celldata.get(1),(double) celldata.get(2)});
+						celllengths.setName("Cell Lengths");
+						IDataset cellangles = new DoubleDataset(new double[]{(double)celldata.get(3),(double) celldata.get(4),(double) celldata.get(5)});
+						cellangles.setName("Cell Angles");
+						List<IDataset> celldatalist = new ArrayList<IDataset>();
+						celldatalist.add(cellangles);celldatalist.add(celllengths);
+						try {
+							LoadedDataview.addCell(item.getText(0), celldatalist);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							new ErrorWidget(e);
+						}
+					}
+				}
+				
+			}
+        	
+        });
         
        
         Save.addSelectionListener(new SelectionAdapter(){
@@ -329,7 +375,7 @@ public class Indexview extends ViewPart {
                 			TableItem cleanitem = new TableItem(cleanoutput,SWT.NONE);
                 			cleanitem.setText(0,myitem.getText()+" Cell Number " + String.valueOf(cellnum));
                 			cleanitem.setText(1,String.valueOf(cleanout.get(i)));
-                			System.out.println(cleanout.get(i));
+                			cleanitem.setData(cleanout.get(i));
                 			
                 			}
                 		}}}
