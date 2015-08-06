@@ -23,3 +23,4 @@ Import-Package: org.dawb.common.ui
 Bundle-ClassPath: .,
  swing2swt.jar,
  python_code/
+Service-Component: OSGI-INF/*.xml
