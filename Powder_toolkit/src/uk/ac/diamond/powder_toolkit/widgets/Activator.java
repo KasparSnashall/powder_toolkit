@@ -1,4 +1,4 @@
-package powder_toolkit.widgets;
+package uk.ac.diamond.powder_toolkit.widgets;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;

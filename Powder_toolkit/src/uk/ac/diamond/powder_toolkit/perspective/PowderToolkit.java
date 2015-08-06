@@ -1,4 +1,4 @@
-package powder_toolkit.perspective;
+package uk.ac.diamond.powder_toolkit.perspective;
 
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
@@ -17,15 +17,15 @@ public class PowderToolkit implements IPerspectiveFactory {
 		addPerspectiveShortcuts(layout);
 		{
 			IFolderLayout folderLayout = layout.createFolder("Powder folder", IPageLayout.TOP, 0.84f, IPageLayout.ID_EDITOR_AREA);
-			folderLayout.addView("powder_toolkit.views.Loadview");
-			folderLayout.addView("powder_toolkit.views.Indexview");
-			folderLayout.addView("powder_toolkit.views.Compareview");
+			folderLayout.addView("uk.ac.diamond.powder_toolkit.views.Loadview");
+			folderLayout.addView("uk.ac.diamond.powder_toolkit.views.Indexview");
+			folderLayout.addView("uk.ac.diamond.powder_toolkit.views.Compareview");
 		}
 		{
 			IFolderLayout folderLayout = layout.createFolder("folder", IPageLayout.RIGHT, 0.85f, "Powder folder");
-			folderLayout.addView("powder_toolkit.views.LoadedDataview");
+			folderLayout.addView("uk.ac.diamond.powder_toolkit.views.LoadedDataview");
 		}
-		layout.addView("powder_toolkit.views.Plotview", IPageLayout.TOP, 0.4f, "Powder folder");
+		layout.addView("uk.ac.diamond.powder_toolkit.views.Plotview", IPageLayout.TOP, 0.5f, "Powder folder");
 	}
 
 	/**

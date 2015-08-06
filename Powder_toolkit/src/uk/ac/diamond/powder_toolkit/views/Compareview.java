@@ -1,4 +1,4 @@
-package powder_toolkit.views;
+package uk.ac.diamond.powder_toolkit.views;
 
 import java.awt.Event;
 import java.text.DecimalFormat;
@@ -28,11 +28,11 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-import powder_toolkit.dataAnalysis.Comparator;
-import powder_toolkit.dataAnalysis.LoadedDataObject;
-import powder_toolkit.dataAnalysis.MyDataHolder;
-import powder_toolkit.jython_programs.CSD_cellsearch;
-import powder_toolkit.widgets.ErrorWidget;
+import uk.ac.diamond.powder_toolkit.dataAnalysis.Comparator;
+import uk.ac.diamond.powder_toolkit.dataAnalysis.LoadedDataObject;
+import uk.ac.diamond.powder_toolkit.dataAnalysis.MyDataHolder;
+import uk.ac.diamond.powder_toolkit.jython_programs.CSD_cellsearch;
+import uk.ac.diamond.powder_toolkit.widgets.ErrorWidget;
 
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Scale;

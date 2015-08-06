@@ -1,4 +1,4 @@
-package powder_toolkit.dataAnalysis;
+package uk.ac.diamond.powder_toolkit.dataAnalysis;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -15,7 +15,7 @@ import java.util.Map.Entry;
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.dawnsci.analysis.api.dataset.Slice;
 
-import powder_toolkit.widgets.ErrorWidget;
+import uk.ac.diamond.powder_toolkit.widgets.ErrorWidget;
 /**
  * Ntreor indexing wrapper, all new indexing programs should have structure similar to this
  * @author kaspar

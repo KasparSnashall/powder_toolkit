@@ -1,4 +1,4 @@
-package powder_toolkit.views;
+package uk.ac.diamond.powder_toolkit.views;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.jface.action.IMenuManager;
@@ -26,8 +26,8 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-import powder_toolkit.dataAnalysis.LoadedDataObject;
-import powder_toolkit.dataAnalysis.MyDataHolder;
+import uk.ac.diamond.powder_toolkit.dataAnalysis.LoadedDataObject;
+import uk.ac.diamond.powder_toolkit.dataAnalysis.MyDataHolder;
 
 
 /**

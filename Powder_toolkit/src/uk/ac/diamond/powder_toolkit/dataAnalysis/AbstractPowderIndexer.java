@@ -1,4 +1,4 @@
-package powder_toolkit.dataAnalysis;
+package uk.ac.diamond.powder_toolkit.dataAnalysis;
 
 import java.util.HashMap;
 import java.util.List;

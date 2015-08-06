@@ -1,4 +1,4 @@
-package powder_toolkit.widgets;
+package uk.ac.diamond.powder_toolkit.widgets;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Rectangle;

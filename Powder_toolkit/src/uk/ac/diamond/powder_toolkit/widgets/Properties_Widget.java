@@ -1,4 +1,4 @@
-package powder_toolkit.widgets;
+package uk.ac.diamond.powder_toolkit.widgets;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.TableEditor;
@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
-import powder_toolkit.dataAnalysis.IPowderIndexer;
+import uk.ac.diamond.powder_toolkit.dataAnalysis.IPowderIndexer;
 
 
 

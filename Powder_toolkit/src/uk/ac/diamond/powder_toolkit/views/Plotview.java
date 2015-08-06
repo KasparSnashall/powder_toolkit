@@ -1,4 +1,4 @@
-package powder_toolkit.views;
+package uk.ac.diamond.powder_toolkit.views;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +16,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 
-import powder_toolkit.dataAnalysis.ServiceLoader;
+import uk.ac.diamond.powder_toolkit.dataAnalysis.ServiceLoader;
 
 public class Plotview extends ViewPart {
 
@@ -35,7 +35,6 @@ public class Plotview extends ViewPart {
 //		plotting = PlottingFactory.createPlottingSystem();
 		plotting = ServiceLoader.getPlottingService().createPlottingSystem();
 		parent.setLayout(new FillLayout(SWT.HORIZONTAL));
-		
 		plotting.createPlotPart(parent, "Plot",getViewSite().getActionBars(), PlotType.XY, this);
 		}catch(Exception e){
 		
@@ -68,6 +67,7 @@ public class Plotview extends ViewPart {
 		
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class clazz) {
 		if (plotting.getAdapter(clazz)!=null) return plotting.getAdapter(clazz);

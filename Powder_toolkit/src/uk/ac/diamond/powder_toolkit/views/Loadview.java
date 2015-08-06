@@ -1,4 +1,4 @@
-package powder_toolkit.views;
+package uk.ac.diamond.powder_toolkit.views;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -30,8 +30,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-import powder_toolkit.dataAnalysis.Loader;
-import powder_toolkit.widgets.ErrorWidget;
+import uk.ac.diamond.powder_toolkit.dataAnalysis.Loader;
+import uk.ac.diamond.powder_toolkit.widgets.ErrorWidget;
 /**
  * Load view is designed to make it easy for the user to load in many data types with minimal effort
  * @author sfz19839

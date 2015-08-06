@@ -1,4 +1,4 @@
-package powder_toolkit.jython_programs;
+package uk.ac.diamond.powder_toolkit.jython_programs;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

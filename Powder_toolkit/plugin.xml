@@ -4,43 +4,38 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            class="powder_toolkit.perspective.PowderToolkit"
+            class="uk.ac.diamond.powder_toolkit.perspective.PowderToolkit"
             icon="icons/releng_gears.gif"
-            id="perspective.PowderToolkit"
+            id="uk.ac.diamond.powder_toolkit.PowderToolkit"
             name="Powder Toolkit">
       </perspective>
    </extension>
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="powder_toolkit.views.Loadview"
-            id="powder_toolkit.views.Loadview"
+            class="uk.ac.diamond.powder_toolkit.views.Loadview"
+            id="uk.ac.diamond.powder_toolkit.views.Loadview"
             name="Load">
       </view>
       <view
-            class="powder_toolkit.views.Peakview"
-            id="powder_toolkit.views.Peakview"
-            name="Find Peaks">
-      </view>
-      <view
-            class="powder_toolkit.views.Indexview"
-            id="powder_toolkit.views.Indexview"
+            class="uk.ac.diamond.powder_toolkit.views.Indexview"
+            id="uk.ac.diamond.powder_toolkit.views.Indexview"
             name="Index">
       </view>
       <view
-            class="powder_toolkit.views.Compareview"
-            id="powder_toolkit.views.Compareview"
+            class="uk.ac.diamond.powder_toolkit.views.Compareview"
+            id="uk.ac.diamond.powder_toolkit.views.Compareview"
             name="Compare">
       </view>
       <view
-            class="powder_toolkit.views.LoadedDataview"
-            id="powder_toolkit.views.LoadedDataview"
+            class="uk.ac.diamond.powder_toolkit.views.LoadedDataview"
+            id="uk.ac.diamond.powder_toolkit.views.LoadedDataview"
             name="Loaded Data">
       </view>
       <view
-            class="powder_toolkit.views.Plotview"
-            id="powder_toolkit.views.Plotview"
-            name="Plot">
+            class="uk.ac.diamond.powder_toolkit.views.Plotview"
+            id="uk.ac.diamond.powder_toolkit.views.Plotview"
+            name="PlotView">
       </view>
    </extension>
 

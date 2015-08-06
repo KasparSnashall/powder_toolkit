@@ -1,4 +1,4 @@
-package powder_toolkit.views;
+package uk.ac.diamond.powder_toolkit.views;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -32,12 +32,12 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
-import powder_toolkit.dataAnalysis.IPowderIndexer;
-import powder_toolkit.dataAnalysis.LoadedDataObject;
-import powder_toolkit.dataAnalysis.MyDataHolder;
-import powder_toolkit.dataAnalysis.Ntreor;
-import powder_toolkit.widgets.ErrorWidget;
-import powder_toolkit.widgets.Properties_Widget;
+import uk.ac.diamond.powder_toolkit.dataAnalysis.IPowderIndexer;
+import uk.ac.diamond.powder_toolkit.dataAnalysis.LoadedDataObject;
+import uk.ac.diamond.powder_toolkit.dataAnalysis.MyDataHolder;
+import uk.ac.diamond.powder_toolkit.dataAnalysis.Ntreor;
+import uk.ac.diamond.powder_toolkit.widgets.ErrorWidget;
+import uk.ac.diamond.powder_toolkit.widgets.Properties_Widget;
 
 import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.CoolBar;
