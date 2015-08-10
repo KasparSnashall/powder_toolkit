@@ -142,6 +142,7 @@ public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
 		List<String> output = new ArrayList<String>();
 		try{
 			Runtime rt = Runtime.getRuntime(); // exe
+			//TODO make this a relative filepath
 			Process process = rt.exec("/scratch/clean_workpsace/powder_toolkit/Powder_toolkit/python_code/ntreor"); // loaction
 			DataOutputStream out = new DataOutputStream(process.getOutputStream()); // exe input
 		    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));// exe writter
