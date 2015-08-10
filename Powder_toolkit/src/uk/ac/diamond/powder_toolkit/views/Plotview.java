@@ -34,7 +34,6 @@ public class Plotview extends ViewPart {
 	@Override
 	public void createPartControl(Composite parent) {
 		try{
-//		plotting = PlottingFactory.createPlottingSystem();
 		plotting = ServiceLoader.getPlottingService().createPlottingSystem();
 		parent.setLayout(new FillLayout(SWT.HORIZONTAL));
 		plotting.createPlotPart(parent, "Plot",getViewSite().getActionBars(), PlotType.XY, this);
@@ -42,9 +41,12 @@ public class Plotview extends ViewPart {
 		
 		}
 	}
-	
+	/**
+	 * Draws the plot used in plot view, currentl has limitations
+	 * @param data a list of IDatasets used in plotting
+	 */
 	public static void createMyplot(List<IDataset> data){
-		plotting.clear();
+		plotting.clear(); // clear and reset
 		plotting.reset();
 		IDataset intensity = null;
 		IDataset x = null;
@@ -69,7 +71,9 @@ public class Plotview extends ViewPart {
 		// TODO Auto-generated method stub
 		
 	}
-
+	/**
+	 * Used to get the tools for the plot view
+	 */
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class clazz) {
