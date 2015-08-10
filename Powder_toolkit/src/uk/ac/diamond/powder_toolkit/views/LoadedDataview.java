@@ -15,6 +15,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
@@ -28,6 +29,9 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 import uk.ac.diamond.powder_toolkit.dataAnalysis.LoadedDataObject;
 import uk.ac.diamond.powder_toolkit.dataAnalysis.MyDataHolder;
+
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
 
 
 /**
@@ -138,7 +142,6 @@ public class LoadedDataview extends ViewPart {
 					cellList.remove(i);}
 			}
 		});
-		btnClearAll_1.setText("Clear All");
 		
 		
 		// tool tip functionality
@@ -156,7 +159,33 @@ public class LoadedDataview extends ViewPart {
 		        }
 		      }
 		    });
-		
+		/**
+		 * Retrieves data and shows plot, sets data in index view
+		 */
+		 datalist.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseDoubleClick(MouseEvent arg0) {
+				String dataname = datalist.getSelection()[0].getText();
+				java.util.List<IDataset> mydata = holder.getData(dataname).data; // retirve the data
+				Plotview.createMyplot(mydata);
+				Indexview.setData(dataname);
+				
+			}
+
+			@Override
+			public void mouseDown(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseUp(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			 
+		 });
 		cellList.addListener(SWT.MouseHover, new Listener() {
 		      public void handleEvent(Event event) {
 		        Point pt = new Point(event.x, event.y);
@@ -193,8 +222,9 @@ public class LoadedDataview extends ViewPart {
 		}
 		holder.addData(name, flag, data, filepath);
 		TableItem myitem = new TableItem(datalist,SWT.NONE);
-		myitem.setText(name);	
-	}
+		myitem.setText(name);
+		
+		}
 	
 	public static void addCell(String name,java.util.List<IDataset> data) throws Exception{
 		for(LoadedDataObject loads : holder.getDatalist()){
