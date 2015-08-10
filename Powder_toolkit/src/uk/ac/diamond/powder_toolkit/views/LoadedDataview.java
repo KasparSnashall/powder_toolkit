@@ -4,6 +4,12 @@ import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.DragSource;
+import org.eclipse.swt.dnd.DragSourceEvent;
+import org.eclipse.swt.dnd.DragSourceListener;
+import org.eclipse.swt.dnd.TextTransfer;
+import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.DragDetectEvent;
 import org.eclipse.swt.events.DragDetectListener;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -142,6 +148,7 @@ public class LoadedDataview extends ViewPart {
 					cellList.remove(i);}
 			}
 		});
+		btnClearAll_1.setText("Clear All");
 		
 		
 		// tool tip functionality
@@ -167,7 +174,7 @@ public class LoadedDataview extends ViewPart {
 			@Override
 			public void mouseDoubleClick(MouseEvent arg0) {
 				String dataname = datalist.getSelection()[0].getText();
-				java.util.List<IDataset> mydata = holder.getData(dataname).data; // retirve the data
+				java.util.List<IDataset> mydata = holder.getData(dataname).data; // Retrieve the data
 				Plotview.createMyplot(mydata);
 				Indexview.setData(dataname);
 				
@@ -208,6 +215,89 @@ public class LoadedDataview extends ViewPart {
 		        }
 		      }
 		    });
+		
+		
+		
+		
+		cellList.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseDoubleClick(MouseEvent arg0) {
+				String dataname = cellList.getSelection()[0].getText();
+				java.util.List<IDataset> mydata = holder.getData(dataname).data; // Retrieve the data
+				Compareview.setsearchCell(mydata);
+				
+			}
+
+			@Override
+			public void mouseDown(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseUp(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			 
+		 });
+		// data list drag and drop
+		int operations = DND.DROP_MOVE | DND.DROP_COPY;
+		DragSource source = new DragSource(datalist, operations);
+	 	 
+	 	// Provide data in Text format
+	 	Transfer[] types = new Transfer[] {TextTransfer.getInstance()};
+	 	source.setTransfer(types);
+ 	 
+	 	source.addDragListener(new DragSourceListener() {
+	 		public void dragStart(DragSourceEvent event) {
+	 	      // Only start the drag if there is actually text in the
+	 	      // label - this text will be what is dropped on the target.
+	 	      if (event.toString().length() == 0) {
+	 	          event.doit = false;
+	 	      }
+	 	   }
+	 	   public void dragSetData(DragSourceEvent event) {
+	 	     // Provide the data of the requested type.
+	 	     if (TextTransfer.getInstance().isSupportedType(event.dataType)) {
+	 	          event.data = datalist.getSelection()[0].getText();
+	 	     }
+	 	   }
+	 	   public void dragFinished(DragSourceEvent event) {
+	 	     // If a move operation has been performed, remove the data
+	 	     // from the source
+	 	     if (event.detail == DND.DROP_MOVE);
+	 	     }
+	 	   }
+	 	);
+		 	
+	 	// cell list drag and drop
+		DragSource source2 = new DragSource(cellList, operations);
+		// Provide data in Text format
+		Transfer[] types2 = new Transfer[] {TextTransfer.getInstance()};
+		source2.setTransfer(types2);
+	 	source2.addDragListener(new DragSourceListener() {
+	 		public void dragStart(DragSourceEvent event) {
+	 	      // Only start the drag if there is actually text in the
+	 	      // label - this text will be what is dropped on the target.
+	 	      if (event.toString().length() == 0) {
+	 	          event.doit = false;
+	 	      }
+	 	   }
+	 	   public void dragSetData(DragSourceEvent event) {
+	 	     // Provide the data of the requested type.
+	 	     if (TextTransfer.getInstance().isSupportedType(event.dataType)) {
+	 	          event.data = cellList.getSelection()[0].getText();
+	 	     }
+	 	   }
+	 	   public void dragFinished(DragSourceEvent event) {
+	 	     // If a move operation has been performed, remove the data
+	 	     // from the source
+	 	     if (event.detail == DND.DROP_MOVE);
+	 	     }
+	 	   }
+	 	);	
 		createActions();
 		initializeToolBar();
 		initializeMenu();
