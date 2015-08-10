@@ -8,8 +8,15 @@ import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.dawnsci.analysis.api.dataset.Slice;
 import org.eclipse.dawnsci.analysis.dataset.impl.Dataset;
 import org.eclipse.dawnsci.analysis.dataset.impl.DatasetFactory;
+import org.eclipse.dawnsci.analysis.dataset.impl.Maths;
 
-
+/**
+ * Comparator is a class designed to compare arrays,
+ * it is a conversion from an original python script and its main
+ * use should be the comparison of large datasets eg Intensity's
+ * @author sfz19839
+ *
+ */
 public class Comparator {
 	
 	public static IDataset data1;
@@ -25,7 +32,12 @@ public class Comparator {
 	
 	
 	
-	
+	/**
+	 * Binary comparison compares arrays by asserting if the data points 
+	 * lie within an percentage tolerance of each other
+	 * @return A double (percentage match)
+	 * @throws Exception various exceptions to make sure comparison is accurate
+	 */
 	private static Double binary() throws Exception{
 		IDataset priv_data1 = data1; // private variables
 		IDataset priv_data2 = data2;
@@ -50,21 +62,26 @@ public class Comparator {
 		
 		final List<Double> counts = new ArrayList<Double>(); // counts list
 		for(int i = 0; i < priv_data1.getSize(); i++){
-			double a = priv_data1.getDouble(i); // element a
-			double b = priv_data2.getDouble(i); // element b
+			double a = java.lang.Math.abs(priv_data1.getDouble(i)); // element a
+			double b = java.lang.Math.abs(priv_data2.getDouble(i)); // element b
 			Double tol = tolerance*priv_data1.getDouble(i)/100.0; // percentage tolerance tol
 			
-			if(a - tol <= b && b <= a+tol){ // is it in range?
+			if(a - tol <= b | b <= a+tol){ // is it in range?
 				counts.add(1.0);} // positive
+			else if(a == b){// odd case
+				counts.add(1.0);
+			}
 			else{
+				System.out.println(a);
+				System.out.println(b);
 				counts.add(0.0); // negative 
 			}
 		}
 		
 		// weighted
 		if (weights.size() != 0){
-			Double percent = weighted_average(counts);
-			return percent;
+			Double mypercent = weighted_average(counts);
+			return mypercent;
 		}
 		else{
 			// non weighted
@@ -75,7 +92,12 @@ public class Comparator {
 			return percent;
 			}	
 	}
-	
+	/**
+	 * Weighted average applied a weighted average to an array of percentages
+	 * this enables the weighting of data to rely more heavily on a selected range
+	 * @param percents
+	 * @return an average weighted percentage
+	 */
 	private static double weighted_average(List<Double> percents) {
 		List<Double> kilos = new ArrayList<Double>();
 		// populates the kilos list with 1.0s
@@ -111,7 +133,12 @@ public class Comparator {
 		double percent = 100*sum/weightsum; // 100*sum/denominator
 		return percent;
 	}
-
+	/**
+	 * Fractional comparison compares arrays by getting relative fractions of elements
+	 * It is not as accurate as binary but an an alternative test 
+	 * @return a percentage average
+	 * @throws Exception
+	 */
 	private static double fractional() throws Exception{
 		IDataset priv_data1 = data1; // private data used
 		IDataset priv_data2 = data2;
@@ -131,32 +158,36 @@ public class Comparator {
 		
 		List<Double> percents = new ArrayList<Double>();
 		for(int i = 0; i < priv_data1.getSize(); i ++){
-			double a = priv_data1.getDouble(i);
-			double b = priv_data2.getDouble(i);
-			if(a > 0.0 && b > 0.0){
+			double a = java.lang.Math.abs(priv_data1.getDouble(i));
+			double b = java.lang.Math.abs(priv_data2.getDouble(i));
+			if(a >= 0.0 && b >= 0.0){
 				if(a == b){
-					percents.add(100.0);
+					percents.add(1.0);
 				}
 				else if( a > b){
-					double p = 100.0*b/a;
+					double p = 1.0*b/a;
 					percents.add(p);
 				}
 				else if (b > a ){
-					double p = 100.0*a/b;
+					double p = 1.0*a/b;
 					percents.add(p);	
 				}
 			}
 			else if(a == 0.0 | b == 0.0){
-					if(a != b){
-						double p = 0.0;
+					if(a == 0 &&  b == 0){
+						double p = 1.0;
 						percents.add(p);
 					}
 					else{
-						double p = 100.0;
+						System.out.println(a);
+						System.out.println(b);
+						double p = 0.0;
 						percents.add(p);
 					}
 				}
 			else{
+				System.out.println(a);
+				System.out.println(b);
 				double p = 0.0;
 				percents.add(p);}
 			}
@@ -169,12 +200,17 @@ public class Comparator {
 		for(int i = 0; i < percents.size(); i++)
 		    sum += percents.get(i);
 		
-		double percent = sum/percents.size();
+		double percent = 100*sum/percents.size();
 		return percent;
 	}
 		
 	}
-	
+	/**
+	 * slice_range slices a dataset into a selected x-axis range (for example theta values)
+	 * @param priv_data1 the dataset
+	 * @return a IDataset of ranged data
+	 * @throws Exception
+	 */
 	private static IDataset slice_range(IDataset priv_data1) throws Exception{
 		if (lower > upper){
 			 throw new Exception("Invalid range");
@@ -188,7 +224,13 @@ public class Comparator {
 		priv_data1 = priv_data1.getSliceView(new Slice(lower,upper));
 		return priv_data1;}
 	
-	
+	/**
+	 * optimiser optimises binary comparison by applying a number of shifts over a range
+	 * selecting the shift with the minimum squared difference thus optimising the data
+	 * @param priv_data1 the main dataset
+	 * @param priv_data2 the dataset to be shifted
+	 * @return a shifted dataset
+	 */
 	private static IDataset optimiser(IDataset priv_data1,IDataset priv_data2){
 		double step1 = -0.5;
 		double step2 = 0.5;
@@ -224,7 +266,11 @@ public class Comparator {
 		return priv_data2;
 	}
 	
-
+	/**
+	 * both runs both a binary and fractional comparison
+	 * @return a percentage average of the two comparisons
+	 * @throws Exception
+	 */
 	private static Double both() throws Exception {
 		// TODO Auto-generated method stub
 		
@@ -280,16 +326,25 @@ public class Comparator {
 		Comparator.tolerance = tolerance;
 	}
 
-	public static void setWeights(List<Double> weights) {
-		Comparator.weights = weights;
+	public static void addWeights(Double weights) {
+		Comparator.weights.add(weights);
 	}
 
-	public static void setWeight_lower(List<Integer> weight_lower) {
-		Comparator.weight_lower = weight_lower;
+	public static void addWeight_lower(Integer weight_lower) {
+		Comparator.weight_lower.add(weight_lower);
 	}
 
-	public static void setWeight_upper(List<Integer> weight_upper) {
-		Comparator.weight_upper = weight_upper;
+	public static void addWeight_upper(Integer weight_upper) {
+		Comparator.weight_upper.add(weight_upper);
+	}
+	/**
+	 * Clears the weighted values
+	 */
+	public static void delWeights() {
+		weights.clear();
+		weight_lower.clear();
+		weight_upper.clear();
+		
 	}
 	
 
