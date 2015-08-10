@@ -21,7 +21,12 @@ import uk.ac.diamond.powder_toolkit.dataAnalysis.IPowderIndexer;
 
 public class Properties_Widget {
 	
-	
+	/**
+	 * Creates a properties widget (complex table)
+	 * @param indexfolder the parent folder
+	 * @param myindexer a IPOwderIndexer including all the relevant functions
+	 * @return returns a table with editors
+	 */
 	public Table create(CTabFolder indexfolder, IPowderIndexer myindexer){
 		
 		// get the current display and create colours
