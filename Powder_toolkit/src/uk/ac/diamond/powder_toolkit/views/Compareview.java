@@ -13,6 +13,7 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -65,6 +66,7 @@ public class Compareview extends ViewPart {
 	private Text txtUpper;
 	private Text txtValue;
 	private Scale scale;
+	private static Button btnAddWeight;
 	
 	public Compareview() {
 	}
@@ -79,11 +81,8 @@ public class Compareview extends ViewPart {
 		fillLayout.spacing = 10;
 		fillLayout.marginWidth = 15;
 		fillLayout.marginHeight = 15;
-		Composite composite = new Composite(parent, SWT.NONE);
-		composite.setFont(SWTResourceManager.getFont("Sans", 12, SWT.NORMAL));
-        composite.setLayout(new FillLayout(SWT.HORIZONTAL));
         
-        Group grpCompare = new Group(composite, SWT.NONE);
+        Group grpCompare = new Group(parent, SWT.NONE);
         GridLayout gl_grpCompare = new GridLayout(3, false);
         gl_grpCompare.marginRight = 15;
         gl_grpCompare.marginLeft = 15;
@@ -111,127 +110,145 @@ public class Compareview extends ViewPart {
         
         Data2 = new Text(grpCompare, SWT.BORDER);
         Data2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-       
-        combo2 = new Combo(grpCompare,SWT.NONE);
-        GridData gd_combo2 = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
-        gd_combo2.widthHint = 216;
-        combo2.setLayoutData(gd_combo2);
-        getdatalistener(Data2,combo2);
-        Label lblTolerance = new Label(grpCompare, SWT.NONE);
-        lblTolerance.setText("% Tolerance");
-        tolerance = new Text(grpCompare,SWT.BORDER);
-        GridData gd_tolerance = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
-        gd_tolerance.widthHint = 66;
-        tolerance.setLayoutData(gd_tolerance);
-        tolerance.setText("5");
-        Button btnOptimise = new Button(grpCompare, SWT.CHECK);
-        btnOptimise.addSelectionListener(new SelectionAdapter() {
-        	@Override
-        	public void widgetSelected(SelectionEvent e) {
-        	}
-        });
-        btnOptimise.setToolTipText("Apply a shift when performing binary comparison");
-        btnOptimise.setText("Optimise");
         
-        Group grpWeightOptions = new Group(grpCompare, SWT.NONE);
-        grpWeightOptions.setToolTipText("Add weights to the data, note not used for cells");
-        GridLayout gl_grpWeightOptions = new GridLayout(3, false);
-        gl_grpWeightOptions.horizontalSpacing = 10;
-        gl_grpWeightOptions.marginWidth = 10;
-        gl_grpWeightOptions.marginHeight = 10;
-        grpWeightOptions.setLayout(gl_grpWeightOptions);
-        GridData gd_grpWeightOptions = new GridData(SWT.LEFT, SWT.CENTER, false, false, 3, 1);
-        gd_grpWeightOptions.heightHint = 150;
-        gd_grpWeightOptions.widthHint = 283;
-        grpWeightOptions.setLayoutData(gd_grpWeightOptions);
-        grpWeightOptions.setText("weight options");
-        
-        Label lblLowerX = new Label(grpWeightOptions, SWT.NONE);
-        lblLowerX.setText("Lower X");
-        
-        txtLower = new Text(grpWeightOptions, SWT.BORDER);
-        txtLower.setText("lower");
-        new Label(grpWeightOptions, SWT.NONE);
-        
-        Label lblUpperX = new Label(grpWeightOptions, SWT.NONE);
-        lblUpperX.setText("Upper X");
-        
-        txtUpper = new Text(grpWeightOptions, SWT.BORDER);
-        txtUpper.setText("upper");
-        new Label(grpWeightOptions, SWT.NONE);
-        
-        Label lblValue = new Label(grpWeightOptions, SWT.NONE);
-        lblValue.setText("Value");
-        
-        txtValue = new Text(grpWeightOptions, SWT.BORDER | SWT.CENTER);
-        txtValue.setText("1");
-        GridData gd_txtValue = new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1);
-        gd_txtValue.widthHint = 84;
-        txtValue.setLayoutData(gd_txtValue);
-       
-        
-        scale = new Scale(grpWeightOptions, SWT.NONE);
-        scale.setMaximum(10);
-        scale.setMinimum(1);
-        scale.setIncrement(1);
-        scale.addListener(SWT.Selection, new Listener() {
+         combo2 = new Combo(grpCompare,SWT.NONE);
+         GridData gd_combo2 = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+         gd_combo2.widthHint = 216;
+         combo2.setLayoutData(gd_combo2);
+         getdatalistener(Data2,combo2);
+         Label lblTolerance = new Label(grpCompare, SWT.NONE);
+         lblTolerance.setText("% Tolerance");
+         tolerance = new Text(grpCompare,SWT.BORDER);
+         GridData gd_tolerance = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
+         gd_tolerance.widthHint = 66;
+         tolerance.setLayoutData(gd_tolerance);
+         tolerance.setText("5");
+         Button btnOptimise = new Button(grpCompare, SWT.CHECK);
+         btnOptimise.addSelectionListener(new SelectionAdapter() {
+         	@Override
+         	public void widgetSelected(SelectionEvent e) {
+         	}
+         });
+         btnOptimise.setToolTipText("Apply a shift when performing binary comparison");
+         btnOptimise.setText("Optimise");
+         
+         Group grpWeightOptions = new Group(grpCompare, SWT.NONE);
+         grpWeightOptions.setToolTipText("Add weights to the data, note not used for cells");
+         GridLayout gl_grpWeightOptions = new GridLayout(3, false);
+         gl_grpWeightOptions.horizontalSpacing = 10;
+         gl_grpWeightOptions.marginWidth = 10;
+         gl_grpWeightOptions.marginHeight = 10;
+         grpWeightOptions.setLayout(gl_grpWeightOptions);
+         GridData gd_grpWeightOptions = new GridData(SWT.LEFT, SWT.CENTER, false, false, 3, 1);
+         gd_grpWeightOptions.heightHint = 150;
+         gd_grpWeightOptions.widthHint = 283;
+         grpWeightOptions.setLayoutData(gd_grpWeightOptions);
+         grpWeightOptions.setText("weight options");
+         
+         Label lblLowerX = new Label(grpWeightOptions, SWT.NONE);
+         lblLowerX.setText("Lower X");
+         
+         txtLower = new Text(grpWeightOptions, SWT.BORDER);
+         txtLower.setText("lower");
+         new Label(grpWeightOptions, SWT.NONE);
+         
+         Label lblUpperX = new Label(grpWeightOptions, SWT.NONE);
+         lblUpperX.setText("Upper X");
+         
+         txtUpper = new Text(grpWeightOptions, SWT.BORDER);
+         txtUpper.setText("upper");
+         new Label(grpWeightOptions, SWT.NONE);
+         
+         Label lblValue = new Label(grpWeightOptions, SWT.NONE);
+         lblValue.setText("Value");
+         
+         txtValue = new Text(grpWeightOptions, SWT.BORDER | SWT.CENTER);
+         txtValue.setText("1");
+         GridData gd_txtValue = new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1);
+         gd_txtValue.widthHint = 84;
+         txtValue.setLayoutData(gd_txtValue);
+         
+          
+          scale = new Scale(grpWeightOptions, SWT.NONE);
+          scale.setMaximum(10);
+          scale.setMinimum(1);
+          scale.setIncrement(1);
+          scale.addListener(SWT.Selection, new Listener() {
 			@Override
 			public void handleEvent(org.eclipse.swt.widgets.Event arg0) {
 				// TODO Auto-generated method stub
 				  int perspectiveValue = scale.getSelection();
 	              txtValue.setText(String.valueOf(perspectiveValue));
 	            }
+            });
+          GridData gd_scale = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
+          gd_scale.widthHint = 114;
+          scale.setLayoutData(gd_scale);
+          new Label(grpWeightOptions, SWT.NONE);
+          
+          
+          btnAddWeight = new Button(grpWeightOptions, SWT.NONE);
+          btnAddWeight.setText("Add weight");
+          btnAddWeight.addSelectionListener(new SelectionListener(){
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				// add weights to the comparison
+				Comparator.addWeights(Double.valueOf(txtValue.getText()));
+				Comparator.addWeight_upper(Integer.valueOf(txtUpper.getText()));
+				Comparator.addWeight_lower(Integer.valueOf(txtLower.getText()));
+			}
+          	
           });
-        GridData gd_scale = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
-        gd_scale.widthHint = 114;
-        scale.setLayoutData(gd_scale);
-        new Label(grpWeightOptions, SWT.NONE);
-        
-        
-        Button btnAddWeight = new Button(grpWeightOptions, SWT.NONE);
-        btnAddWeight.setText("Add weight");
-        
-        Button btnClearWeights = new Button(grpWeightOptions, SWT.NONE);
-        btnClearWeights.addSelectionListener(new SelectionAdapter() {
-        	@Override
-        	public void widgetSelected(SelectionEvent e) {
-        	}
-        });
-        btnClearWeights.setText("Clear weights");
-        
-        
-        Label lblType = new Label(grpCompare, SWT.NONE);
-        lblType.setText("Type");
-        
-        types = new Combo(grpCompare,SWT.NONE);
-        GridData gd_types = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
-        gd_types.widthHint = 223;
-        types.setLayoutData(gd_types);
-        types.setText("Both");
-        types.add("Both");
-        types.add("Fractional");
-        types.add("Binary");
-        new Label(grpCompare, SWT.NONE);
-        
-        Button compare = new Button(grpCompare, SWT.PUSH);
-        GridData gd_compare = new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1);
-        gd_compare.widthHint = 87;
-        gd_compare.heightHint = 31;
-        compare.setLayoutData(gd_compare);
-        compare.setText("Compare");
-        
-        
-        /////////// functions //////////////
-        comparefunction(compare);
-        new Label(grpCompare, SWT.NONE);
-        
-        output = new Text(grpCompare, SWT.BORDER | SWT.READ_ONLY | SWT.CENTER);
-        output.setFont(SWTResourceManager.getFont("Arial", 25, SWT.BOLD));
-        GridData gd_output = new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1);
-        gd_output.widthHint = 180;
-        gd_output.heightHint = 50;
-        output.setLayoutData(gd_output);
-        new Label(grpCompare, SWT.NONE);
+          
+          Button btnClearWeights = new Button(grpWeightOptions, SWT.NONE);
+          btnClearWeights.addSelectionListener(new SelectionAdapter() {
+          	@Override
+          	public void widgetSelected(SelectionEvent e) {
+          		Comparator.delWeights();
+          	}
+          });
+          btnClearWeights.setText("Clear weights");
+          
+          
+          Label lblType = new Label(grpCompare, SWT.NONE);
+          lblType.setText("Type");
+          
+          types = new Combo(grpCompare,SWT.NONE);
+          GridData gd_types = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
+          gd_types.widthHint = 223;
+          types.setLayoutData(gd_types);
+          types.setText("Both");
+          types.add("Both");
+          types.add("Fractional");
+          types.add("Binary");
+          new Label(grpCompare, SWT.NONE);
+          
+          Button compare = new Button(grpCompare, SWT.PUSH);
+          GridData gd_compare = new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1);
+          gd_compare.widthHint = 87;
+          gd_compare.heightHint = 31;
+          compare.setLayoutData(gd_compare);
+          compare.setText("Compare");
+          
+          
+          /////////// functions //////////////
+          comparefunction(compare);
+          new Label(grpCompare, SWT.NONE);
+          
+          output = new Text(grpCompare, SWT.BORDER | SWT.READ_ONLY | SWT.CENTER);
+          output.setFont(SWTResourceManager.getFont("Arial", 25, SWT.BOLD));
+          GridData gd_output = new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1);
+          gd_output.widthHint = 180;
+          gd_output.heightHint = 50;
+          output.setLayoutData(gd_output);
+          new Label(grpCompare, SWT.NONE);
         
         Group grpSearch = new Group(parent, SWT.NONE);
         grpSearch.setText("Search");
@@ -473,5 +490,21 @@ public class Compareview extends ViewPart {
 	@Override
 	public void setFocus() {
 		// Set the focus
+	}
+
+	public static void setsearchCell(List<IDataset> mydata) {
+		for(IDataset data : mydata){
+			if(data.getName().equals("Cell Lengths")){
+				txtAlength.setText(String.valueOf(data.getDouble(0)));
+				txtBlength.setText(String.valueOf(data.getDouble(1)));
+				txtClength.setText(String.valueOf(data.getDouble(2)));
+			}
+			if(data.getName().equals("Cell Angles")){
+				txtAlpha.setText(String.valueOf(data.getDouble(0)));
+				txtBeta.setText(String.valueOf(data.getDouble(1)));
+				txtGamma.setText(String.valueOf(data.getDouble(2)));
+			}
+		}
+		
 	}
 }
