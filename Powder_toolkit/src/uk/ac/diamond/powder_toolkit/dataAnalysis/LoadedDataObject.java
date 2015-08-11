@@ -2,7 +2,11 @@ package uk.ac.diamond.powder_toolkit.dataAnalysis;
 import java.util.List;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
-
+/**
+ * Loaded Data object is an object used to store all data in the program
+ * @author sfz19839
+ *
+ */
 public class LoadedDataObject {
 	
 	public String name;

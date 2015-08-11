@@ -18,7 +18,12 @@ import org.eclipse.swt.widgets.Text;
 import uk.ac.diamond.powder_toolkit.dataAnalysis.IPowderIndexer;
 
 
-
+/**
+ * Creates properties widgets for the indexing view, that can be used to input parameters to indexing
+ * algorithms
+ * @author sfz19839
+ *
+ */
 public class Properties_Widget {
 	
 	/**

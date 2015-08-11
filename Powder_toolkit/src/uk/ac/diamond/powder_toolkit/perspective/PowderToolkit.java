@@ -3,7 +3,11 @@ package uk.ac.diamond.powder_toolkit.perspective;
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
-
+/**
+ * The main perspective for the program
+ * @author sfz19839
+ *
+ */
 public class PowderToolkit implements IPerspectiveFactory {
 
 	/**

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 /**
- * Jython wrapper for a cell search python program
+ * Jython wrapper for a cell search python program, runs by creating and clling a bash script
  * @author sfz19839
  *
  */

@@ -4,6 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
+/**
+ * Interface designed to be a wrapper for indexing algorithms
+ * @author sfz19839
+ *
+ */
 public interface IPowderIndexer {
 	
 	/**

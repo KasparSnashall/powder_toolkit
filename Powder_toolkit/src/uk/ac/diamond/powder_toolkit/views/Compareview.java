@@ -1,6 +1,5 @@
 package uk.ac.diamond.powder_toolkit.views;
 
-import java.awt.Event;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +22,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Scale;
+import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
@@ -34,15 +35,11 @@ import uk.ac.diamond.powder_toolkit.dataAnalysis.LoadedDataObject;
 import uk.ac.diamond.powder_toolkit.dataAnalysis.MyDataHolder;
 import uk.ac.diamond.powder_toolkit.jython_programs.CSD_cellsearch;
 import uk.ac.diamond.powder_toolkit.widgets.ErrorWidget;
-
-import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.Scale;
-import org.eclipse.swt.widgets.ExpandBar;
-import org.eclipse.swt.widgets.ExpandItem;
-import org.eclipse.swt.layout.RowLayout;
-import org.eclipse.swt.layout.RowData;
-import org.eclipse.swt.widgets.Spinner;
-
+/**
+ * The compare view of the perspective
+ * @author sfz19839
+ *
+ */
 public class Compareview extends ViewPart {
 
 	public static final String ID = "Views.Compareview"; //$NON-NLS-1$
@@ -333,7 +330,7 @@ public class Compareview extends ViewPart {
         new Label(grpSearch, SWT.NONE);
         new Label(grpSearch, SWT.NONE);
         new Label(grpSearch, SWT.NONE);
-        
+        // saves cells to the datalist
         Button btnSaveCells = new Button(grpSearch, SWT.NONE);
         btnSaveCells.addSelectionListener(new SelectionAdapter() {
         	@Override
@@ -383,7 +380,10 @@ public class Compareview extends ViewPart {
         column.setText("Output");
         column.pack();
         }
-	
+	/**
+	 * Search function for the CSD
+	 * @param search button
+	 */
 	public static void searchfunction(Button search){
 		
 		SelectionAdapter searchfunc = new SelectionAdapter() {
@@ -421,7 +421,7 @@ public class Compareview extends ViewPart {
 						item1.setText(r);
 						
 					}
-					 column.pack();
+					 column.pack(); // repack columns
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -433,7 +433,11 @@ public class Compareview extends ViewPart {
 		search.addSelectionListener(searchfunc);
 		
 	}
-	
+	/**
+	 * Sets the data when typing in the data1/data2 text boxes 
+	 * @param text the name of the LoadedDataobject
+	 * @param combo appends the data names to this combo
+	 */
 	public static void getdatalistener(final Text text,final Combo combo){
 	ModifyListener modifyListener = new ModifyListener(){
 		      public void modifyText(ModifyEvent event) {
@@ -452,7 +456,10 @@ public class Compareview extends ViewPart {
 	};
 	text.addModifyListener(modifyListener);
 	}
-	
+	/**
+	 * Compares tow IDatasets
+	 * @param compare
+	 */
 	public static void comparefunction(final Button compare){
 		SelectionAdapter comparefunc = new SelectionAdapter() {
 		      
@@ -491,7 +498,10 @@ public class Compareview extends ViewPart {
 	public void setFocus() {
 		// Set the focus
 	}
-
+	/**
+	 * Sets the cell for the search function
+	 * @param mydata List of IDatasets of the cell data
+	 */
 	public static void setsearchCell(List<IDataset> mydata) {
 		for(IDataset data : mydata){
 			if(data.getName().equals("Cell Lengths")){

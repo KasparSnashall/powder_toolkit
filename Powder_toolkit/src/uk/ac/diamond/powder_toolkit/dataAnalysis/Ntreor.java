@@ -36,7 +36,10 @@ public class Ntreor extends AbstractPowderIndexer implements IPowderIndexer{
             "0","0","0","0","0"};
 	private IDataset data1;
 	
-	//TODO add in cell data
+	
+	/**
+	 * Writes 
+	 */
 	@Override
 	public void write_input() {
 		// data check

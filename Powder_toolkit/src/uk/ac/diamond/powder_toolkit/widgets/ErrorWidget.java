@@ -11,7 +11,7 @@ import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 /**
  * A widget designed to be used for error handling
- * Currently very basic but will improve this
+ * Currently very basic but this needs improving and implementing
  * @author sfz19839
  *
  */

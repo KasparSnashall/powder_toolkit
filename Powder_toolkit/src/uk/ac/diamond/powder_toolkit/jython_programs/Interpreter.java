@@ -5,7 +5,8 @@ import org.python.pydev.jython.PythonInterpreterWrapper;
  * interpreter class is designed to create a jython interpreter
  * This class can then create jyhton classes via createClass function
  * class methods may then be invoked via the clas.invoke method
- * @author kaspar
+ * This class is currently unused
+ * @author sfz19839
  *
  */
 public class Interpreter

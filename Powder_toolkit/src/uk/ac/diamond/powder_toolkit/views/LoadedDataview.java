@@ -152,6 +152,9 @@ public class LoadedDataview extends ViewPart {
 		
 		
 		// tool tip functionality
+		/**
+		 * The Tool tip
+		 */
 		datalist.addListener(SWT.MouseHover, new Listener() {
 		      public void handleEvent(Event event) {
 		        Point pt = new Point(event.x, event.y);
@@ -193,6 +196,9 @@ public class LoadedDataview extends ViewPart {
 			}
 			 
 		 });
+		 /**
+		  * The tool tip
+		  */
 		cellList.addListener(SWT.MouseHover, new Listener() {
 		      public void handleEvent(Event event) {
 		        Point pt = new Point(event.x, event.y);
@@ -209,7 +215,12 @@ public class LoadedDataview extends ViewPart {
 		        		  angles += " "+holder.getData(item.getText()).data.get(1).getDouble(i1);
 		        		  lengths += " "+holder.getData(item.getText()).data.get(0).getDouble(i1);
 		        	  }
-		        	  primitive = holder.getData(item.getText()).data.get(2).getString(0);
+		        	  try{
+		        		  // not all cells have a cell centring
+		        	  primitive = holder.getData(item.getText()).data.get(2).getString(0);}
+		        	  catch(Exception e){
+		        		  
+		        	  }
 			          cellList.setToolTipText(item.getText() +"\n" +"(a,b,c) "+lengths +"\n" +"(A,B,C)"+angles+"\n"+primitive);
 		          }
 		        }
@@ -218,7 +229,9 @@ public class LoadedDataview extends ViewPart {
 		
 		
 		
-		
+		/**
+		 * Double click options
+		 */
 		cellList.addMouseListener(new MouseListener(){
 
 			@Override
@@ -302,7 +315,14 @@ public class LoadedDataview extends ViewPart {
 		initializeToolBar();
 		initializeMenu();
 	}
-	
+	/**
+	 * Adds data to the data holder
+	 * @param name the name of the dataobject
+	 * @param flag the file extension	
+	 * @param data the List of IDatasets
+	 * @param filepath the filepath to the file
+	 * @throws Exception if data name is the same, throw no two datasets may be the same
+	 */
 	public static void addData(String name,String flag, java.util.List<IDataset> data, String filepath) throws Exception{
 		for(LoadedDataObject loads : holder.getDatalist()){
 			if(loads.name.equals(name)){
@@ -315,7 +335,12 @@ public class LoadedDataview extends ViewPart {
 		myitem.setText(name);
 		
 		}
-	
+	/**
+	 * Adds cell data to the holder
+	 * @param name the name of the data
+	 * @param data the list is IDatasets
+	 * @throws Exception no two datasets may have the smae name
+	 */
 	public static void addCell(String name,java.util.List<IDataset> data) throws Exception{
 		for(LoadedDataObject loads : holder.getDatalist()){
 			if(loads.name.equals(name)){
@@ -325,6 +350,7 @@ public class LoadedDataview extends ViewPart {
 		holder.addData(name, "cell", data, null);
 		TableItem myitem = new TableItem(cellList,SWT.NONE);
 		myitem.setText(name);
+		
 		
 	}
 

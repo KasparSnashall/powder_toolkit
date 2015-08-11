@@ -152,7 +152,14 @@ public class Loadview extends ViewPart {
         BrowseFunction(browse, shell, filetext, composite, parent);
        
 		}
-	
+	/**
+	 * Browse function creates the datatable for loading of data
+	 * @param browse the button
+	 * @param shell a new shell
+	 * @param filetext the filepath
+	 * @param composite the parent composite
+	 * @param parent the overall composite
+	 */
 	private void BrowseFunction(final Button browse,final Shell shell,final Text filetext, final Composite composite,final Composite parent){
 		browse.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
@@ -317,7 +324,13 @@ public class Loadview extends ViewPart {
         });
 		
 	}
-
+	/**
+	 * Loads in the data
+	 * @param load button
+	 * @param filetext the file path text box
+	 * @param lower the lower bound in range
+	 * @param upper the upper bound in range
+	 */
 	private static void LoadFunction(final Button load,final Text filetext, final Text lower, final Text upper){
 		SelectionListener mylistener  = new SelectionListener(){
         	@Override

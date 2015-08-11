@@ -11,7 +11,12 @@ import org.eclipse.dawnsci.analysis.dataset.impl.Maths;
 import uk.ac.diamond.scisoft.analysis.io.DatLoader;
 import uk.ac.diamond.scisoft.analysis.io.LoaderFactory;
 import uk.ac.diamond.scisoft.analysis.io.NexusHDF5Loader;
-
+/**
+ * Loader Class designed to load in the data easily,
+ * it uses loader factory and a makes basic decisions about the files (is it a .nxs) for example
+ * @author sfz19839
+ *
+ */
 public class Loader {
 	
 	
@@ -22,15 +27,24 @@ public class Loader {
 	private static int x2;
 	public static IDataHolder dh;
 	
-
+	/**
+	 * sets the upper bound for the range
+	 * @param upper double
+	 */
 	public void setUpper(double upper) {
 		Upper = upper;
 		}
-
+	/**
+	 * Sets the lower bound for the range
+	 * @param lower double
+	 */
 	public void setLower(double lower) {
 		Lower = lower;
 		}
-
+	/**
+	 * Sets the range of the data
+	 * @param range boolean range flag
+	 */
 	public void setRange(boolean range) {
 		Loader.range = range;
 		}
@@ -106,7 +120,12 @@ public class Loader {
 			return null;
 			}
 	
-	
+	/**
+	 * Applies a range to the data
+	 * @param names the names of the columns
+	 * @param dataholder the list of data sets to be ranged
+	 * @return a sliced data set
+	 */
 	private static List<IDataset> RangeData(List<String> names, List<IDataset> dataholder){
 	for(IDataset col : dataholder){
 				if(!col.getName().equals("Intensity")){
