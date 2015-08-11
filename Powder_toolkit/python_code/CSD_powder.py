@@ -41,9 +41,8 @@ class CSD_powder:
     uses name atr
     calls ccdc PowderPattern class
     returns list[two theta angles]
-    
-    
     """
+    
     def __init__(self,name):
         ""
         self.entry = EntryReader('CSD')
