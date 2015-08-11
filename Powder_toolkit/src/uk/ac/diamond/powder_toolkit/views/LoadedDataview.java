@@ -1,5 +1,7 @@
 package uk.ac.diamond.powder_toolkit.views;
 
+import java.util.ArrayList;
+
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
@@ -208,12 +210,12 @@ public class LoadedDataview extends ViewPart {
 		        for (int i = 0; i < 1; i++) {
 		          Rectangle rect = item.getBounds(i);
 		          if (rect.contains(pt)) {
-		        	  String angles = "";
-		        	  String lengths = "";
+		        	  java.util.List<Double> angles = new ArrayList<Double>();
+		        	  java.util.List<Double> lengths = new ArrayList<Double>();
 		        	  String primitive = "";
 		        	  for(int i1 = 0 ; i1 < 3; i1++){
-		        		  angles += " "+holder.getData(item.getText()).data.get(1).getDouble(i1);
-		        		  lengths += " "+holder.getData(item.getText()).data.get(0).getDouble(i1);
+		        		  angles.add(holder.getData(item.getText()).data.get(1).getDouble(i1));
+		        		  lengths.add(holder.getData(item.getText()).data.get(0).getDouble(i1));
 		        	  }
 		        	  try{
 		        		  // not all cells have a cell centring
@@ -221,7 +223,9 @@ public class LoadedDataview extends ViewPart {
 		        	  catch(Exception e){
 		        		  
 		        	  }
-			          cellList.setToolTipText(item.getText() +"\n" +"(a,b,c) "+lengths +"\n" +"(A,B,C)"+angles+"\n"+primitive);
+			          cellList.setToolTipText(item.getText() +"\n" + "a= "+lengths.get(0) +"\n"+ "b= "+lengths.get(1) +"\n"+
+		        	  "c ="+lengths.get(2)+"\n"+ "\u03B1"+"= "+angles.get(0)+"\n" +"\u03B2"+"= "+angles.get(1)+"\n"+"\u03B3"+"= "+angles.get(2)+"\n"+primitive);
+		        	  
 		          }
 		        }
 		      }
