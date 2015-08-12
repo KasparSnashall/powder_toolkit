@@ -29,9 +29,8 @@ public class CSD_cellsearch {
 	public static List<String> search(){
 		try{
 			PrintWriter writer = new PrintWriter("/scratch/clean_workpsace/powder_toolkit/Powder_toolkit/python_code/csd.sh", "UTF-8");
-			writer.write("module load python/ana \n");
-			writer.write("module load ccdc/api-quiet \n");
-			writer.write("source activate ccdc \n");
+			
+			writer.write("source /dls_sw/apps/ccdc/scripts/ccdc-api.sh\n");
 			writer.write("python /scratch/clean_workpsace/powder_toolkit/Powder_toolkit/python_code/CSD_cell_search.py ");
 			// write in the lengths and angles
 			for(double length : cell_lengths){
