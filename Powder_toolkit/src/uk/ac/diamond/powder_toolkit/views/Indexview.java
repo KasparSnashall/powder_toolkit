@@ -15,6 +15,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.custom.TableEditor;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -25,6 +26,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
@@ -305,7 +307,39 @@ public class Indexview extends ViewPart {
 			}
         	
         });
-        
+    	// create a table editor for the editing of cell names
+    	final TableEditor editor = new TableEditor(cleanoutput);
+    	//The editor must have the same size as the cell and must
+    	//not be any smaller than 50 pixels.
+    	editor.horizontalAlignment = SWT.LEFT; // alignment
+    	editor.grabHorizontal = true;
+    	editor.minimumWidth = 50;
+        cleanoutput.addSelectionListener(new SelectionAdapter() {
+    		@Override
+    		public void widgetSelected(SelectionEvent e) {
+    			// Clean up any previous editor control
+    			Control oldEditor = editor.getEditor();
+    			if (oldEditor != null) oldEditor.dispose();
+    	
+    			// Identify the selected row
+    			TableItem item = (TableItem)e.item;
+    			if (item == null) return;
+    	
+    			// The control that will be the editor must be a child of the Table
+    			Text newEditor = new Text(cleanoutput, SWT.BORDER);
+    			newEditor.setText(item.getText(0)); // get the current text
+    			newEditor.addModifyListener(new ModifyListener() {
+    				@Override
+    			public void modifyText(ModifyEvent me) { // if a change is detected set the text
+    					Text text = (Text)editor.getEditor(); 
+    					editor.getItem().setText(0, text.getText());
+    				}
+    			});
+    			newEditor.selectAll(); // sets its for all table items
+    			newEditor.setFocus();
+    			editor.setEditor(newEditor, item, 0);
+    		}
+    	});
        
         Save.addSelectionListener(new SelectionAdapter(){
         	public void widgetSelected(SelectionEvent event) {
