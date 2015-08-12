@@ -4,7 +4,9 @@ from iotbx.shelx.parsers import wavelength_parser
 np.set_printoptions(suppress = True)
 
 class Macmaille:
-    
+    """
+    I have included this python class as an example of how MacMaille wrapper should be written
+    """
     dict_list = {'Symmetry codes':None,'W': None,'Nind':None,'Pmin':None, 'Pmax':None, 'Vmin':None, 'Vmax':None, 'Rmin':None, 'Rmax':None, 'Rmaxref':None,'Spar':None, 'Sang':None,'Ntests':None, 'Nruns':None}
     duplicates = {}
     topnumber = 5

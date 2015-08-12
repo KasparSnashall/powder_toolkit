@@ -51,7 +51,7 @@ public class CSD_cellsearch {
 		// TODO make this more permentant
 		Process process;
 		try {
-
+			
 			process = Runtime.getRuntime().exec("sh" + cmd);
 			System.out.println(process.toString());
 			List<String> myoutput = new ArrayList<String>();
