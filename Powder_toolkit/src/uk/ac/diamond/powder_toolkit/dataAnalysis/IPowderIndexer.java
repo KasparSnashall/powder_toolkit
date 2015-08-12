@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.dawnsci.analysis.api.dataset.IDataset;
+import org.eclipse.swt.widgets.TableItem;
 /**
  * Interface designed to be a wrapper for indexing algorithms
  * @author sfz19839
@@ -94,5 +95,11 @@ public interface IPowderIndexer {
 	 * Resets the keywords map
 	 */
 	public void resetKeywords();
+	/**
+	 * Optional function to get tooltips for properties widget
+	 * @param itemname the name of the variable
+	 * @return a string tool tip for that variable
+	 */
+	public String getTooltip(String itemname);
 	
 }
