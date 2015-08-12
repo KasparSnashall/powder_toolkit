@@ -20,9 +20,11 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 
 import uk.ac.diamond.powder_toolkit.dataAnalysis.ServiceLoader;
+
 /**
- * Plot view is the plotting view used in the perspective,
- *  it allows easy plotting of data
+ * Plot view is the plotting view used in the perspective, it allows easy
+ * plotting of data
+ * 
  * @author sfz19839
  *
  */
@@ -30,60 +32,69 @@ public class Plotview extends ViewPart {
 
 	public static final String ID = "Views.Plotview"; //$NON-NLS-1$
 	protected static IPlottingSystem plotting;
+
 	public Plotview() {
 	}
 
 	/**
 	 * Create contents of the view part.
+	 * 
 	 * @param parent
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
-		try{
-		plotting = ServiceLoader.getPlottingService().createPlottingSystem();
-		parent.setLayout(new FillLayout(SWT.HORIZONTAL));
-		plotting.createPlotPart(parent, "Plot",getViewSite().getActionBars(), PlotType.XY, this);
-		}catch(Exception e){
-		
+		try {
+			plotting = ServiceLoader.getPlottingService()
+					.createPlottingSystem();
+			parent.setLayout(new FillLayout(SWT.HORIZONTAL));
+			plotting.createPlotPart(parent, "Plot", getViewSite()
+					.getActionBars(), PlotType.XY, this);
+		} catch (Exception e) {
+
 		}
 	}
+
 	/**
 	 * Draws the plot used in plot view, currentl has limitations
-	 * @param data a list of IDatasets used in plotting
+	 * 
+	 * @param data
+	 *            a list of IDatasets used in plotting
 	 */
-	public static void createMyplot(List<IDataset> data){
+	public static void createMyplot(List<IDataset> data) {
 		plotting.clear(); // clear and reset
 		plotting.reset();
 		IDataset intensity = null;
 		IDataset x = null;
-		for(IDataset mydata: data){
-			if(mydata.getName().equals("Intensity"))
-				 intensity = mydata;
-			else if(mydata.getName().equals("D_space")){
+		for (IDataset mydata : data) {
+			if (mydata.getName().equals("Intensity"))
+				intensity = mydata;
+			else if (mydata.getName().equals("D_space")) {
 				x = DatasetFactory.createRange(mydata.getSize(), Dataset.INT32);
-				}
-			else{
-				x = mydata;}
+			} else {
+				x = mydata;
+			}
 		}
-		try{
-		plotting.createPlot1D(x,Arrays.asList(intensity), "New plot", null);
-		
+		try {
+			plotting.createPlot1D(x, Arrays.asList(intensity), "New plot", null);
+
+		} catch (Exception e) {
 		}
-		catch(Exception e){}
 	}
 
 	@Override
 	public void setFocus() {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	/**
 	 * Used to get the tools for the plot view
 	 */
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class clazz) {
-		if (plotting.getAdapter(clazz)!=null) return plotting.getAdapter(clazz);
+		if (plotting.getAdapter(clazz) != null)
+			return plotting.getAdapter(clazz);
 		return super.getAdapter(clazz);
 	}
 
