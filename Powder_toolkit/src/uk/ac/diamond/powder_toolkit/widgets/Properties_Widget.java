@@ -7,9 +7,13 @@ import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
@@ -32,7 +36,7 @@ public class Properties_Widget {
 	 * @param myindexer a IPOwderIndexer including all the relevant functions
 	 * @return returns a table with editors
 	 */
-	public Table create(CTabFolder indexfolder, IPowderIndexer myindexer){
+	public Table create(CTabFolder indexfolder, final IPowderIndexer myindexer){
 		
 		// get the current display and create colours
 		Display display = Display.getCurrent();
@@ -126,7 +130,33 @@ public class Properties_Widget {
     		}
     		
     	});
+    	// optional tooltip setter, hence try and catch
+    	try{
+    	table.addListener(SWT.MouseHover, new Listener() {
+		    @Override  
+    		public void handleEvent(Event event) {
+			        Point pt = new Point(event.x, event.y);
+			        TableItem item = table.getItem(pt);
+			       
+			        if (item == null){ 
+			          return;}
+			        
+			        for (int i = 0; i < 3; i++) {
+			          Rectangle rect = item.getBounds(i);
+			          if (rect.contains(pt)) {
+			        	String itemname = item.getText(1);
+			        	String tooltip = myindexer.getTooltip(itemname);
+			        	table.setToolTipText(tooltip);
+			          }
+			        }
+			      }
 
+			
+			    });
+    	
+    	}catch(Exception e){
+    		//do nothing if not correct
+    		}
     	
     	// pack the table
     	for (int loopIndex = 0; loopIndex < titles.length; loopIndex++) {
