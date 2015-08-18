@@ -331,7 +331,7 @@ public class Compareview extends ViewPart {
 		lblNumresults.setText("Number of results");
 
 		txtNumresults = new Text(grpSearch, SWT.BORDER);
-		txtNumresults.setText("1");
+		txtNumresults.setText("10");
 		GridData gd_txtNumresults = new GridData(SWT.FILL, SWT.CENTER, true,
 				false, 1, 1);
 		gd_txtNumresults.widthHint = 84;

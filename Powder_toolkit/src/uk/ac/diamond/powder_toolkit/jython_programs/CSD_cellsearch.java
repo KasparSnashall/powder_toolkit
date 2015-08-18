@@ -23,7 +23,7 @@ public class CSD_cellsearch {
 
 	private static List<Double> cell_lengths = new ArrayList<Double>();
 	private static List<Double> cell_angles = new ArrayList<Double>();
-	private static int hits = 1;
+	private static int hits = 10;
 
 	public static List<String> search() {
 		try {
