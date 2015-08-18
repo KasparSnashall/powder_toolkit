@@ -61,7 +61,8 @@ public class CSD_cellsearch {
 					process.getInputStream()));// exe output
 			String line;
 			while ((line = output.readLine()) != null) {
-				myoutput.add(line);
+				if(!line.contains("conda"))
+				{myoutput.add(line);}
 			}
 			return myoutput;
 
