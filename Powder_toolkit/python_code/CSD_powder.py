@@ -1,7 +1,7 @@
 from ccdc.io import EntryReader
 from ccdc.descriptors import PowderPattern
 import numpy as np
-
+import sys
 class CSD_powder:
     """
     CSD_powder class
@@ -43,10 +43,9 @@ class CSD_powder:
     returns list[two theta angles]
     """
     
-    def __init__(self,name):
-        ""
+    def __init__(self):
         self.entry = EntryReader('CSD')
-        self.crystal_name = name
+        
         
     def get_crystal_name(self):
         return self.crystal_name
@@ -91,9 +90,26 @@ class CSD_powder:
         crystal = self.entry.crystal(self.crystal_name)
         pattern = PowderPattern.from_crystal(crystal)
         return pattern.two_theta
-        
+    
+    def get_data(self,option):
+        if option == 1:
+            d_space,intensities = self.load_d_space()
+            for i,j in zip(d_space,intensities):
+                print i,j
+        if option == 2:
+            """all the data"""
+            x1 = self.load_intensities()
+            x2 = self.load_two_theta()
+            for i,j in zip(x1,x2):
+                print i,j
+        else:
+            sys.exit(1)
         
 if __name__ == "__main__":
-    bob = CSD_powder('AABHTZ')
-    num1,num2 = bob.load_d_space()
-    print len(num1)
+    crystal = sys.argv[1] # the crystal name
+    option = sys.argv[2] # the option
+    #crystal = "AABHTZ"
+    #option = 2
+    pow = CSD_powder()
+    pow.set_crystal_name(crystal)
+    pow.get_data(option)
