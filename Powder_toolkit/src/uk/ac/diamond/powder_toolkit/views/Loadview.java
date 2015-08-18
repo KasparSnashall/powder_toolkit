@@ -159,6 +159,7 @@ public class Loadview extends ViewPart {
 		Label lblDataTable = new Label(composite, SWT.NONE);
 		lblDataTable.setText("Data Table");
 		Button load = new Button(composite, SWT.PUSH);
+		load.setToolTipText("Load in the data selected");
 		load.setText("Load");
 		load.setToolTipText("Load in your data");
 		griddata_3 = new GridData(211, 30);

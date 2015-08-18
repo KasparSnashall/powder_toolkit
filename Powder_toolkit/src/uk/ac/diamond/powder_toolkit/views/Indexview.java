@@ -106,6 +106,7 @@ public class Indexview extends ViewPart {
 		final Button loadButton = new Button(composite, SWT.RADIO);
 		loadButton.setText("Loaded data");
 		loadButton.setSelection(true);
+		loadButton.setToolTipText("Select loaded peaks to be indexed");
 
 		// the load data textbox
 		textbox = new Text(composite, SWT.BORDER);
@@ -116,7 +117,8 @@ public class Indexview extends ViewPart {
 
 		// from file radio button
 		final Button peaksButton = new Button(composite, SWT.RADIO);
-		peaksButton.setText("Existing .dat");
+		peaksButton.setText("Existing input file");
+		peaksButton.setToolTipText("Select a pre-existing input file");
 
 		// text box for the filepath
 		final Text filepathbox = new Text(composite, SWT.BORDER);
@@ -133,7 +135,7 @@ public class Indexview extends ViewPart {
 		browse.setAlignment(SWT.LEFT);
 		browse.setText("Browse...");
 		browse.setEnabled(false);
-
+		browse.setToolTipText("Browse for input files");
 		final Shell shell = new Shell();
 		browse.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
@@ -163,7 +165,7 @@ public class Indexview extends ViewPart {
 		new TableColumn(indexingprogs, SWT.NULL).setText("Programs");
 		indexingprogs.getColumn(0).pack();
 		indexingprogs.setHeaderVisible(true);
-
+		indexingprogs.setToolTipText("Select the indexing algorithm to be used");
 		// properties widget tabs
 		final CTabFolder indexfolder = new CTabFolder(composite, SWT.TOP
 				| SWT.BORDER); // create a tab set
@@ -188,6 +190,7 @@ public class Indexview extends ViewPart {
 		gd_addvariable.heightHint = 30;
 		addvariable.setLayoutData(gd_addvariable);
 		addvariable.setText("Add variables");
+		addvariable.setToolTipText("Add selected variables to the indexing program (loaded peaks only)");
 
 		// reset button
 		Button Reset = new Button(composite, SWT.NONE);
@@ -197,14 +200,14 @@ public class Indexview extends ViewPart {
 		gd_Reset.widthHint = 100;
 		Reset.setLayoutData(gd_Reset);
 		Reset.setText("Reset");
-
+		Reset.setToolTipText("Reset the current screen including all tables and vaiables");
 		Button Save = new Button(composite, SWT.NONE);
 		griddata_4 = new GridData(150, 50);
 		griddata_4.verticalAlignment = SWT.FILL;
 		griddata_4.horizontalAlignment = SWT.RIGHT;
 		Save.setLayoutData(griddata_4);
 		Save.setText("Save");
-
+		Save.setToolTipText("Create and save input files with current settings");
 		// Add the ntreor tab, at time of writing this is the only one available
 		CTabItem cTabItem1 = new CTabItem(indexfolder, SWT.NONE);
 		cTabItem1.setText("Ntreor");
@@ -230,6 +233,7 @@ public class Indexview extends ViewPart {
 		// run button
 		Button run = new Button(composite, SWT.NONE);
 		run.setText("Save and Run");
+		run.setToolTipText("Create save and run input files based on current settings");
 		griddata_3 = new GridData(151, 30);
 		griddata_3.horizontalSpan = 2;
 		griddata_3.verticalAlignment = SWT.FILL;
@@ -245,9 +249,11 @@ public class Indexview extends ViewPart {
 		// output tab 1
 		CTabItem rawOutTab = new CTabItem(outputfolder, SWT.NONE);
 		rawOutTab.setText("Raw data");
+		rawOutTab.setToolTipText("Displays the raw output of the indexing program");
 		// output tab 2
 		CTabItem cleanOutTab = new CTabItem(outputfolder, SWT.NONE);
 		cleanOutTab.setText("Cleaned Data");
+		cleanOutTab.setToolTipText("Displays the cleaned output from the indexing program");
 		rawoutput = new Text(outputfolder, SWT.BORDER | SWT.MULTI | SWT.WRAP
 				| SWT.V_SCROLL);
 		cleanoutput = new Table(outputfolder, SWT.CHECK | SWT.BORDER
@@ -282,7 +288,7 @@ public class Indexview extends ViewPart {
 		btnSaveSelected.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false,
 				false, 2, 1));
 		btnSaveSelected.setText("Save Selected");
-
+		btnSaveSelected.setToolTipText("Save slected generated cells from the clean output tab");
 		btnSaveSelected.addSelectionListener(new SelectionListener() {
 
 			@Override

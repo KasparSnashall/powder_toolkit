@@ -37,7 +37,7 @@ import uk.ac.diamond.powder_toolkit.jython_programs.CSD_cellsearch;
 import uk.ac.diamond.powder_toolkit.widgets.ErrorWidget;
 
 /**
- * The compare view of the perspective
+ * The comparison view of the perspective
  * 
  * @author sfz19839
  *
@@ -45,28 +45,31 @@ import uk.ac.diamond.powder_toolkit.widgets.ErrorWidget;
 public class Compareview extends ViewPart {
 
 	public static final String ID = "Views.Compareview"; //$NON-NLS-1$
-	private static MyDataHolder holder = LoadedDataview.holder;
+	private static MyDataHolder holder = LoadedDataview.holder; // the data
+																// holder
 	private static Text Data1; // data text box 1
 	private static Text Data2; // data text box 2
 	private static Combo combo1; // drop down 1
 	private static Combo combo2; // drop down 2
 	private static Combo types; // drop down with comparison types
 	private static Text output; // output text box
-	private static Text tolerance;
-	private static Text txtAlength;
-	private static Text txtBlength;
-	private static Text txtClength;
-	private static Text txtAlpha;
-	private static Text txtBeta;
-	private static Text txtGamma;
-	private static Text txtNumresults;
-	private static Table search_out;
-	private Text txtLower;
-	private Text txtUpper;
-	private Text txtValue;
-	private Scale scale;
-	private static Button btnAddWeight;
-
+	private static Text tolerance; // the tolerance text box
+	private static Text txtAlength; // the a length
+	private static Text txtBlength; // b length
+	private static Text txtClength; // c length
+	private static Text txtAlpha; // alpha angle
+	private static Text txtBeta; // beta angle
+	private static Text txtGamma; // gamma angle
+	private static Text txtNumresults; // number of results to be displayed
+	private static Table search_out; // the output tab;e
+	private Text txtLower; // the lower limit of weights
+	private Text txtUpper; // the upper limit of weights
+	private Text txtValue; // the weight value
+	private Scale scale; // the scaler for the weight value
+	private static Button btnAddWeight; // add weights to the comparison button
+	private static Button btnClearWeights; // remove all weights from comparison
+											// button
+	private static Button compare;
 	public Compareview() {
 	}
 
@@ -81,8 +84,9 @@ public class Compareview extends ViewPart {
 		fillLayout.spacing = 10;
 		fillLayout.marginWidth = 15;
 		fillLayout.marginHeight = 15;
-
+		// comparison group
 		Group grpCompare = new Group(parent, SWT.NONE);
+		grpCompare.setToolTipText("Compare datasets");
 		GridLayout gl_grpCompare = new GridLayout(3, false);
 		gl_grpCompare.marginRight = 15;
 		gl_grpCompare.marginLeft = 15;
@@ -90,36 +94,41 @@ public class Compareview extends ViewPart {
 		gl_grpCompare.marginHeight = 25;
 		grpCompare.setLayout(gl_grpCompare);
 		grpCompare.setText("Compare");
-
+		// data labels
 		Label data1label = new Label(grpCompare, SWT.NONE);
 		data1label.setText("Data 1");
 
 		Data1 = new Text(grpCompare, SWT.BORDER);
+		Data1.setToolTipText("The name of the data to be used in the comparison");
 		Data1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1,
 				1));
 
 		// add in listeners
-
 		combo1 = new Combo(grpCompare, SWT.NONE);
+		combo1.setToolTipText("The dataset to be used in comparison");
 		GridData gd_combo1 = new GridData(SWT.FILL, SWT.CENTER, false, false,
 				1, 1);
 		gd_combo1.widthHint = 222;
 		combo1.setLayoutData(gd_combo1);
+		
 		getdatalistener(Data1, combo1);
 		Label data2label = new Label(grpCompare, SWT.NONE);
 		data2label.setText("Data 2");
 
 		Data2 = new Text(grpCompare, SWT.BORDER);
+		Data2.setToolTipText("The name of the data to be used in the comparison");
 		Data2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1,
 				1));
 
 		combo2 = new Combo(grpCompare, SWT.NONE);
+		combo2.setToolTipText("The dataset to be used in comparison");
 		GridData gd_combo2 = new GridData(SWT.FILL, SWT.CENTER, false, false,
 				1, 1);
 		gd_combo2.widthHint = 216;
 		combo2.setLayoutData(gd_combo2);
 		getdatalistener(Data2, combo2);
 		Label lblTolerance = new Label(grpCompare, SWT.NONE);
+		lblTolerance.setToolTipText("percentage tolerance in binary comparison");
 		lblTolerance.setText("% Tolerance");
 		tolerance = new Text(grpCompare, SWT.BORDER);
 		GridData gd_tolerance = new GridData(SWT.LEFT, SWT.CENTER, false,
@@ -154,6 +163,7 @@ public class Compareview extends ViewPart {
 
 		Label lblLowerX = new Label(grpWeightOptions, SWT.NONE);
 		lblLowerX.setText("Lower X");
+		lblLowerX.setToolTipText("The lower bound of weighting ");
 
 		txtLower = new Text(grpWeightOptions, SWT.BORDER);
 		txtLower.setText("lower");
@@ -161,6 +171,7 @@ public class Compareview extends ViewPart {
 
 		Label lblUpperX = new Label(grpWeightOptions, SWT.NONE);
 		lblUpperX.setText("Upper X");
+		lblUpperX.setToolTipText("The Upper bound of weighting");
 
 		txtUpper = new Text(grpWeightOptions, SWT.BORDER);
 		txtUpper.setText("upper");
@@ -168,6 +179,7 @@ public class Compareview extends ViewPart {
 
 		Label lblValue = new Label(grpWeightOptions, SWT.NONE);
 		lblValue.setText("Value");
+		lblValue.setToolTipText("The value of weight to be added");
 
 		txtValue = new Text(grpWeightOptions, SWT.BORDER | SWT.CENTER);
 		txtValue.setText("1");
@@ -196,6 +208,8 @@ public class Compareview extends ViewPart {
 
 		btnAddWeight = new Button(grpWeightOptions, SWT.NONE);
 		btnAddWeight.setText("Add weight");
+		btnAddWeight
+				.setToolTipText("Add the slected weights to the comparison");
 		btnAddWeight.addSelectionListener(new SelectionListener() {
 
 			@Override
@@ -214,7 +228,8 @@ public class Compareview extends ViewPart {
 
 		});
 
-		Button btnClearWeights = new Button(grpWeightOptions, SWT.NONE);
+		btnClearWeights = new Button(grpWeightOptions, SWT.NONE);
+		btnClearWeights.setToolTipText("Remove all weights from the program");
 		btnClearWeights.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -235,9 +250,11 @@ public class Compareview extends ViewPart {
 		types.add("Both");
 		types.add("Fractional");
 		types.add("Binary");
+		types.setToolTipText("The type of comparison\n fractional- ratio of data points \n binary - within a tolerance\n both - average of both comparison types");
 		new Label(grpCompare, SWT.NONE);
 
-		Button compare = new Button(grpCompare, SWT.PUSH);
+		compare = new Button(grpCompare, SWT.PUSH);
+		compare.setToolTipText("Compare the datasets selected");
 		GridData gd_compare = new GridData(SWT.FILL, SWT.CENTER, false, false,
 				2, 1);
 		gd_compare.widthHint = 87;
@@ -259,6 +276,7 @@ public class Compareview extends ViewPart {
 		new Label(grpCompare, SWT.NONE);
 
 		Group grpSearch = new Group(parent, SWT.NONE);
+		grpSearch.setToolTipText("Search the CSD for matching cells");
 		grpSearch.setText("Search");
 		GridLayout gl_grpSearch = new GridLayout(6, false);
 		gl_grpSearch.horizontalSpacing = 25;
@@ -350,6 +368,8 @@ public class Compareview extends ViewPart {
 		new Label(grpSearch, SWT.NONE);
 		// saves cells to the datalist
 		Button btnSaveCells = new Button(grpSearch, SWT.NONE);
+		btnSaveCells
+				.setToolTipText("Save selected cells to the loaded data view");
 		btnSaveCells.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
