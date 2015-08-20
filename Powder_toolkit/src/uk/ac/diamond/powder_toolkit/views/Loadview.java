@@ -205,27 +205,29 @@ public class Loadview extends ViewPart {
 						File file = new File(filepath);
 
 						if (file.isFile()) {
-							// check is actually a file and not just directory
-							filetext.setText(filepath);
-							sampletext.setText(file.getName());
-							checkboxnumber = 0;
-							columnnumbers.clear();
-							comboList.clear();
+							// check file and continue
+							filetext.setText(filepath); // sets the filepath box
+							sampletext.setText(file.getName()); // sets the sample text box
+							checkboxnumber = 0; // the number of checkboxes in the data table that are ticked
+							columnnumbers.clear(); // clear the set of column numbers
+							comboList.clear(); // clear the combo lists that are set
 
-							try {
+							try { // dispose the previous editors in the table
 								for (TableEditor myeditor : editors.values()) {
 									myeditor.getEditor().dispose();
 								}
 							} catch (Exception e) {
 							}
-							editors = new HashMap<String, TableEditor>();
-							table.removeAll(); // refresh
+							editors = new HashMap<String, TableEditor>(); // reset the map
+							table.removeAll(); // refresh the table
 							TableItem[] items = table.getItems();
 							for (TableItem myitem : items) {
+								// make sure the table has disposed of every row
 								myitem.dispose();
 							}
 							TableColumn[] columns = table.getColumns();
 							for (TableColumn tc : columns) {
+								//dispose every column in the table
 								tc.dispose();
 							}
 							GridData gd_table_2 = new GridData(SWT.FILL,
@@ -235,19 +237,22 @@ public class Loadview extends ViewPart {
 							table.setLayoutData(gd_table_2);
 							table.setHeaderVisible(true);
 							table.setLinesVisible(true);
-
-							dataset = Loader.openData(filepath);
+							
+							dataset = Loader.openData(filepath); //datasets of the open file
+							
 							for (int i = 0; i < dataset.size(); i++) {
+								// sets the columns in the table
 								IDataset mydata = dataset.get(i);
 								TableColumn column = new TableColumn(table,
 										SWT.NULL);
 								column.setText(mydata.getName());
 								column.pack();
+								
 							}
-
+							// create a new row
 							final TableItem item = new TableItem(table,
 									SWT.NULL);
-							// combo boxes in the data table
+							// combo boxes in row
 							for (int i = 0; i < dataset.size(); i++) {
 								final int k = i;
 								TableEditor editor = new TableEditor(table);
@@ -256,6 +261,7 @@ public class Loadview extends ViewPart {
 
 								final CCombo combo = new CCombo(table,
 										SWT.BORDER);
+								// combo options
 								combo.setText("Select");
 								combo.add("Intensity");
 								combo.add("Two theta");
@@ -276,7 +282,7 @@ public class Loadview extends ViewPart {
 
 								});
 							}
-
+							// the second row 
 							final TableItem item2 = new TableItem(table,
 									SWT.NONE);
 							// checkbox in the data table
@@ -320,11 +326,11 @@ public class Loadview extends ViewPart {
 										} else {
 											columnnumbers.remove(columnnumbers
 													.indexOf(k)); // remove
-																	// value is
+																	// value after
 																	// box
 																	// unchecked
 											editors.get(k + "C").getEditor()
-													.setEnabled(false); // disables
+													.setEnabled(false); // disable
 																		// combo
 											checkboxnumber -= 1;
 										}
@@ -333,11 +339,12 @@ public class Loadview extends ViewPart {
 								});
 							}
 						}
-						// sets the data in the columns
+						// puts the data in the rows and columns
 						for (int i = 0; i < dataset.size(); i++) {
 
 							IDataset mydata = dataset.get(i);
 							if (i == 0) {
+								// first new row
 								for (int j = 0; j < mydata.getSize(); j++) {
 									final TableItem item1 = new TableItem(
 											table, SWT.NULL);
@@ -355,7 +362,7 @@ public class Loadview extends ViewPart {
 							}
 
 						}
-
+						// gets the list of the columns
 						TableColumn[] mycolumnlist = table.getColumns();
 						for (TableColumn mycol : mycolumnlist) {
 							mycol.setWidth(150); // set the min column width
@@ -374,7 +381,12 @@ public class Loadview extends ViewPart {
 			}
 		});
 	}
-
+	/**
+	 * The function for the range check box
+	 * @param rangebox boolean if checked
+	 * @param lower string lower bound of range
+	 * @param upper striong upper bound of range
+	 */
 	private void RangeBoxFunction(final Button rangebox, final Text lower,
 			final Text upper) {
 		rangebox.addSelectionListener(new SelectionAdapter() {
@@ -395,7 +407,7 @@ public class Loadview extends ViewPart {
 	}
 
 	/**
-	 * Loads in the data
+	 * Function of the load button
 	 * 
 	 * @param load
 	 *            button
