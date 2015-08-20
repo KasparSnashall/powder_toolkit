@@ -218,7 +218,6 @@ public class Loadview extends ViewPart {
 							sampletext.setText(file.getName());
 							checkboxnumber = 0;
 							columnnumbers.clear();
-							;
 							comboList.clear();
 
 							try {
@@ -256,7 +255,7 @@ public class Loadview extends ViewPart {
 
 							final TableItem item = new TableItem(table,
 									SWT.NULL);
-
+							// combo boxes in the data table
 							for (int i = 0; i < dataset.size(); i++) {
 								final int k = i;
 								TableEditor editor = new TableEditor(table);
@@ -288,6 +287,7 @@ public class Loadview extends ViewPart {
 
 							final TableItem item2 = new TableItem(table,
 									SWT.NONE);
+							// checkbox in the data table
 							for (int i = 0; i < dataset.size(); i++) {
 								final int k = i;
 								TableEditor editor = new TableEditor(table);
@@ -303,17 +303,22 @@ public class Loadview extends ViewPart {
 											SelectionEvent event) {
 
 										if (buttonb.getSelection()) {
+											// this sequence ensures only two
+											// checkboxes may be selected then
+											// gets those checkbox columns
 											if (checkboxnumber == 0) {
 												columnnumbers.add(k);
 												editors.get(k + "C")
 														.getEditor()
-														.setEnabled(true);
+														.setEnabled(true); // enables
+																			// combo
 												checkboxnumber += 1;
 											} else if (checkboxnumber == 1) {
 												columnnumbers.add(k);
 												editors.get(k + "C")
 														.getEditor()
-														.setEnabled(true);
+														.setEnabled(true); // enables
+																			// combo
 												checkboxnumber += 1;
 											} else {
 												System.out
@@ -324,9 +329,11 @@ public class Loadview extends ViewPart {
 											columnnumbers.remove(columnnumbers
 													.indexOf(k)); // remove
 																	// value is
+																	// box
 																	// unchecked
 											editors.get(k + "C").getEditor()
-													.setEnabled(false);
+													.setEnabled(false); // disables
+																		// combo
 											checkboxnumber -= 1;
 										}
 
@@ -334,6 +341,7 @@ public class Loadview extends ViewPart {
 								});
 							}
 						}
+						// sets the data in the columns
 						for (int i = 0; i < dataset.size(); i++) {
 
 							IDataset mydata = dataset.get(i);
@@ -345,6 +353,8 @@ public class Loadview extends ViewPart {
 											.getDouble(j)));
 								}
 							} else {
+								// ensures first two rows are taken by the
+								// editors
 								for (int j = -1; j < mydata.getSize(); j++) {
 									TableItem item1 = table.getItem(j + 2);
 									item1.setText(i,
@@ -353,10 +363,12 @@ public class Loadview extends ViewPart {
 							}
 
 						}
+
 						TableColumn[] mycolumnlist = table.getColumns();
 						for (TableColumn mycol : mycolumnlist) {
-							mycol.setWidth(150);
+							mycol.setWidth(150); // set the min column width
 						}
+						// pack the table
 						table.pack();
 						table.layout();
 						// refresh the layout
