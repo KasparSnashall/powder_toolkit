@@ -43,7 +43,6 @@ import uk.ac.diamond.powder_toolkit.widgets.ErrorWidget;
 public class Loadview extends ViewPart {
 	public Loadview() {
 	}
-
 	public static final String ID = "Views.Loadview"; //$NON-NLS-1$
 	static Boolean myrange = false; // the internal rnage boolean
 	public static String filepath; // the filepath
@@ -54,18 +53,11 @@ public class Loadview extends ViewPart {
 	private static GridData griddata_1;
 	private static Text sampletext; // the sample name textbox
 	private Table table; // the data table
-	private static Map<String, TableEditor> editors = new HashMap<String, TableEditor>(); // a
+	private static Map<String, TableEditor> editors = new HashMap<String, TableEditor>();// a
 																							// map
 																							// of
 																							// table
 																							// editors
-																							// used
-																							// to
-																							// dispose
-																							// when
-																							// loading
-																							// new
-																							// data
 	private static Map<Integer, String> comboList = new HashMap<Integer, String>(); // column
 																					// number,
 																					// combo
